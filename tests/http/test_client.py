@@ -1,6 +1,6 @@
 import pytest
 
-from facturapi.exc import FacturapiResponseException
+from facturapi.types.exc import FacturapiResponseException
 from facturapi.http.client import Client
 
 

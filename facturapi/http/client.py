@@ -5,7 +5,7 @@ from urllib.parse import urljoin
 import requests
 from requests import Response
 
-from ..exc import FacturapiResponseException
+from ..types.exc import FacturapiResponseException
 from ..version import CLIENT_VERSION
 
 API_HOST = 'facturapi.io/v1'
@@ -90,7 +90,7 @@ class Client:
             endpoint: Endpoint to make the request to.
             params:
             data:
-            **kwargs: Aribitrary keyword arguments.
+            **kwargs: Arbitrary keyword arguments.
 
         Returns:
             Dict[str, Any]: JSON of the request's response.

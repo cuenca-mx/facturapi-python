@@ -15,13 +15,13 @@ This is a Python library for https://www.facturapi.io
 
 FacturAPI makes it easy for developers to generate valid Invoices in Mexico (known as Factura Electrónica or CFDI).
 
-## Installation 💻
+## 💻 Installation
 
-## Getting started 🚀
+## 🚀 Getting started
 
-## Documentation 📚
+## 📚 Documentation
 To find more documentation and use cases about the library and Facturapi, check out the [docs](http://docs.facturapi.io).
-## Contribute 💡 
+## 💡 Contribute
 ### Found a bug?
 Please create an issue addressing the bug and how to replicate it.
 ### Want to contribute?
@@ -32,7 +32,7 @@ Be sure to fork the repo and send your PR! Any and all help is appreciated.
 - **Cuenca:** dev@cuenca.com
 
 ---
-Developed and maintained with 💙 by [Cuenca](https://cuenca.com/)
+Developed and maintained with 💙 by [Cuenca](https://github.com/cuenca-mx)
 <p align="center">
     <a href="https://cuenca.com/">
         <img alt="Cuenca Logo" src="./images/cuenca-full-logo.svg" width="200" />

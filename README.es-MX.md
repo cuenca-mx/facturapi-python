@@ -13,14 +13,14 @@ Esta es una librería de Python para https://www.facturapi.io
 
 FacturAPI facilita la creación de facturas válidas para desarrolladores en México (Facturas Electrónicas o CFDI).
 
-## Instalación 💻
+## 💻 Instalación
 
-## Primeros pasos 🚀
+## 🚀 Primeros pasos
 
-## Documentación 📚
+## 📚 Documentación
 Para encontrar más información, casos de uso y documentación, entra a los [docs](http://docs.facturapi.io).
 
-## Contribuye 💡 
+## 💡 Contribuye
 ### ¿Encontraste un bug?
 Crea un `issue` explicando el problema y cómo replicarlo.
 
