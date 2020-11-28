@@ -14,10 +14,12 @@ class Resource:
     Generic Resource class used by Facturapi resources.
 
     Attributes:
-        _resource (ClassVar[str]): Name of the resource the class corresponds to.
+        _resource (ClassVar[str]): Name of the resource the
+            class corresponds to.
         id (str): ID of the resource.
 
     """
+
     _resource: ClassVar[str]
 
     id: str
@@ -51,10 +53,11 @@ class Resource:
 class Retrievable(Resource):
     """Generic Retrievable class.
 
-    Used by resources that can be retrieved, i.e: resources that can be retrieved
-    by a GET request to its ID.
+    Used by resources that can be retrieved, i.e: resources that can
+    be retrieved by a GET request to its ID.
 
     """
+
     @classmethod
     def retrieve(cls, id: str) -> Resource:
         """Retrieve a resource given its ID
@@ -63,7 +66,7 @@ class Retrievable(Resource):
 
         Args:
             id: The ID of the resource
-        
+
         Returns:
             Resource: The resource retrieved.
 
@@ -74,7 +77,7 @@ class Retrievable(Resource):
     def refresh(self):
         """Refresh a resource
 
-        Refresh resource's data to be sure its the latest. It 
+        Refresh resource's data to be sure its the latest. It
         performs a GET request on the resource.
 
         Returns:
@@ -92,15 +95,16 @@ class Creatable(Resource):
     Used by resources that can be created.
 
     """
+
     @classmethod
     def create(cls, **data) -> Resource:
         """Create a resource
 
         Performs a POST request with the data.
-        
+
         Args:
             data (dict): Data from the resource to create.
-        
+
         Returns:
             Resource: The created resource.
 
@@ -115,6 +119,7 @@ class Updateable(Resource):
     Used by resources that can be updated.
 
     """
+
     @classmethod
     def update(cls, id: str, **data) -> Resource:
         """Update an specific resource with new data.
@@ -123,7 +128,7 @@ class Updateable(Resource):
 
         Args:
             id: The ID of the resource.
-        
+
         Returns:
             Resource: The updated resource.
 
@@ -138,6 +143,7 @@ class Deletable(Resource):
     Used by resources that can be deleted.
 
     """
+
     @classmethod
     def delete(cls, id: str) -> Resource:
         """Delete an specific resource.
@@ -146,7 +152,7 @@ class Deletable(Resource):
 
         Args:
             id: The ID of the resource to delete.
-        
+
         Returns:
             Resource: The deleted resource.
 
@@ -162,9 +168,10 @@ class Queryable(Resource):
     Used by resources that can be queried in lists.
 
     Attributes:
-        _query_params (ClassVar): A class with the parameters that 
+        _query_params (ClassVar): A class with the parameters that
             can be queried.
     """
+
     _query_params: ClassVar = BaseQuery
 
     @classmethod
@@ -177,11 +184,11 @@ class Queryable(Resource):
 
         Args:
             **query_params (dict): Arbitrary query keyword arguments.
-        
+
         Raises:
             NoResultFound: If no result is found.
             MultipleResultsFound: If more than one result is found.
-        
+
         Returns:
             Resource: The one resource queried.
 
@@ -202,7 +209,7 @@ class Queryable(Resource):
 
         Args:
             **query_params (dict): Arbitrary query keyword arguments.
-        
+
         Returns:
             Optional[Resource]: The first resource queried or `None`
                 if none found.
@@ -224,7 +231,7 @@ class Queryable(Resource):
 
         Args:
             **query_params (dict): Arbitrary query keyword arguments.
-        
+
         Returns:
             int: The total count of results.
 
@@ -244,7 +251,7 @@ class Queryable(Resource):
 
         Args:
             **query_params (dict): Arbitrary query keyword arguments.
-        
+
         Yields:
             List[Resource]: List containing the resulted resources.
 

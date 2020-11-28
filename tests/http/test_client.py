@@ -1,7 +1,7 @@
 import pytest
 
-from facturapi.types.exc import FacturapiResponseException
 from facturapi.http.client import Client
+from facturapi.types.exc import FacturapiResponseException
 
 
 def test_auth_without_env():

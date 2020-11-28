@@ -8,14 +8,14 @@ def sanitize_dict(d: dict):
         d[k] = sanitize_item(v)
 
 
-def sanitize_item(item: Any, default: Callable = None) -> Any:
+def sanitize_item(item: Any) -> Any:
     """Sanitizes a value to use simple data.
 
     Args:
         item: Item to be sanatized.
-        default: Optional function to be used when there is 
+        default: Optional function to be used when there is
             no case for an item type. Defaults to `None`.
-    
+
     Returns:
         Any: Sanitized value.
 
@@ -25,11 +25,9 @@ def sanitize_item(item: Any, default: Callable = None) -> Any:
             return item.astimezone(dt.timezone.utc).isoformat()
         else:
             return item.isoformat()
-        elif isinstance(item, Enum):
-            return item.value
-        elif hasattr(item, 'to_dict'):
-            return item.to_dict()
-        elif default:
-            return default(item)
-        else:
-            return item
+    elif isinstance(item, Enum):
+        return item.value
+    elif hasattr(item, 'to_dict'):
+        return item.to_dict()
+    else:
+        return item
