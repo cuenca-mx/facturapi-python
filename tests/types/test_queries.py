@@ -11,9 +11,9 @@ def test_base_query():
 
 def test_base_query_page_size():
     with pytest.raises(ValidationError):
-        q = BaseQuery(q='Frida', limit=51)
+        _ = BaseQuery(q='Frida', limit=51)
 
 
 def test_base_query_page_min():
     with pytest.raises(ValidationError):
-        q = BaseQuery(q='Frida', page=0)
+        _ = BaseQuery(q='Frida', page=0)
