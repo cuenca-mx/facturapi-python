@@ -1,10 +1,11 @@
 from dataclasses import asdict, dataclass, fields
-from typing import ClassVar, Dict, Generator, Optional, Union
+from typing import Any, ClassVar, Dict, Generator, Optional
 from urllib.parse import urlencode
 
 from ..http import client
-from ..types import BaseQuery, SanitizedDict
+from ..types import BaseQuery
 from ..types.exc import MultipleResultsFound, NoResultFound
+from ..types.general import SanitizedDict
 
 
 @dataclass
@@ -21,6 +22,7 @@ class Resource:
     """
 
     _resource: ClassVar[str]
+    _relations: ClassVar[str]
 
     id: str
 
@@ -29,14 +31,12 @@ class Resource:
         ...
 
     @classmethod
-    def _from_dict(cls, obj_dict: Dict[str, Union[str, int]]) -> 'Resource':
+    def _from_dict(cls, obj_dict: Dict[str, Any]) -> 'Resource':
         cls._filter_excess_fields(obj_dict)
         return cls(**obj_dict)
 
     @classmethod
-    def _filter_excess_fields(
-        cls, obj_dict: Dict[str, Union[str, int]]
-    ) -> None:
+    def _filter_excess_fields(cls, obj_dict: Dict[str, Any]) -> None:
         """
         dataclasses don't allow __init__ to be called with excess fields.
         This method allows the API to add fields in the response body without
@@ -44,6 +44,9 @@ class Resource:
         """
         excess = set(obj_dict.keys()) - {f.name for f in fields(cls)}
         for f in excess:
+            if f in cls._relations:
+                obj_dict[f'{f}_id'] = obj_dict[f]['id']
+                obj_dict[f'{f}_info'] = obj_dict[f]
             del obj_dict[f]
 
     def to_dict(self):
@@ -97,7 +100,7 @@ class Creatable(Resource):
     """
 
     @classmethod
-    def create(cls, **data) -> Resource:
+    def _create(cls, **data) -> Resource:
         """Create a resource
 
         Performs a POST request with the data.
@@ -145,7 +148,7 @@ class Deletable(Resource):
     """
 
     @classmethod
-    def delete(cls, id: str) -> Resource:
+    def _delete(cls, id: str) -> Resource:
         """Delete an specific resource.
 
         Performs a DELETE request on the ID.

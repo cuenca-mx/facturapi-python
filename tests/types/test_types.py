@@ -3,7 +3,7 @@ from enum import Enum
 
 from pydantic.dataclasses import dataclass
 
-from facturapi.types import SanitizedDict
+from facturapi.types.general import SanitizedDict
 
 
 class TEnum(Enum):

@@ -1,5 +1,5 @@
 import os
-from typing import Any, Dict, Optional, Union
+from typing import Any, Dict, MutableMapping, Optional, Union, cast
 from urllib.parse import urljoin
 
 import requests
@@ -8,7 +8,7 @@ from requests import Response
 from ..types.exc import FacturapiResponseException
 from ..version import CLIENT_VERSION
 
-API_HOST = 'facturapi.io/v1'
+API_HOST = 'www.facturapi.io/v1'
 
 
 class Client:
@@ -43,6 +43,22 @@ class Client:
         self.api_key = os.getenv('FACTURAPI_KEY', '')
         self.session.auth = (self.api_key, '')
 
+    def _clean_data(self, data: Dict[str, Any]) -> Dict[str, Any]:
+        cleaned_data = {}
+        for k, v in data.items():
+            if isinstance(v, list):
+                for i, c in enumerate(v):
+                    if isinstance(c, dict):
+                        v[i] = self._clean_data(c)
+                    elif c is None:
+                        v.pop(i)
+                cleaned_data[k] = cast(Any, v)
+            elif isinstance(v, dict):
+                cleaned_data[k] = dict(**self._clean_data(v))
+            elif v is not None:
+                cleaned_data[k] = v
+        return cleaned_data
+
     def configure(self, api_key: str):
         """Configure the http client.
 
@@ -56,7 +72,11 @@ class Client:
         self.api_key = api_key
         self.session.auth = (self.api_key, '')
 
-    def get(self, endpoint: str, params=None) -> Dict[str, Any]:
+    def get(
+        self,
+        endpoint: str,
+        params: Union[None, bytes, MutableMapping[str, str]] = None,
+    ) -> Dict[str, Any]:
         """Performs GET request to Facturapi"""
         return self.request('get', endpoint, params=params)
 
@@ -100,6 +120,9 @@ class Client:
                 successful.
 
         """
+        if data:
+            data = self._clean_data(data)
+
         response = self.session.request(
             method=method,
             url=('https://' + self.host + urljoin('/', endpoint)),

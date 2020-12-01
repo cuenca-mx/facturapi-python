@@ -10,20 +10,25 @@ interactions:
       - DUMMY
       Connection:
       - keep-alive
+      Content-Length:
+      - '0'
       Content-Type:
       - application/json
       User-Agent:
       - facturapi-python/0.0.1
-    method: GET
-    uri: https://www.facturapi.io/v1/invoices
+    method: DELETE
+    uri: https://www.facturapi.io/v1/invoices/INVOICE01
   response:
     body:
-      string: '{"message":"Not authenticated","ok":false}'
+      string: '{"id":"INVOICE01","created_at":"2020-12-01T02:29:45.034Z","livemode":false,"verification_url":"https://verificacfdi.facturaelectronica.sat.gob.mx/default.aspx?id=768411cf-0edf-4d7f-bb9a-2b61f30c6886&re=AAA010101AAA&rr=VAUR631216M55&tt=84.000000&fe=zOOkgw==","status":"valid","type":"I","cancellation_status":"pending","customer":{"id":"CUSTOMER01","legal_name":"Remedios
+        Varo","tax_id":"VAUR631216M55"},"total":84,"uuid":"768411cf-0edf-4d7f-bb9a-2b61f30c6886","use":"G01","folio_number":1,"payment_form":"04","payment_method":"PUE","currency":"MXN","exchange":1,"items":[{"quantity":2,"discount":0.1,"product":{"description":"Producto
+        Test","product_key":"50202201","unit_key":"H87","unit_name":"Pieza","price":42.05,"tax_included":true,"taxes":[{"rate":0.16,"type":"IVA","withholding":false,"factor":"Tasa"}]},"parts":[{"quantity":1,"description":"Parte
+        1","product_key":"50202201"}]}]}'
     headers:
       Content-Length:
-      - '42'
+      - '914'
       Date:
-      - Tue, 01 Dec 2020 05:16:45 GMT
+      - Tue, 01 Dec 2020 04:34:07 GMT
       Server:
       - Google Frontend
       access-control-allow-origin:
@@ -35,7 +40,7 @@ interactions:
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"2a-jSoMy3eiI/7Rodk87HF9DPgfv0U"
+      - W/"394-5ky55dRlFipRJSaUAnRigoyfgd4"
       expect-ct:
       - max-age=0
       referrer-policy:
@@ -44,11 +49,9 @@ interactions:
       - max-age=15552000; includeSubDomains
       vary:
       - Accept-Encoding
-      www-authenticate:
-      - Basic realm="facturapi"
       x-cloud-trace-context:
-      - 6a1892a9d918334fcb24dbad64503e29/9006086196031363500;o=1
-      - 6a1892a9d918334fcb24dbad64503e29;o=1
+      - d3a0816a63525b409736a9e1ca84f675/3243578911431634875;o=1
+      - d3a0816a63525b409736a9e1ca84f675;o=1
       x-content-type-options:
       - nosniff
       x-dns-prefetch-control:
@@ -62,6 +65,6 @@ interactions:
       x-xss-protection:
       - '0'
     status:
-      code: 401
-      message: Unauthorized
+      code: 200
+      message: OK
 version: 1

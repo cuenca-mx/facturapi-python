@@ -1,4 +1,35 @@
+from typing import List, Optional
+
+from pydantic import BaseModel
+
 from .validators import sanitize_dict
+
+
+class CustomerBasicInfo(BaseModel):
+    id: str
+    legal_name: str
+    tax_id: str
+
+
+class ItemPart(BaseModel):
+    description: str
+    product_key: str
+    quantity: Optional[int] = 1
+    sku: Optional[str]
+    unit_price: Optional[float]
+    customs_keys: Optional[List[str]]
+
+
+class Namespace(BaseModel):
+    prefix: Optional[str]
+    uri: Optional[str]
+    schema_location: Optional[str]
+
+
+class ProductBasicInfo(BaseModel):
+    id: str
+    unit_name: str
+    description: str
 
 
 class SanitizedDict(dict):
