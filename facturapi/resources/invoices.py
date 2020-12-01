@@ -12,6 +12,7 @@ from ..types.general import (
     ProductBasicInfo,
 )
 from .base import Creatable, Deletable, Downloadable, Queryable, Retrievable
+from .customers import CustomerRequest
 
 
 class InvoiceItem(BaseModel):
@@ -29,7 +30,7 @@ class InvoiceItem(BaseModel):
 class InvoiceRequest(BaseModel):
     """Model for a request to create an Invoice."""
 
-    customer: Union[str, Dict]  # TO DO: Change Dict for CustomerRequest
+    customer: Union[str, CustomerRequest]
     items: List[InvoiceItem]
     payment_form: PaymentForm
     payment_method: Optional[PaymentMethod] = PaymentMethod.contado

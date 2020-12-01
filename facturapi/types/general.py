@@ -5,6 +5,18 @@ from pydantic import BaseModel
 from .validators import sanitize_dict
 
 
+class CustomerAddress(BaseModel):
+    street: Optional[str]
+    exterior: Optional[str]
+    interior: Optional[str]
+    neighborhood: Optional[str]
+    zip: Optional[str]
+    city: Optional[str]
+    municipality: Optional[str]
+    state: Optional[str]
+    country: Optional[str]
+
+
 class CustomerBasicInfo(BaseModel):
     id: str
     legal_name: str

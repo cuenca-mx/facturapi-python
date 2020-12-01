@@ -22,7 +22,7 @@ class Resource:
     """
 
     _resource: ClassVar[str]
-    _relations: ClassVar[str]
+    _relations: ClassVar[str] = []
 
     id: str
 
@@ -115,9 +115,7 @@ class Downloadable(Resource):
             bytes: Bytes of the file.
 
         """
-        return client.download_request(
-            f'/{cls._resource}/{id}/{file_type}'
-        )
+        return client.download_request(f'/{cls._resource}/{id}/{file_type}')
 
 
 class Creatable(Resource):

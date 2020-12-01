@@ -1,6 +1,7 @@
 import pytest
 
 import facturapi
+from facturapi.resources.customers import CustomerRequest
 from facturapi.resources.invoices import InvoiceRequest
 from facturapi.types import PaymentForm
 from facturapi.types.general import ItemPart
@@ -9,7 +10,7 @@ from facturapi.types.general import ItemPart
 @pytest.mark.vcr
 def test_create_invoice():
     invoice_request = InvoiceRequest(
-        customer=dict(  # TO DO: Use CustomerRequest
+        customer=CustomerRequest(
             legal_name='Remedios Varo',
             tax_id='VAUR631216M55',
             email='remedios@varo.com',
