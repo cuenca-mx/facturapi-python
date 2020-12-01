@@ -96,3 +96,13 @@ def test_download_invoice_zip():
 
     assert invoice_bytes
     assert type(invoice_bytes) == bytes
+
+
+@pytest.mark.vcr
+def test_invoice_customer_property():
+    invoice_id = 'INVOICE01'
+    invoice = facturapi.Invoice.retrieve(id=invoice_id)
+    assert invoice.id
+
+    customer = invoice.customer
+    assert customer.id == invoice.customer_info.id

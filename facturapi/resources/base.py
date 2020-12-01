@@ -41,11 +41,15 @@ class Resource:
         dataclasses don't allow __init__ to be called with excess fields.
         This method allows the API to add fields in the response body without
         breaking the client.
+        Also if data of a relation is found, the data is rearranged so the
+        library can map relations easier.
+
         """
         excess = set(obj_dict.keys()) - {f.name for f in fields(cls)}
         for f in excess:
             if f in cls._relations:
-                obj_dict[f'{f}_id'] = obj_dict[f]['id']
+                id_ = obj_dict[f]['id']
+                obj_dict[f'{f}_uri'] = f'{f}s/{id_}'
                 obj_dict[f'{f}_info'] = obj_dict[f]
             del obj_dict[f]
 

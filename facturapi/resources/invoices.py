@@ -12,7 +12,8 @@ from ..types.general import (
     ProductBasicInfo,
 )
 from .base import Creatable, Deletable, Downloadable, Queryable, Retrievable
-from .customers import CustomerRequest
+from .customers import Customer, CustomerRequest
+from .resources import retrieve_property
 
 
 class InvoiceItem(BaseModel):
@@ -63,7 +64,7 @@ class Invoice(Creatable, Deletable, Downloadable, Queryable, Retrievable):
     livemode: bool
     status: str
     customer_info: CustomerBasicInfo
-    customer_id: str
+    customer_uri: str
     total: float
     uuid: str
     payment_form: PaymentForm
@@ -75,6 +76,21 @@ class Invoice(Creatable, Deletable, Downloadable, Queryable, Retrievable):
     series: Optional[str] = None
     related: Optional[List[str]] = None
     relation: Optional[InvoiceRelation] = None
+
+    @property
+    def customer(self) -> Customer:
+        """Fetch and access Customer resource.
+
+        This property fetches and maps the customer
+        related to an invoice so it can be accessed
+        through a simple property instead of making a
+        manual retrieve.
+
+        Returns:
+            Customer: Customer related to the invoice.
+
+        """
+        return cast(Customer, retrieve_property(self.customer_uri))
 
     @classmethod
     def create(cls, data: InvoiceRequest) -> 'Invoice':
