@@ -11,7 +11,7 @@ from ..types.general import (
     Namespace,
     ProductBasicInfo,
 )
-from .base import Creatable, Deletable, Queryable, Retrievable
+from .base import Creatable, Deletable, Downloadable, Queryable, Retrievable
 
 
 class InvoiceItem(BaseModel):
@@ -48,7 +48,7 @@ class InvoiceRequest(BaseModel):
 
 
 @dataclass
-class Invoice(Creatable, Deletable, Queryable, Retrievable):
+class Invoice(Creatable, Deletable, Downloadable, Queryable, Retrievable):
     """Invoice resource.
 
     Resource and data for an Invoice.
@@ -79,6 +79,9 @@ class Invoice(Creatable, Deletable, Queryable, Retrievable):
     def create(cls, data: InvoiceRequest) -> 'Invoice':
         """Create an invoice.
 
+        Args:
+            data: All the request data to create an invoice.
+
         Returns:
             Invoice: The created resource.
 
@@ -92,7 +95,7 @@ class Invoice(Creatable, Deletable, Queryable, Retrievable):
         Calls a DELETE request on invoice resource.
 
         Args:
-            id: The ID of the invoice to cancel.
+            invoice_id: The ID of the invoice to cancel.
 
         Returns:
             Invoice: The cancelled invoice resource.

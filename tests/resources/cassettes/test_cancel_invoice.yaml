@@ -20,7 +20,7 @@ interactions:
     uri: https://www.facturapi.io/v1/invoices/INVOICE01
   response:
     body:
-      string: '{"id":"INVOICE01","created_at":"2020-12-01T02:29:45.034Z","livemode":false,"verification_url":"https://verificacfdi.facturaelectronica.sat.gob.mx/default.aspx?id=768411cf-0edf-4d7f-bb9a-2b61f30c6886&re=AAA010101AAA&rr=VAUR631216M55&tt=84.000000&fe=zOOkgw==","status":"valid","type":"I","cancellation_status":"pending","customer":{"id":"CUSTOMER01","legal_name":"Remedios
+      string: '{"id":"INVOICE01","created_at":"2020-12-01T02:29:45.034Z","livemode":false,"verification_url":"https://verificacfdi.facturaelectronica.sat.gob.mx/default.aspx?id=768411cf-0edf-4d7f-bb9a-2b61f30c6886&re=AAA010101AAA&rr=VAUR631216M55&tt=84.000000&fe=zOOkgw==","status":"canceled","type":"I","cancellation_status":"accepted","customer":{"id":"CUSTOMER01","legal_name":"Remedios
         Varo","tax_id":"VAUR631216M55"},"total":84,"uuid":"768411cf-0edf-4d7f-bb9a-2b61f30c6886","use":"G01","folio_number":1,"payment_form":"04","payment_method":"PUE","currency":"MXN","exchange":1,"items":[{"quantity":2,"discount":0.1,"product":{"description":"Producto
         Test","product_key":"50202201","unit_key":"H87","unit_name":"Pieza","price":42.05,"tax_included":true,"taxes":[{"rate":0.16,"type":"IVA","withholding":false,"factor":"Tasa"}]},"parts":[{"quantity":1,"description":"Parte
         1","product_key":"50202201"}]}]}'

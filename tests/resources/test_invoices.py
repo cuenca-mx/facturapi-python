@@ -66,4 +66,32 @@ def test_cancel_invoice():
     invoice = facturapi.Invoice.cancel(invoice_id=invoice_id)
 
     assert invoice_id == invoice.id
-    assert invoice.cancellation_status == 'pending'
+    assert invoice.cancellation_status == 'accepted'
+    assert invoice.status == 'canceled'
+
+
+@pytest.mark.vcr
+def test_download_invoice():
+    invoice_id = 'INVOICE01'
+    invoice_bytes = facturapi.Invoice.download(id=invoice_id, file_type='pdf')
+
+    assert invoice_bytes
+    assert type(invoice_bytes) == bytes
+
+
+@pytest.mark.vcr
+def test_download_invoice_xml():
+    invoice_id = 'INVOICE01'
+    invoice_bytes = facturapi.Invoice.download(id=invoice_id, file_type='xml')
+
+    assert invoice_bytes
+    assert type(invoice_bytes) == bytes
+
+
+@pytest.mark.vcr
+def test_download_invoice_zip():
+    invoice_id = 'INVOICE01'
+    invoice_bytes = facturapi.Invoice.download(id=invoice_id, file_type='zip')
+
+    assert invoice_bytes
+    assert type(invoice_bytes) == bytes

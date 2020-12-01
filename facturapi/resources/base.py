@@ -92,6 +92,34 @@ class Retrievable(Resource):
             setattr(self, attr, value)
 
 
+class Downloadable(Resource):
+    """Generic Downloadable class.
+
+    Used by resources that can be downloaded as a file.
+
+    """
+
+    @classmethod
+    def download(cls, id: str, file_type: str) -> bytes:
+        """Download a file from resource.
+
+        Performs a GET request to download a file given a
+        resource ID.
+
+        Args:
+            id: The ID of the resource.
+            file_type: Type of the file to be downloaded.
+                (zip, pdf or xml).
+
+        Returns:
+            bytes: Bytes of the file.
+
+        """
+        return client.download_request(
+            f'/{cls._resource}/{id}/{file_type}'
+        )
+
+
 class Creatable(Resource):
     """Generic Creatable class.
 

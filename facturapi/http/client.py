@@ -77,19 +77,23 @@ class Client:
         endpoint: str,
         params: Union[None, bytes, MutableMapping[str, str]] = None,
     ) -> Dict[str, Any]:
-        """Performs GET request to Facturapi"""
+        """Performs GET request to Facturapi."""
         return self.request('get', endpoint, params=params)
 
+    def download(self, endpoint: str) -> bytes:
+        """Performs GET request but handles a file request."""
+        return self.download_request(endpoint)
+
     def post(self, endpoint: str, data: Dict[str, Any]) -> Dict[str, Any]:
-        """Performs POST request to Facturapi"""
+        """Performs POST request to Facturapi."""
         return self.request('post', endpoint, data=data)
 
     def put(self, endpoint: str, data: Dict[str, Any]) -> Dict[str, Any]:
-        """Performs PUT request to Facturapi"""
+        """Performs PUT request to Facturapi."""
         return self.request('put', endpoint, data=data)
 
     def delete(self, endpoint: str) -> Dict[str, Any]:
-        """Performs DELETE request to Facturapi"""
+        """Performs DELETE request to Facturapi."""
         return self.request('delete', endpoint)
 
     def request(
@@ -132,6 +136,33 @@ class Client:
         )
         self._check_response(response)
         return response.json()
+
+    def download_request(
+        self,
+        endpoint: str,
+        **kwargs,
+    ) -> bytes:
+        """Performs a GET request handling a file download.
+
+        Args:
+            endpoint: Endpoint to make the request to.
+            **kwargs: Arbitrary keyword arguments.
+
+        Returns:
+            bytes: Bytes of the requested file.
+
+        Raises:
+            FacturapiResponseException: If response is not
+                successful.
+
+        """
+        response = self.session.request(
+            method='GET',
+            url=('https://' + self.host + urljoin('/', endpoint)),
+            **kwargs,
+        )
+        self._check_response(response)
+        return response.content
 
     @staticmethod
     def _check_response(response: Response):
