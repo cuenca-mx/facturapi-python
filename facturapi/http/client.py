@@ -43,22 +43,6 @@ class Client:
         self.api_key = os.getenv('FACTURAPI_KEY', '')
         self.session.auth = (self.api_key, '')
 
-    def _clean_data(self, data: Dict[str, Any]) -> Dict[str, Any]:
-        cleaned_data = {}
-        for k, v in data.items():
-            if isinstance(v, list):
-                for i, c in enumerate(v):
-                    if isinstance(c, dict):
-                        v[i] = self._clean_data(c)
-                    elif c is None:
-                        v.pop(i)
-                cleaned_data[k] = cast(Any, v)
-            elif isinstance(v, dict):
-                cleaned_data[k] = dict(**self._clean_data(v))
-            elif v is not None:
-                cleaned_data[k] = v
-        return cleaned_data
-
     def configure(self, api_key: str):
         """Configure the http client.
 
@@ -124,9 +108,6 @@ class Client:
                 successful.
 
         """
-        if data:
-            data = self._clean_data(data)
-
         response = self.session.request(
             method=method,
             url=('https://' + self.host + urljoin('/', endpoint)),

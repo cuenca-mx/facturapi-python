@@ -45,4 +45,5 @@ class Customer(Creatable, Retrievable):
             Customer: The created resource.
 
         """
-        return cast('Customer', cls._create(**data.dict()))
+        cleaned_data = data.dict(exclude_unset=True, exclude_none=True)
+        return cast('Customer', cls._create(**cleaned_data))
