@@ -5,6 +5,7 @@ from facturapi.resources.customers import (
     CustomerRequest,
     CustomerUpdateRequest,
 )
+from facturapi.types.exc import MultipleResultsFound, NoResultFound
 from facturapi.types.general import CustomerAddress
 
 
@@ -73,3 +74,48 @@ def test_update_customer():
     )
     assert updated_customer.email != email
     assert updated_customer.email == 'remedios@pintora.com'
+
+
+@pytest.mark.vcr
+def test_query_customer_one():
+    customer = facturapi.Customer.one(q='Remedios')
+    assert customer.id
+
+
+@pytest.mark.vcr
+def test_query_customer_one_multiple():
+    with pytest.raises(MultipleResultsFound):
+        _ = facturapi.Customer.one()
+
+
+@pytest.mark.vcr
+def test_query_customer_one_no_found():
+    with pytest.raises(NoResultFound):
+        _ = facturapi.Customer.one(q='Diego Rivera')
+
+
+@pytest.mark.vcr
+def test_query_customer_first():
+    customer = facturapi.Customer.first()
+    assert customer is not None
+    assert customer.id
+
+
+@pytest.mark.vcr
+def test_query_customer_first_none():
+    customer = facturapi.Customer.first(q='Diego Rivera')
+    assert customer is None
+
+
+@pytest.mark.vcr
+def test_query_customer_count():
+    count = facturapi.Customer.count()
+    assert count == 2
+
+
+@pytest.mark.vcr
+def test_query_customer_all():
+    all_customers = facturapi.Customer.all()
+
+    for customer in all_customers:
+        assert customer.id

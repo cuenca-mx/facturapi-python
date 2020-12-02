@@ -5,7 +5,7 @@ from pydantic import BaseModel
 from pydantic.dataclasses import dataclass
 
 from ..types.general import CustomerAddress
-from .base import Creatable, Retrievable, Updatable
+from .base import Creatable, Queryable, Retrievable, Updatable
 
 
 class CustomerRequest(BaseModel):
@@ -25,7 +25,7 @@ class CustomerUpdateRequest(BaseModel):
 
 
 @dataclass
-class Customer(Creatable, Retrievable, Updatable):
+class Customer(Creatable, Queryable, Retrievable, Updatable):
     """Customer resource
 
     Resource and data for a Customer.
