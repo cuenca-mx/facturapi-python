@@ -1,0 +1,19 @@
+name: docs
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+      - name: Install dependencies:
+        run: pip install -qU mkdocs-material mkdocstrings
+      - name: Deploy Github Page
+        run: mkdocs gh-deploy --force

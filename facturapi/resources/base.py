@@ -1,6 +1,15 @@
-from dataclasses import asdict, dataclass, fields
+"""Base module for resources.
+
+This module represent all the base code for resources,
+the resources can inherit behaviour from these classes to
+perform requests and actions to the API.
+"""
+
+from dataclasses import asdict, fields
 from typing import Any, ClassVar, Dict, Generator, List, Optional
 from urllib.parse import urlencode
+
+from pydantic.dataclasses import dataclass
 
 from ..http import client
 from ..types import BaseQuery
@@ -53,7 +62,7 @@ class Resource:
                 obj_dict[f'{f}_info'] = obj_dict[f]
             del obj_dict[f]
 
-    def to_dict(self):
+    def to_dict(self) -> Dict:
         return asdict(self, dict_factory=SanitizedDict)
 
 
@@ -198,7 +207,9 @@ class Deletable(Resource):
 class Queryable(Resource):
     """Generic Queryable class.
 
-    Used by resources that can be queried in lists.
+    Used by resources that can be queried in lists. Refer to this
+    class to see the query actions that can be performed on a
+    resource.
 
     Attributes:
         _query_params: A class with the parameters that
@@ -285,8 +296,8 @@ class Queryable(Resource):
         Args:
             **query_params (dict): Arbitrary query keyword arguments.
 
-        Yields:
-            List[Resource]: List containing the resulted resources.
+        Returns:
+            Generator: A generator containing the queried results.
 
         """
         q = cls._query_params(**query_params)

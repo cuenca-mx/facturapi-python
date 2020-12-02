@@ -1,6 +1,6 @@
 <p align="center">
     <a href="https://facturapi.io">
-        <img alt="Facturapi Logo" src="./docs/images/facturapi-logo.svg" width="200" />
+        <img alt="Facturapi Logo" src="./images/facturapi-logo.svg" width="200" />
     </a>
 </p>
 <h1 align="center">
@@ -73,6 +73,6 @@ Be sure to fork the repo and send your PR! Any and all help is appreciated.
 Developed and maintained with 💙 by [Cuenca](https://github.com/cuenca-mx)
 <p align="center">
     <a href="https://cuenca.com/">
-        <img alt="Cuenca Logo" src="./docs/images/cuenca-full-logo.svg" width="200" />
+        <img alt="Cuenca Logo" src="./images/cuenca-full-logo.svg" width="200" />
     </a>
 </p>

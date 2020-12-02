@@ -1,3 +1,10 @@
+"""
+Invoice resource, it includes the class Resource, a request
+class to create the resource and a class to represent an
+Invoice Item.
+
+"""
+
 import datetime as dt
 from typing import ClassVar, Dict, List, Optional, Union, cast
 
@@ -17,6 +24,25 @@ from .resources import retrieve_property
 
 
 class InvoiceItem(BaseModel):
+    """
+    Class representing an Item from an Invoice.
+
+    Attributes:
+        quantity (str): Number of items of this type. Defaults
+            to `1`.
+        discount (float): Discount on the item price if any.
+            Defaults to `0`.
+        product (Union[str, ProductBasicInfo, Dict]): Product
+            ID, info or request to create a resource.
+        custom_keys (List[str]): List of custom product keys.
+            Optional.
+        complement (str): XML code with additional info to add
+            to the invoice. Optional.
+        parts (List[ItemParts]): If the concept includes parts.
+            Optional.
+        property_tax_account (str): 'Predial' number. Optional.
+
+    """
     quantity: Optional[int] = 1
     discount: Optional[float] = 0
     product: Union[
@@ -29,7 +55,38 @@ class InvoiceItem(BaseModel):
 
 
 class InvoiceRequest(BaseModel):
-    """Model for a request to create an Invoice."""
+    """
+    This request must be filled to `create` an Invoice.
+    It contains all information necessary to create this resource.
+
+    Attributes:
+        customer (Union[str, CustomerRequest]): Customer ID or a 
+            CustomerRequest to create a new one.
+        items (List[InvoiceItem]): List of items of the invoice.
+        payment_form (PaymentForm): Form of payment.
+        payment_method (PaymentMethod): Method of payment. Defaults
+            to `PaymentMethod.contado`.
+        use (InvoiceUse): Invoice SAT CFDI use. Defaults to
+            `InvoiceUse.adquisicion_mercancias`.
+        folio_number (int): Internal folio number. Optional.
+        series (str): Internal series string. Optional.
+        currency (str): Currency of the invoice in ISO format.
+            Defaults to `MXN`.
+        exchange (float): If a currency is present, the exchange
+            value to Mexican Pesos. Defaults to `1.0`.
+        conditions (str): Payment conditions. Optional.
+        foreign_trade (Dict): Info to add a 'Complemento de Comercio
+            Exterior'. Optional.
+        related (List[str]): UUID list of related invoices. Optional.
+        relation (InvoiceRelation): If related invoices are given,
+            their relation key from the SAT catalogue. Optional.
+        pdf_custom_section (str): HTML string code to include content
+            to the invoice's PDF. Optional
+        addenda (str): XML code with Addenda. Optional.
+        namespaces (List[Namespace]): If `addenda` or an item complement
+            is given, the special namespaces of the XML code. Optional.
+
+    """
 
     customer: Union[str, CustomerRequest]
     items: List[InvoiceItem]
@@ -51,9 +108,34 @@ class InvoiceRequest(BaseModel):
 
 @dataclass
 class Invoice(Creatable, Deletable, Downloadable, Queryable, Retrievable):
-    """Invoice resource.
+    """Invoice resource
 
-    Resource and data for an Invoice.
+    Resource for an Invoice. It inherits from `Creatable`, `Deletable`,
+    `Downloadable`, `Queryable` and `Retrievable`.
+
+    Attributes:
+        created_at (datetime.datetime): The datetime in which the
+            resource was created.
+        livemode (bool): If the resource was created in test or live
+            mode.
+        status (str): Status of the invoice.
+        customer_info (CustomerBasicInfo): Basic info of the Customer.
+        customer_uri (str): URI representing how to fetch a Customer
+            resource related to the Invoice.
+        total (float): Invoice total.
+        uuid (str): 'Folio fiscal' assigned by SAT.
+        payment_form (PaymentForm): Form of payment of the Invoice.
+        items (List[InvoiceItem]): List of items of the Invoice.
+        currency (str): Currency of the invoice in ISO format.
+        exchange (float): Exchange value to Mexican Pesos.
+        cancellation_status (str): If the Invoice was cancelled, the
+            status of the cancellation. Optional.
+        folio_number (int): Folio number. Optional.
+        series (str): Custom series string. Optional. Defaults to `None`.
+        related (List[str]): UUID of related invoices. Defaults to
+            `None`.
+        relation (InvoiceRelation): Relation key from the SAT catalogue.
+            Defaults to `None`.
 
     """
 

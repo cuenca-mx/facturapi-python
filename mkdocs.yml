@@ -1,0 +1,32 @@
+site_name: "facturapi-python"
+site_description: "Facturapi Python Library"
+repo_url: "https://github.com/cuenca-mx/facturapi-python"
+repo_name: "cuenca-mx/facturapi-python"
+
+theme:
+  name: material
+  palette:
+    scheme: preference
+    primary: indigo
+    accent: deep purple
+  favicon: images/favicon.png
+  icon:
+    logo: material/bulma
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          rendering:
+            show_root_full_path: no
+            show_source: no
+      watch:
+        - src/facturapi
+
+nav:
+  - Overview: index.md
+  - Code Reference:
+      - Base code: resources/resources.md
+      - Customers: resources/customers.md
+      - Invoices: resources/invoices.md
