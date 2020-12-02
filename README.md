@@ -11,13 +11,51 @@
 
 [Español](./README.es-MX.md)
 
-This is a Python library for https://www.facturapi.io
+This is a Python library for [FacturAPI](https://www.facturapi.io)
 
 FacturAPI makes it easy for developers to generate valid Invoices in Mexico (known as Factura Electrónica or CFDI).
 
 ## 💻 Installation
 
 ## 🚀 Getting started
+
+### Authenticate with your API Key
+Be sure to create a free account on [FacturAPI](https://www.facturapi.io) and have access to your test or live API keys.
+
+There are two ways to configure your API Key to use the library:
+
+1. **Environment variable:** Just set an environment variable and the library will automatically use it:
+   
+   ```bash
+   export FACTURAPI_KEY=YOUR_API_KEY
+   ```
+
+2. **Using the configure method:** If you want to set it in the code, you can import and use the configure method:
+
+    ```python
+    from facturapi import configure
+    
+    configure(api_key='YOUR_API_KEY')
+    ```
+
+### Create a customer
+After configuring the API Key, you can use the client to perform many actions on the resources, for example to create
+a Customer:
+
+```python
+import facturapi
+from facturapi.resources.customers import CustomerRequest, CustomerUpdateRequest
+
+customer = facturapi.Customer.create(data=CustomerRequest(
+    legal_name='Frida Kahlo',
+    tax_id='ABCD111111CBA',
+    email='frida_kahlo@test.com',
+))
+```
+
+For more details on the data used to create a Customer and other resources, be sure to check out the [docs](http://docs.facturapi.io).
+
+More examples can be found on the [examples](./examples/) directory.
 
 ## 📚 Documentation
 To find more documentation and use cases about the library and Facturapi, check out the [docs](http://docs.facturapi.io).

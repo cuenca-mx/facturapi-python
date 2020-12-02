@@ -17,6 +17,43 @@ FacturAPI facilita la creación de facturas válidas para desarrolladores en Mé
 
 ## 🚀 Primeros pasos
 
+### Autenticación con API Key
+Asegurate de crear una cuenta gratis en [FacturAPI](https://www.facturapi.io) y tener acceso a tus llaves de test y live.
+
+Hay dos formas de configurar tus llaves para usar la librería:
+
+1. **Variable de entorno:** Configura una variable de entorno y la librería usará la llave automáticamente:
+
+    ```bash
+    export FACTURAPI_KEY=TU_API_KEY
+    ```
+
+2. **Usando el método `configure`:** Puedes configurar tu llave en el código usando el método `configure`:
+
+    ```python
+    from facturapi import configure
+
+    configure(api_key='TU_API_KEY')
+    ```
+
+### Crea un Cliente
+Después de configurar tu llave, puedes usar la librería para realizar varias acciones en los recursos de FacturAPI, por ejempo crear un Cliente:
+
+```python
+import facturapi
+from facturapi.resources.customers import CustomerRequest, CustomerUpdateRequest
+
+customer = facturapi.Customer.create(data=CustomerRequest(
+    legal_name='Frida Kahlo',
+    tax_id='ABCD111111CBA',
+    email='frida_kahlo@test.com',
+))
+```
+
+Para más detalles en los datos necesarios para crear un Cliente y otros recursos, revisa la [documentación](http://docs.facturapi.io).
+
+Puedes encontrar más ejemplos de código de cómo crear y usar recursos en el directorio de [examples](./examples/). 
+
 ## 📚 Documentación
 Para encontrar más información, casos de uso y documentación, entra a los [docs](http://docs.facturapi.io).
 
