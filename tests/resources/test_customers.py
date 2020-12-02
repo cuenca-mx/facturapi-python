@@ -1,7 +1,10 @@
 import pytest
 
 import facturapi
-from facturapi.resources.customers import CustomerRequest
+from facturapi.resources.customers import (
+    CustomerRequest,
+    CustomerUpdateRequest,
+)
 from facturapi.types.general import CustomerAddress
 
 
@@ -32,6 +35,14 @@ def test_create_customer():
     assert customer.tax_id
     assert customer.email
 
+    customer_dict = customer.to_dict()
+    assert isinstance(customer_dict, dict)
+    assert customer_dict['id']
+    assert customer_dict['created_at']
+    assert customer_dict['legal_name']
+    assert customer_dict['tax_id']
+    assert customer_dict['email']
+
 
 @pytest.mark.vcr
 def test_retrieve_customer():
@@ -47,3 +58,18 @@ def test_retrieve_customer():
     customer.refresh()
 
     assert tax_id_before_refresh == customer.tax_id
+
+
+@pytest.mark.vcr
+def test_update_customer():
+    customer_id = 'CUSTOMER01'
+    customer = facturapi.Customer.retrieve(id=customer_id)
+
+    email = customer.email
+    update_data = CustomerUpdateRequest(email='remedios@pintora.com')
+
+    updated_customer = facturapi.Customer.update(
+        id=customer_id, data=update_data
+    )
+    assert updated_customer.email != email
+    assert updated_customer.email == 'remedios@pintora.com'

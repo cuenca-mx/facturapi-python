@@ -12,4 +12,4 @@ resource_classes = [
     Invoice,
 ]
 for resource_cls in resource_classes:
-    RESOURCES[resource_cls._resource] = resource_cls
+    RESOURCES[resource_cls._resource] = resource_cls  # type: ignore

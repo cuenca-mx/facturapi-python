@@ -5,7 +5,7 @@ from pydantic import BaseModel
 from pydantic.dataclasses import dataclass
 
 from ..types.general import CustomerAddress
-from .base import Creatable, Retrievable
+from .base import Creatable, Retrievable, Updatable
 
 
 class CustomerRequest(BaseModel):
@@ -16,8 +16,16 @@ class CustomerRequest(BaseModel):
     address: Optional[CustomerAddress]
 
 
+class CustomerUpdateRequest(BaseModel):
+    legal_name: Optional[str]
+    tax_id: Optional[str]
+    email: Optional[str]
+    phone: Optional[str]
+    address: Optional[CustomerAddress]
+
+
 @dataclass
-class Customer(Creatable, Retrievable):
+class Customer(Creatable, Retrievable, Updatable):
     """Customer resource
 
     Resource and data for a Customer.
@@ -42,8 +50,23 @@ class Customer(Creatable, Retrievable):
             data: All the request data to create a customer.
 
         Returns:
-            Customer: The created resource.
+            Customer: The created customer resource.
 
         """
         cleaned_data = data.dict(exclude_unset=True, exclude_none=True)
         return cast('Customer', cls._create(**cleaned_data))
+
+    @classmethod
+    def update(cls, id: str, data: CustomerUpdateRequest) -> 'Customer':
+        """Update a customer.
+
+        Args:
+            id: ID of the customer to be updated.
+            data: Data to be updated.
+
+        Returns:
+            Customer: The udpated customer resource.
+
+        """
+        cleaned_data = data.dict(exclude_unset=True, exclude_none=True)
+        return cast('Customer', cls._update(id=id, **cleaned_data))

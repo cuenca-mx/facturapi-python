@@ -1,5 +1,6 @@
 __all__ = [
     'BaseQuery',
+    'DateFilter',
     'FacturapiResponseException',
     'InvoiceRelation',
     'InvoiceType',
@@ -20,4 +21,4 @@ from .enums import (
     PaymentForm,
     PaymentMethod,
 )
-from .queries import BaseQuery
+from .queries import BaseQuery, DateFilter

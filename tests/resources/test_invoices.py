@@ -4,6 +4,7 @@ import facturapi
 from facturapi.resources.customers import CustomerRequest
 from facturapi.resources.invoices import InvoiceRequest
 from facturapi.types import PaymentForm
+from facturapi.types.exc import MultipleResultsFound, NoResultFound
 from facturapi.types.general import ItemPart
 
 
@@ -42,6 +43,13 @@ def test_create_invoice():
     assert invoice.status
     assert invoice.uuid
     assert invoice.items
+
+    invoice_dict = invoice.to_dict()
+    assert isinstance(invoice_dict, dict)
+    assert invoice_dict['id']
+    assert invoice_dict['created_at']
+    assert invoice_dict['uuid']
+    assert invoice_dict['items']
 
 
 @pytest.mark.vcr
@@ -106,3 +114,48 @@ def test_invoice_customer_property():
 
     customer = invoice.customer
     assert customer.id == invoice.customer_info.id
+
+
+@pytest.mark.vcr
+def test_query_invoice_one():
+    invoice = facturapi.Invoice.one()
+    assert invoice.id
+
+
+@pytest.mark.vcr
+def test_query_invoice_one_multiple():
+    with pytest.raises(MultipleResultsFound):
+        _ = facturapi.Invoice.one()
+
+
+@pytest.mark.vcr
+def test_query_invoice_one_no_found():
+    with pytest.raises(NoResultFound):
+        _ = facturapi.Invoice.one(q='Cordelia Urueta Sierra')
+
+
+@pytest.mark.vcr
+def test_query_invoice_first():
+    invoice = facturapi.Invoice.first()
+    assert invoice is not None
+    assert invoice.id
+
+
+@pytest.mark.vcr
+def test_query_invoice_first_none():
+    invoice = facturapi.Invoice.first(q='Cordelia Urueta Sierra')
+    assert invoice is None
+
+
+@pytest.mark.vcr
+def test_query_invoice_count():
+    count = facturapi.Invoice.count()
+    assert count == 1
+
+
+@pytest.mark.vcr
+def test_query_invoice_all():
+    all_invoices = facturapi.Invoice.all(limit=1)
+
+    for invoice in all_invoices:
+        assert invoice.id

@@ -1,5 +1,5 @@
 import os
-from typing import Any, Dict, MutableMapping, Optional, Union, cast
+from typing import Any, Dict, MutableMapping, Optional, Union
 from urllib.parse import urljoin
 
 import requests
@@ -64,10 +64,6 @@ class Client:
         """Performs GET request to Facturapi."""
         return self.request('get', endpoint, params=params)
 
-    def download(self, endpoint: str) -> bytes:
-        """Performs GET request but handles a file request."""
-        return self.download_request(endpoint)
-
     def post(self, endpoint: str, data: Dict[str, Any]) -> Dict[str, Any]:
         """Performs POST request to Facturapi."""
         return self.request('post', endpoint, data=data)
@@ -84,7 +80,7 @@ class Client:
         self,
         method: str,
         endpoint: str,
-        params=None,
+        params: Union[None, bytes, MutableMapping[str, str]] = None,
         data: Optional[Dict[str, Union[int, str]]] = None,
         **kwargs,
     ) -> Dict[str, Any]:
@@ -96,8 +92,8 @@ class Client:
         Args:
             method: HTTP method of the request.
             endpoint: Endpoint to make the request to.
-            params:
-            data:
+            params: URL encoded parameters. Defaults to `None`.
+            data: JSON data to be sent. Defaults to `None`.
             **kwargs: Arbitrary keyword arguments.
 
         Returns:

@@ -23,7 +23,7 @@ interactions:
         city\":\"Ciudad de M\xE9xico\",\"municipality\":\"Cuauht\xE9moc\",\"state\"\
         :\"Ciudad de M\xE9xico\"},\"legal_name\":\"Cordelia Urueta Sierra\",\"tax_id\"\
         :\"UUSC9509162G7\",\"email\":\"cordelia@urueta.com\",\"phone\":\"5511223344\"\
-        ,\"organization\":\"5fc1469b02c1e60029647cb7\",\"created_at\":\"2020-12-01T19:38:44.706Z\"\
+        ,\"organization\":\"ORG01\",\"created_at\":\"2020-12-01T19:38:44.706Z\"\
         ,\"livemode\":false,\"id\":\"CUSTOMER01\"}"
     headers:
       Content-Length:
@@ -92,7 +92,7 @@ interactions:
         city\":\"Ciudad de M\xE9xico\",\"municipality\":\"Cuauht\xE9moc\",\"state\"\
         :\"Ciudad de M\xE9xico\"},\"legal_name\":\"Cordelia Urueta Sierra\",\"tax_id\"\
         :\"UUSC9509162G7\",\"email\":\"cordelia@urueta.com\",\"phone\":\"5511223344\"\
-        ,\"organization\":\"5fc1469b02c1e60029647cb7\",\"created_at\":\"2020-12-01T19:38:44.706Z\"\
+        ,\"organization\":\"ORG01\",\"created_at\":\"2020-12-01T19:38:44.706Z\"\
         ,\"livemode\":false,\"id\":\"CUSTOMER01\"}"
     headers:
       Content-Length:

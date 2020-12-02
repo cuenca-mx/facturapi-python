@@ -1,5 +1,5 @@
 from dataclasses import asdict, dataclass, fields
-from typing import Any, ClassVar, Dict, Generator, Optional
+from typing import Any, ClassVar, Dict, Generator, List, Optional
 from urllib.parse import urlencode
 
 from ..http import client
@@ -22,7 +22,7 @@ class Resource:
     """
 
     _resource: ClassVar[str]
-    _relations: ClassVar[str] = []
+    _relations: ClassVar[List[str]] = []
 
     id: str
 
@@ -146,15 +146,15 @@ class Creatable(Resource):
         return cls._from_dict(response)
 
 
-class Updateable(Resource):
-    """Generic Updateable class.
+class Updatable(Resource):
+    """Generic Updatable class.
 
     Used by resources that can be updated.
 
     """
 
     @classmethod
-    def update(cls, id: str, **data) -> Resource:
+    def _update(cls, id: str, **data) -> Resource:
         """Update an specific resource with new data.
 
         Performs a PUT request with the updated data.
@@ -201,7 +201,7 @@ class Queryable(Resource):
     Used by resources that can be queried in lists.
 
     Attributes:
-        _query_params (ClassVar): A class with the parameters that
+        _query_params: A class with the parameters that
             can be queried.
     """
 
