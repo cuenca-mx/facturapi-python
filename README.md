@@ -30,7 +30,7 @@ There are two ways to configure your API Key to use the library:
    export FACTURAPI_KEY=YOUR_API_KEY
    ```
 
-2. **Using the configure method:** If you want to set it in the code, you can import and use the configure method:
+2. **Using the `configure` method:** If you want to set it in the code, you can import and use the `configure` method:
 
     ```python
     from facturapi import configure
