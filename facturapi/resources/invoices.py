@@ -43,6 +43,7 @@ class InvoiceItem(BaseModel):
         property_tax_account (str): 'Predial' number. Optional.
 
     """
+
     quantity: Optional[int] = 1
     discount: Optional[float] = 0
     product: Union[
@@ -60,7 +61,7 @@ class InvoiceRequest(BaseModel):
     It contains all information necessary to create this resource.
 
     Attributes:
-        customer (Union[str, CustomerRequest]): Customer ID or a 
+        customer (Union[str, CustomerRequest]): Customer ID or a
             CustomerRequest to create a new one.
         items (List[InvoiceItem]): List of items of the invoice.
         payment_form (PaymentForm): Form of payment.

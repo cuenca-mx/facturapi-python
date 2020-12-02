@@ -27,6 +27,7 @@ class CustomerRequest(BaseModel):
         address (CustomerAddress): Address object of the customer. Optional.
 
     """
+
     legal_name: str
     tax_id: str
     email: str
@@ -47,6 +48,7 @@ class CustomerUpdateRequest(BaseModel):
         address (CustomerAddress): Address object of the customer. Optional.
 
     """
+
     legal_name: Optional[str]
     tax_id: Optional[str]
     email: Optional[str]
