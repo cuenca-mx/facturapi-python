@@ -1,14 +1,12 @@
 <p align="center">
     <a href="https://facturapi.io">
-        <img alt="Facturapi Logo" src="./docs/images/facturapi-logo.svg" width="200" />
+        <img alt="Facturapi Logo" src="./images/facturapi-logo.svg" width="200" />
     </a>
 </p>
 <h1 align="center">
     FacturAPI – Python Client Library
 </h1>
 
-![test](https://github.com/cuenca-mx/facturapi-python/workflows/test/badge.svg)
-[![codecov](https://codecov.io/gh/cuenca-mx/facturapi-python/branch/main/graph/badge.svg?token=U89Q4PR339)](https://codecov.io/gh/cuenca-mx/facturapi-python)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 [Español](./README.es-MX.md)
@@ -75,6 +73,6 @@ Be sure to fork the repo and send your PR! Any and all help is appreciated.
 Developed and maintained with 💙 by [Cuenca](https://github.com/cuenca-mx)
 <p align="center">
     <a href="https://cuenca.com/">
-        <img alt="Cuenca Logo" src="./docs/images/cuenca-full-logo.svg" width="200" />
+        <img alt="Cuenca Logo" src="./images/cuenca-full-logo.svg" width="200" />
     </a>
 </p>

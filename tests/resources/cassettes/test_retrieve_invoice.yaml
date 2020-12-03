@@ -1,0 +1,136 @@
+interactions:
+- request:
+    body: '{"customer": "CUSTOMER02", "items": [{"product": {"description":
+      "Producto Test", "product_key": "50202201", "price": 42.05}}], "payment_form":
+      "04"}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - DUMMY
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '163'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - facturapi-python/0.0.1
+    method: POST
+    uri: https://www.facturapi.io/v1/invoices
+  response:
+    body:
+      string: '{"id":"INVOICE02","created_at":"2020-12-03T00:19:52.139Z","livemode":false,"verification_url":"https://verificacfdi.facturaelectronica.sat.gob.mx/default.aspx?id=9ca1bea3-b054-4f1f-9343-50e3531e1efa&re=AAA010101AAA&rr=VAUR631216M55&tt=42.050000&fe=8pa+Cw==","status":"valid","type":"I","cancellation_status":"none","customer":{"id":"CUSTOMER02","legal_name":"Remedios
+        Varo","tax_id":"VAUR631216M55"},"total":42.05,"uuid":"9ca1bea3-b054-4f1f-9343-50e3531e1efa","use":"G01","folio_number":5,"payment_form":"04","payment_method":"PUE","currency":"MXN","exchange":1,"items":[{"quantity":1,"discount":0,"product":{"description":"Producto
+        Test","product_key":"50202201","unit_key":"H87","unit_name":"Pieza","price":42.05,"tax_included":true,"taxes":[{"rate":0.16,"type":"IVA","withholding":false,"factor":"Tasa"}]}}]}'
+    headers:
+      Content-Length:
+      - '829'
+      Date:
+      - Thu, 03 Dec 2020 00:19:53 GMT
+      Server:
+      - Google Frontend
+      access-control-allow-origin:
+      - '*'
+      content-security-policy:
+      - 'default-src ''self'';font-src https:;img-src data: https:;script-src ''unsafe-inline''
+        https:;style-src https: ''unsafe-inline'';object-src ''none'';connect-src
+        https:;frame-src https://js.stripe.com/;upgrade-insecure-requests'
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"348-d/4qyCnPQ/5S8deonlfvO+AOOJU"
+      expect-ct:
+      - max-age=0
+      referrer-policy:
+      - no-referrer
+      strict-transport-security:
+      - max-age=15552000; includeSubDomains
+      vary:
+      - Accept-Encoding
+      x-cloud-trace-context:
+      - 767142ff357b7dec5680cbb8b7fe5375/1672634302573340524;o=1
+      - 767142ff357b7dec5680cbb8b7fe5375;o=1
+      x-content-type-options:
+      - nosniff
+      x-dns-prefetch-control:
+      - 'off'
+      x-download-options:
+      - noopen
+      x-frame-options:
+      - SAMEORIGIN
+      x-permitted-cross-domain-policies:
+      - none
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - DUMMY
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      User-Agent:
+      - facturapi-python/0.0.1
+    method: GET
+    uri: https://www.facturapi.io/v1/invoices/INVOICE02
+  response:
+    body:
+      string: '{"id":"INVOICE02","created_at":"2020-12-03T00:19:52.139Z","livemode":false,"verification_url":"https://verificacfdi.facturaelectronica.sat.gob.mx/default.aspx?id=9ca1bea3-b054-4f1f-9343-50e3531e1efa&re=AAA010101AAA&rr=VAUR631216M55&tt=42.050000&fe=8pa+Cw==","status":"valid","type":"I","cancellation_status":"none","customer":{"id":"CUSTOMER02","legal_name":"Remedios
+        Varo","tax_id":"VAUR631216M55"},"total":42.05,"uuid":"9ca1bea3-b054-4f1f-9343-50e3531e1efa","use":"G01","folio_number":5,"payment_form":"04","payment_method":"PUE","currency":"MXN","exchange":1,"items":[{"quantity":1,"discount":0,"product":{"description":"Producto
+        Test","product_key":"50202201","unit_key":"H87","unit_name":"Pieza","price":42.05,"tax_included":true,"taxes":[{"rate":0.16,"type":"IVA","withholding":false,"factor":"Tasa"}]}}]}'
+    headers:
+      Content-Length:
+      - '829'
+      Date:
+      - Thu, 03 Dec 2020 00:19:53 GMT
+      Server:
+      - Google Frontend
+      access-control-allow-origin:
+      - '*'
+      content-security-policy:
+      - 'default-src ''self'';font-src https:;img-src data: https:;script-src ''unsafe-inline''
+        https:;style-src https: ''unsafe-inline'';object-src ''none'';connect-src
+        https:;frame-src https://js.stripe.com/;upgrade-insecure-requests'
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"348-d/4qyCnPQ/5S8deonlfvO+AOOJU"
+      expect-ct:
+      - max-age=0
+      referrer-policy:
+      - no-referrer
+      strict-transport-security:
+      - max-age=15552000; includeSubDomains
+      vary:
+      - Accept-Encoding
+      x-cloud-trace-context:
+      - 1dc9347602afa2bf31c03d29329e8c40/1577576233533473697;o=1
+      - 1dc9347602afa2bf31c03d29329e8c40
+      x-content-type-options:
+      - nosniff
+      x-dns-prefetch-control:
+      - 'off'
+      x-download-options:
+      - noopen
+      x-frame-options:
+      - SAMEORIGIN
+      x-permitted-cross-domain-policies:
+      - none
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

@@ -1,0 +1,75 @@
+interactions:
+- request:
+    body: '{"customer": {"legal_name": "Remedios Varo", "tax_id": "VAUR631216M55",
+      "email": "remedios@varo.com"}, "items": [{"quantity": 2, "discount": 0.1, "product":
+      {"description": "Producto Test", "product_key": "50202201", "price": 42.05},
+      "custom_keys": ["Custom key"], "parts": [{"description": "Parte 1", "product_key":
+      "50202201", "quantity": 1}]}], "payment_form": "04", "payment_method": "PUE",
+      "use": "G01", "currency": "MXN", "exchange": 1.0}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - DUMMY
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '444'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - facturapi-python/0.0.1
+    method: POST
+    uri: https://www.facturapi.io/v1/invoices
+  response:
+    body:
+      string: '{"id":"INVOICE01","created_at":"2020-12-01T02:29:45.034Z","livemode":false,"verification_url":"https://verificacfdi.facturaelectronica.sat.gob.mx/default.aspx?id=768411cf-0edf-4d7f-bb9a-2b61f30c6886&re=AAA010101AAA&rr=VAUR631216M55&tt=84.000000&fe=zOOkgw==","status":"valid","type":"I","cancellation_status":"none","customer":{"id":"CUSTOMER01","legal_name":"Remedios
+        Varo","tax_id":"VAUR631216M55"},"total":84,"uuid":"768411cf-0edf-4d7f-bb9a-2b61f30c6886","use":"G01","folio_number":1,"payment_form":"04","payment_method":"PUE","currency":"MXN","exchange":1,"items":[{"quantity":2,"discount":0.1,"product":{"description":"Producto
+        Test","product_key":"50202201","unit_key":"H87","unit_name":"Pieza","price":42.05,"tax_included":true,"taxes":[{"rate":0.16,"type":"IVA","withholding":false,"factor":"Tasa"}]},"parts":[{"quantity":1,"description":"Parte
+        1","product_key":"50202201"}]}]}'
+    headers:
+      Content-Length:
+      - '911'
+      Date:
+      - Tue, 01 Dec 2020 02:29:46 GMT
+      Server:
+      - Google Frontend
+      access-control-allow-origin:
+      - '*'
+      content-security-policy:
+      - 'default-src ''self'';font-src https:;img-src data: https:;script-src ''unsafe-inline''
+        https:;style-src https: ''unsafe-inline'';object-src ''none'';connect-src
+        https:;frame-src https://js.stripe.com/;upgrade-insecure-requests'
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"391-ztybMD8Z2fTIih8n/C1J6uT7PEs"
+      expect-ct:
+      - max-age=0
+      referrer-policy:
+      - no-referrer
+      strict-transport-security:
+      - max-age=15552000; includeSubDomains
+      vary:
+      - Accept-Encoding
+      x-cloud-trace-context:
+      - 3a622b54ecb017bd6df89aaf23f6654b/10196326410741571302;o=1
+      - 3a622b54ecb017bd6df89aaf23f6654b;o=1
+      x-content-type-options:
+      - nosniff
+      x-dns-prefetch-control:
+      - 'off'
+      x-download-options:
+      - noopen
+      x-frame-options:
+      - SAMEORIGIN
+      x-permitted-cross-domain-policies:
+      - none
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1
