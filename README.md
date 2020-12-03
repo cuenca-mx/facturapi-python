@@ -9,15 +9,26 @@
 
 ![test](https://github.com/cuenca-mx/facturapi-python/workflows/test/badge.svg)
 [![codecov](https://codecov.io/gh/cuenca-mx/facturapi-python/branch/main/graph/badge.svg?token=U89Q4PR339)](https://codecov.io/gh/cuenca-mx/facturapi-python)
+[![PyPI version](https://badge.fury.io/py/facturapi.svg)](https://badge.fury.io/py/facturapi)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 [Español](./README.es-MX.md)
 
 This is a Python library for [FacturAPI](https://www.facturapi.io)
 
+**⚠️Warning: This is still an unofficial library and it is still under development. This is not a final product.⚠️**
+
 FacturAPI makes it easy for developers to generate valid Invoices in Mexico (known as Factura Electrónica or CFDI).
 
+This library is based on [`cuenca-python`](https://github.com/cuenca-mx/cuenca-python) 💙.
+
 ## 💻 Installation
+
+Just use `pip` to install de library:
+
+```bash
+pip install facturapi
+```
 
 ## 🚀 Getting started
 
@@ -60,12 +71,18 @@ For more details on the data used to create a Customer and other resources, be s
 More examples can be found on the [examples](./examples/) directory.
 
 ## 📚 Documentation
-To find more documentation and use cases about the library and Facturapi, check out the [docs](http://docs.facturapi.io).
+
+You can checkout Facturapi's [docs](http://docs.facturapi.io) for more info on the API and its resources.
+
+Or checkout the library's [docs](https://cuenca-mx.github.io/facturapi-python/) for usage and more technical details.
+
 ## 💡 Contribute
 ### Found a bug?
 Please create an issue addressing the bug and how to replicate it.
 ### Want to contribute?
 Be sure to fork the repo and send your PR! Any and all help is appreciated.
+Also don't forget to keep the coverage above 98%, we love tested code!
+
 ### Contacts:
 - **Facturapi:** contacto@facturapi.io
 
