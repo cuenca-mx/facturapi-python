@@ -1,6 +1,8 @@
 interactions:
 - request:
-    body: null
+    body: '{"customer": "CUSTOMER02", "items": [{"product": {"description":
+      "Producto Test", "product_key": "50202201", "price": 42.05}}], "payment_form":
+      "04"}'
     headers:
       Accept:
       - '*/*'
@@ -10,23 +12,24 @@ interactions:
       - DUMMY
       Connection:
       - keep-alive
+      Content-Length:
+      - '163'
       Content-Type:
       - application/json
       User-Agent:
       - facturapi-python/0.0.1
-    method: GET
-    uri: https://www.facturapi.io/v1/invoices/INVOICE01
+    method: POST
+    uri: https://www.facturapi.io/v1/invoices
   response:
     body:
-      string: '{"id":"INVOICE01","created_at":"2020-12-01T02:29:45.034Z","livemode":false,"verification_url":"https://verificacfdi.facturaelectronica.sat.gob.mx/default.aspx?id=768411cf-0edf-4d7f-bb9a-2b61f30c6886&re=AAA010101AAA&rr=VAUR631216M55&tt=84.000000&fe=zOOkgw==","status":"canceled","type":"I","cancellation_status":"accepted","customer":{"id":"CUSTOMER01","legal_name":"Remedios
-        Varo","tax_id":"VAUR631216M55"},"total":84,"uuid":"768411cf-0edf-4d7f-bb9a-2b61f30c6886","use":"G01","folio_number":1,"payment_form":"04","payment_method":"PUE","currency":"MXN","exchange":1,"items":[{"quantity":2,"discount":0.1,"product":{"description":"Producto
-        Test","product_key":"50202201","unit_key":"H87","unit_name":"Pieza","price":42.05,"tax_included":true,"taxes":[{"rate":0.16,"type":"IVA","withholding":false,"factor":"Tasa"}]},"parts":[{"quantity":1,"description":"Parte
-        1","product_key":"50202201"}]}]}'
+      string: '{"id":"INVOICE02","created_at":"2020-12-03T00:19:52.139Z","livemode":false,"verification_url":"https://verificacfdi.facturaelectronica.sat.gob.mx/default.aspx?id=9ca1bea3-b054-4f1f-9343-50e3531e1efa&re=AAA010101AAA&rr=VAUR631216M55&tt=42.050000&fe=8pa+Cw==","status":"valid","type":"I","cancellation_status":"none","customer":{"id":"CUSTOMER02","legal_name":"Remedios
+        Varo","tax_id":"VAUR631216M55"},"total":42.05,"uuid":"9ca1bea3-b054-4f1f-9343-50e3531e1efa","use":"G01","folio_number":5,"payment_form":"04","payment_method":"PUE","currency":"MXN","exchange":1,"items":[{"quantity":1,"discount":0,"product":{"description":"Producto
+        Test","product_key":"50202201","unit_key":"H87","unit_name":"Pieza","price":42.05,"tax_included":true,"taxes":[{"rate":0.16,"type":"IVA","withholding":false,"factor":"Tasa"}]}}]}'
     headers:
       Content-Length:
-      - '920'
+      - '829'
       Date:
-      - Tue, 01 Dec 2020 04:47:51 GMT
+      - Thu, 03 Dec 2020 00:19:53 GMT
       Server:
       - Google Frontend
       access-control-allow-origin:
@@ -38,7 +41,7 @@ interactions:
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"398-jdkHLDkZxoNPtvjUlctUu53hjFU"
+      - W/"348-d/4qyCnPQ/5S8deonlfvO+AOOJU"
       expect-ct:
       - max-age=0
       referrer-policy:
@@ -48,8 +51,8 @@ interactions:
       vary:
       - Accept-Encoding
       x-cloud-trace-context:
-      - 0c851b674216cae038154da324fa2a1c/16155414065212223570;o=1
-      - 0c851b674216cae038154da324fa2a1c
+      - 767142ff357b7dec5680cbb8b7fe5375/1672634302573340524;o=1
+      - 767142ff357b7dec5680cbb8b7fe5375;o=1
       x-content-type-options:
       - nosniff
       x-dns-prefetch-control:
@@ -81,18 +84,17 @@ interactions:
       User-Agent:
       - facturapi-python/0.0.1
     method: GET
-    uri: https://www.facturapi.io/v1/invoices/INVOICE01
+    uri: https://www.facturapi.io/v1/invoices/INVOICE02
   response:
     body:
-      string: '{"id":"INVOICE01","created_at":"2020-12-01T02:29:45.034Z","livemode":false,"verification_url":"https://verificacfdi.facturaelectronica.sat.gob.mx/default.aspx?id=768411cf-0edf-4d7f-bb9a-2b61f30c6886&re=AAA010101AAA&rr=VAUR631216M55&tt=84.000000&fe=zOOkgw==","status":"canceled","type":"I","cancellation_status":"accepted","customer":{"id":"CUSTOMER01","legal_name":"Remedios
-        Varo","tax_id":"VAUR631216M55"},"total":84,"uuid":"768411cf-0edf-4d7f-bb9a-2b61f30c6886","use":"G01","folio_number":1,"payment_form":"04","payment_method":"PUE","currency":"MXN","exchange":1,"items":[{"quantity":2,"discount":0.1,"product":{"description":"Producto
-        Test","product_key":"50202201","unit_key":"H87","unit_name":"Pieza","price":42.05,"tax_included":true,"taxes":[{"rate":0.16,"type":"IVA","withholding":false,"factor":"Tasa"}]},"parts":[{"quantity":1,"description":"Parte
-        1","product_key":"50202201"}]}]}'
+      string: '{"id":"INVOICE02","created_at":"2020-12-03T00:19:52.139Z","livemode":false,"verification_url":"https://verificacfdi.facturaelectronica.sat.gob.mx/default.aspx?id=9ca1bea3-b054-4f1f-9343-50e3531e1efa&re=AAA010101AAA&rr=VAUR631216M55&tt=42.050000&fe=8pa+Cw==","status":"valid","type":"I","cancellation_status":"none","customer":{"id":"CUSTOMER02","legal_name":"Remedios
+        Varo","tax_id":"VAUR631216M55"},"total":42.05,"uuid":"9ca1bea3-b054-4f1f-9343-50e3531e1efa","use":"G01","folio_number":5,"payment_form":"04","payment_method":"PUE","currency":"MXN","exchange":1,"items":[{"quantity":1,"discount":0,"product":{"description":"Producto
+        Test","product_key":"50202201","unit_key":"H87","unit_name":"Pieza","price":42.05,"tax_included":true,"taxes":[{"rate":0.16,"type":"IVA","withholding":false,"factor":"Tasa"}]}}]}'
     headers:
       Content-Length:
-      - '920'
+      - '829'
       Date:
-      - Tue, 01 Dec 2020 04:47:51 GMT
+      - Thu, 03 Dec 2020 00:19:53 GMT
       Server:
       - Google Frontend
       access-control-allow-origin:
@@ -104,7 +106,7 @@ interactions:
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"398-jdkHLDkZxoNPtvjUlctUu53hjFU"
+      - W/"348-d/4qyCnPQ/5S8deonlfvO+AOOJU"
       expect-ct:
       - max-age=0
       referrer-policy:
@@ -114,8 +116,8 @@ interactions:
       vary:
       - Accept-Encoding
       x-cloud-trace-context:
-      - ef8e7289beddde242e0dca2ea4ce45b5/1002028124514861720;o=1
-      - ef8e7289beddde242e0dca2ea4ce45b5
+      - 1dc9347602afa2bf31c03d29329e8c40/1577576233533473697;o=1
+      - 1dc9347602afa2bf31c03d29329e8c40
       x-content-type-options:
       - nosniff
       x-dns-prefetch-control:

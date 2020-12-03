@@ -160,21 +160,6 @@ class Invoice(Creatable, Deletable, Downloadable, Queryable, Retrievable):
     related: Optional[List[str]] = None
     relation: Optional[InvoiceRelation] = None
 
-    @property
-    def customer(self) -> Customer:
-        """Fetch and access Customer resource.
-
-        This property fetches and maps the customer
-        related to an invoice so it can be accessed
-        through a simple property instead of making a
-        manual retrieve.
-
-        Returns:
-            Customer: Customer related to the invoice.
-
-        """
-        return cast(Customer, retrieve_property(self.customer_uri))
-
     @classmethod
     def create(cls, data: InvoiceRequest) -> 'Invoice':
         """Create an invoice.
@@ -203,3 +188,18 @@ class Invoice(Creatable, Deletable, Downloadable, Queryable, Retrievable):
 
         """
         return cast('Invoice', cls._delete(invoice_id))
+
+    @property
+    def customer(self) -> Customer:
+        """Fetch and access Customer resource.
+
+        This property fetches and maps the customer
+        related to an invoice so it can be accessed
+        through a simple property instead of making a
+        manual retrieve.
+
+        Returns:
+            Customer: Customer related to the invoice.
+
+        """
+        return cast(Customer, retrieve_property(self.customer_uri))

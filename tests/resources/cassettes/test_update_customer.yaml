@@ -15,15 +15,15 @@ interactions:
       User-Agent:
       - facturapi-python/0.0.1
     method: GET
-    uri: https://www.facturapi.io/v1/customers/CUSTOMER01
+    uri: https://www.facturapi.io/v1/customers/CUSTOMER02
   response:
     body:
-      string: '{"address":{"country":"MEX"},"legal_name":"Remedios Varo","tax_id":"VAUR631216M55","email":"remedios@varo.com","organization":"ORG01","created_at":"2020-12-01T02:29:45.038Z","livemode":false,"id":"CUSTOMER01"}'
+      string: '{"address":{"country":"MEX"},"legal_name":"Leonora Carrington","tax_id":"CAML9004069U0","email":"leonora@test.com","organization":"ORG01","created_at":"2020-12-03T00:11:50.796Z","livemode":false,"id":"CUSTOMER02"}'
     headers:
       Content-Length:
-      - '209'
+      - '213'
       Date:
-      - Wed, 02 Dec 2020 00:22:48 GMT
+      - Thu, 03 Dec 2020 00:15:29 GMT
       Server:
       - Google Frontend
       access-control-allow-origin:
@@ -35,7 +35,7 @@ interactions:
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"f2-paFTDPcZnWIJr9nbaKF1VtMLPHw"
+      - W/"f6-awCHIt4yoF2VFeXIgBKwKR59DfY"
       expect-ct:
       - max-age=0
       referrer-policy:
@@ -45,8 +45,8 @@ interactions:
       vary:
       - Accept-Encoding
       x-cloud-trace-context:
-      - e8908454adc4c657b30943b9712c7c99/13278663659720378424;o=1
-      - e8908454adc4c657b30943b9712c7c99;o=1
+      - 1d04be78d7c7a5c0d280d6261d2133d4/16152262709720526267;o=1
+      - 1d04be78d7c7a5c0d280d6261d2133d4;o=1
       x-content-type-options:
       - nosniff
       x-dns-prefetch-control:
@@ -80,15 +80,15 @@ interactions:
       User-Agent:
       - facturapi-python/0.0.1
     method: PUT
-    uri: https://www.facturapi.io/v1/customers/CUSTOMER01
+    uri: https://www.facturapi.io/v1/customers/CUSTOMER02
   response:
     body:
-      string: '{"address":{"country":"MEX"},"legal_name":"Remedios Varo","tax_id":"VAUR631216M55","email":"remedios@pintora.com","organization":"ORG01","created_at":"2020-12-01T02:29:45.038Z","livemode":false,"id":"CUSTOMER01"}'
+      string: '{"address":{"country":"MEX"},"legal_name":"Leonora Carrington","tax_id":"CAML9004069U0","email":"remedios@pintora.com","organization":"ORG01","created_at":"2020-12-03T00:11:50.796Z","livemode":false,"id":"CUSTOMER02"}'
     headers:
       Content-Length:
-      - '212'
+      - '217'
       Date:
-      - Wed, 02 Dec 2020 00:22:48 GMT
+      - Thu, 03 Dec 2020 00:15:29 GMT
       Server:
       - Google Frontend
       access-control-allow-origin:
@@ -100,7 +100,7 @@ interactions:
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"f5-wymkeSHArS22rtYp6agpwi0vWck"
+      - W/"fa-ZRXYr/xFiH7aaInFZyoTdmn7Hqs"
       expect-ct:
       - max-age=0
       referrer-policy:
@@ -110,8 +110,71 @@ interactions:
       vary:
       - Accept-Encoding
       x-cloud-trace-context:
-      - f5c8fb50aaf547537d9fb66150b3fcab/17075961993954133672;o=1
-      - f5c8fb50aaf547537d9fb66150b3fcab
+      - faf98295fdc10909056e28905df3b196/1904684163913722495
+      - faf98295fdc10909056e28905df3b196
+      x-content-type-options:
+      - nosniff
+      x-dns-prefetch-control:
+      - 'off'
+      x-download-options:
+      - noopen
+      x-frame-options:
+      - SAMEORIGIN
+      x-permitted-cross-domain-policies:
+      - none
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - DUMMY
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      User-Agent:
+      - facturapi-python/0.0.1
+    method: GET
+    uri: https://www.facturapi.io/v1/customers/CUSTOMER02
+  response:
+    body:
+      string: '{"address":{"country":"MEX"},"legal_name":"Leonora Carrington","tax_id":"CAML9004069U0","email":"remedios@pintora.com","organization":"ORG01","created_at":"2020-12-03T00:11:50.796Z","livemode":false,"id":"CUSTOMER02"}'
+    headers:
+      Content-Length:
+      - '217'
+      Date:
+      - Thu, 03 Dec 2020 00:15:29 GMT
+      Server:
+      - Google Frontend
+      access-control-allow-origin:
+      - '*'
+      content-security-policy:
+      - 'default-src ''self'';font-src https:;img-src data: https:;script-src ''unsafe-inline''
+        https:;style-src https: ''unsafe-inline'';object-src ''none'';connect-src
+        https:;frame-src https://js.stripe.com/;upgrade-insecure-requests'
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"fa-ZRXYr/xFiH7aaInFZyoTdmn7Hqs"
+      expect-ct:
+      - max-age=0
+      referrer-policy:
+      - no-referrer
+      strict-transport-security:
+      - max-age=15552000; includeSubDomains
+      vary:
+      - Accept-Encoding
+      x-cloud-trace-context:
+      - 3bc8fdd6897f1a4c894aaf070d827b38/11351046589961489037;o=1
+      - 3bc8fdd6897f1a4c894aaf070d827b38
       x-content-type-options:
       - nosniff
       x-dns-prefetch-control:

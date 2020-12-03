@@ -24,13 +24,13 @@ def test_invalid_auth():
     assert str(e.value)
 
 
-@pytest.mark.usefixtures('facturapi_creds')
+@pytest.mark.usefixtures('some_api_key')
 def test_env_auth():
     client = Client()
     assert client.api_key == 'api_key'
 
 
-@pytest.mark.usefixtures('facturapi_creds')
+@pytest.mark.usefixtures('some_api_key')
 def test_override_with_configure():
     client = Client()
     client.configure('api_key2')

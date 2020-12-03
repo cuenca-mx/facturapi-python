@@ -3,7 +3,7 @@ import pytest
 import facturapi
 from facturapi.resources.customers import CustomerRequest
 from facturapi.resources.invoices import InvoiceRequest
-from facturapi.types import PaymentForm
+from facturapi.types import FileType, PaymentForm
 from facturapi.types.exc import MultipleResultsFound, NoResultFound
 from facturapi.types.general import ItemPart
 
@@ -54,35 +54,54 @@ def test_create_invoice():
 
 @pytest.mark.vcr
 def test_retrieve_invoice():
-    invoice_id = 'INVOICE01'
-    invoice = facturapi.Invoice.retrieve(id=invoice_id)
+    invoice_request = InvoiceRequest(
+        customer='5fc5aa9938e6a2001b31aa21',
+        items=[
+            dict(
+                product=dict(
+                    description='Producto Test',
+                    product_key='50202201',
+                    price=42.05,
+                ),
+            ),
+        ],
+        payment_form=PaymentForm.tarjeta_de_credito,
+    )
+    invoice = facturapi.Invoice.create(data=invoice_request)
 
-    assert invoice_id == invoice.id
-    assert invoice.created_at
-    assert invoice.status
-    assert invoice.uuid
-    assert invoice.items
+    retrieved_invoice = facturapi.Invoice.retrieve(id=invoice.id)
 
-    status_before_refresh = invoice.status
-    invoice.refresh()
-
-    assert status_before_refresh == invoice.status
+    assert retrieved_invoice.id == invoice.id
+    assert retrieved_invoice.created_at == invoice.created_at
+    assert retrieved_invoice.status == invoice.status
+    assert retrieved_invoice.uuid == invoice.uuid
 
 
 @pytest.mark.vcr
 def test_cancel_invoice():
-    invoice_id = 'INVOICE01'
-    invoice = facturapi.Invoice.cancel(invoice_id=invoice_id)
+    invoice_id = 'INVOICE03'
+    invoice = facturapi.Invoice.retrieve(id=invoice_id)
 
-    assert invoice_id == invoice.id
+    cancelled_invoice = facturapi.Invoice.cancel(invoice_id=invoice.id)
+
+    assert cancelled_invoice.id == invoice.id
+    assert cancelled_invoice.cancellation_status != invoice.cancellation_status
+
+    invoice.refresh()
+    assert cancelled_invoice.cancellation_status != invoice.cancellation_status
+    # After a cancel, the status is pending because its processing
+    # So the refreshed invoice now holds the canceled status because the
+    # refresh happened after the cancel.
+    assert cancelled_invoice.cancellation_status == 'pending'
     assert invoice.cancellation_status == 'accepted'
-    assert invoice.status == 'canceled'
 
 
 @pytest.mark.vcr
 def test_download_invoice():
     invoice_id = 'INVOICE01'
-    invoice_bytes = facturapi.Invoice.download(id=invoice_id, file_type='pdf')
+    invoice_bytes = facturapi.Invoice.download(
+        id=invoice_id, file_type=FileType.pdf
+    )
 
     assert invoice_bytes
     assert type(invoice_bytes) == bytes
@@ -91,7 +110,9 @@ def test_download_invoice():
 @pytest.mark.vcr
 def test_download_invoice_xml():
     invoice_id = 'INVOICE01'
-    invoice_bytes = facturapi.Invoice.download(id=invoice_id, file_type='xml')
+    invoice_bytes = facturapi.Invoice.download(
+        id=invoice_id, file_type=FileType.xml
+    )
 
     assert invoice_bytes
     assert type(invoice_bytes) == bytes
@@ -100,7 +121,9 @@ def test_download_invoice_xml():
 @pytest.mark.vcr
 def test_download_invoice_zip():
     invoice_id = 'INVOICE01'
-    invoice_bytes = facturapi.Invoice.download(id=invoice_id, file_type='zip')
+    invoice_bytes = facturapi.Invoice.download(
+        id=invoice_id, file_type=FileType.zip
+    )
 
     assert invoice_bytes
     assert type(invoice_bytes) == bytes

@@ -32,9 +32,9 @@ def test_create_customer():
     customer = facturapi.Customer.create(data=customer_request)
     assert customer.id
     assert customer.created_at
-    assert customer.legal_name
-    assert customer.tax_id
-    assert customer.email
+    assert customer.legal_name == 'Cordelia Urueta Sierra'
+    assert customer.tax_id == 'UUSC9509162G7'
+    assert customer.email == 'cordelia@urueta.com'
 
     customer_dict = customer.to_dict()
     assert isinstance(customer_dict, dict)
@@ -47,33 +47,37 @@ def test_create_customer():
 
 @pytest.mark.vcr
 def test_retrieve_customer():
-    customer_id = 'CUSTOMER01'
-    customer = facturapi.Customer.retrieve(id=customer_id)
+    customer_request = CustomerRequest(
+        legal_name='Leonora Carrington',
+        tax_id='CAML9004069U0',
+        email='leonora@test.com',
+    )
+    customer = facturapi.Customer.create(data=customer_request)
 
-    assert customer_id == customer.id
-    assert customer.created_at
-    assert customer.legal_name
-    assert customer.tax_id
+    retrieved_customer = facturapi.Customer.retrieve(id=customer.id)
 
-    tax_id_before_refresh = customer.tax_id
-    customer.refresh()
-
-    assert tax_id_before_refresh == customer.tax_id
+    assert retrieved_customer.id == customer.id
+    assert retrieved_customer.created_at == customer.created_at
+    assert retrieved_customer.legal_name == customer.legal_name
+    assert retrieved_customer.tax_id == customer.tax_id
 
 
 @pytest.mark.vcr
 def test_update_customer():
-    customer_id = 'CUSTOMER01'
+    customer_id = 'CUSTOMER02'
     customer = facturapi.Customer.retrieve(id=customer_id)
-
-    email = customer.email
     update_data = CustomerUpdateRequest(email='remedios@pintora.com')
 
     updated_customer = facturapi.Customer.update(
         id=customer_id, data=update_data
     )
-    assert updated_customer.email != email
+
+    assert customer.email != updated_customer.email
     assert updated_customer.email == 'remedios@pintora.com'
+
+    # Test refreshing an object
+    customer.refresh()
+    assert customer.email == updated_customer.email
 
 
 @pytest.mark.vcr

@@ -143,9 +143,8 @@ class Client:
 
     @staticmethod
     def _check_response(response: Response):
-        if response.ok:
-            return
-        raise FacturapiResponseException(
-            json=response.json(),
-            status_code=response.status_code,
-        )
+        if not response.ok:
+            raise FacturapiResponseException(
+                json=response.json(),
+                status_code=response.status_code,
+            )

@@ -29,7 +29,11 @@ def main():
     invoice = facturapi.Invoice.create(data=invoice_request)
     # Resource is now created an can be used to access data or perform actions.
     total = invoice.total
-    invoice_file = facturapi.Invoice.download(id=invoice.id, file_type='pdf')
+    from facturapi.types import FileType
+
+    invoice_file = facturapi.Invoice.download(
+        id=invoice.id, file_type=FileType.pdf
+    )
 
     with open('my_invoice_file.pdf', 'wb') as f:
         f.write(invoice_file)
@@ -42,6 +46,8 @@ def main():
     status = cancelled_invoice.status
 
     # Perform a query to bring a list or an specific invoice:
+    # Checkout full query details on the docs:
+    #   https://docs.facturapi.io/?javascript#lista-de-facturas
     query_result = facturapi.Invoice.all(q='John Doe')
     for invoice in query_result:
         # Iterate throught query's result

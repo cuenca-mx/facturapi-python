@@ -1,6 +1,6 @@
 SHELL := bash
 PATH := ./venv/bin:${PATH}
-PYTHON = python
+PYTHON = python3.8
 PROJECT = facturapi
 isort = isort $(PROJECT) tests setup.py examples
 black = black -S -l 79 --target-version py38 $(PROJECT) tests setup.py examples

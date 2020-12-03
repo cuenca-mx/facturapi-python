@@ -2,6 +2,7 @@ __all__ = [
     'BaseQuery',
     'DateFilter',
     'FacturapiResponseException',
+    'FileType',
     'InvoiceRelation',
     'InvoiceType',
     'InvoiceUse',
@@ -15,6 +16,7 @@ __all__ = [
 
 from . import exc, general, validators
 from .enums import (
+    FileType,
     InvoiceRelation,
     InvoiceType,
     InvoiceUse,

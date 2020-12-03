@@ -2,5 +2,5 @@ import pytest
 
 
 @pytest.fixture
-def facturapi_creds(monkeypatch) -> None:
+def some_api_key(monkeypatch) -> None:
     monkeypatch.setenv('FACTURAPI_KEY', 'api_key')

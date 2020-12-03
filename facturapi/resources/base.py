@@ -12,7 +12,7 @@ from urllib.parse import urlencode
 from pydantic.dataclasses import dataclass
 
 from ..http import client
-from ..types import BaseQuery
+from ..types import BaseQuery, FileType
 from ..types.exc import MultipleResultsFound, NoResultFound
 from ..types.general import SanitizedDict
 
@@ -113,7 +113,7 @@ class Downloadable(Resource):
     """
 
     @classmethod
-    def download(cls, id: str, file_type: str) -> bytes:
+    def download(cls, id: str, file_type: FileType) -> bytes:
         """Download a file from resource.
 
         Performs a GET request to download a file given a
@@ -128,7 +128,9 @@ class Downloadable(Resource):
             bytes: Bytes of the file.
 
         """
-        return client.download_request(f'/{cls._resource}/{id}/{file_type}')
+        return client.download_request(
+            f'/{cls._resource}/{id}/{file_type.value}'
+        )
 
 
 class Creatable(Resource):

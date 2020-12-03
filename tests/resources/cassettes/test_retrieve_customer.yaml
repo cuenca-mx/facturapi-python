@@ -1,6 +1,7 @@
 interactions:
 - request:
-    body: null
+    body: '{"legal_name": "Leonora Carrington", "tax_id": "CAML9004069U0", "email":
+      "leonora@test.com"}'
     headers:
       Accept:
       - '*/*'
@@ -10,26 +11,22 @@ interactions:
       - DUMMY
       Connection:
       - keep-alive
+      Content-Length:
+      - '92'
       Content-Type:
       - application/json
       User-Agent:
       - facturapi-python/0.0.1
-    method: GET
-    uri: https://www.facturapi.io/v1/customers/CUSTOMER01
+    method: POST
+    uri: https://www.facturapi.io/v1/customers
   response:
     body:
-      string: "{\"address\":{\"country\":\"MEX\",\"street\":\"Colima\",\"exterior\"\
-        :\"196\",\"interior\":\"1\",\"neighborhood\":\"Roma\",\"zip\":\"06700\",\"\
-        city\":\"Ciudad de M\xE9xico\",\"municipality\":\"Cuauht\xE9moc\",\"state\"\
-        :\"Ciudad de M\xE9xico\"},\"legal_name\":\"Cordelia Urueta Sierra\",\"tax_id\"\
-        :\"UUSC9509162G7\",\"email\":\"cordelia@urueta.com\",\"phone\":\"5511223344\"\
-        ,\"organization\":\"ORG01\",\"created_at\":\"2020-12-01T19:38:44.706Z\"\
-        ,\"livemode\":false,\"id\":\"CUSTOMER01\"}"
+      string: '{"address":{"country":"MEX"},"legal_name":"Leonora Carrington","tax_id":"CAML9004069U0","email":"leonora@test.com","organization":"ORG01","created_at":"2020-12-03T00:11:50.796Z","livemode":false,"id":"CUSTOMER02"}'
     headers:
       Content-Length:
-      - '444'
+      - '213'
       Date:
-      - Tue, 01 Dec 2020 19:43:01 GMT
+      - Thu, 03 Dec 2020 00:11:50 GMT
       Server:
       - Google Frontend
       access-control-allow-origin:
@@ -41,7 +38,7 @@ interactions:
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"1bc-DxPNLbKCCFMkmG0yQyEPynJIoAg"
+      - W/"f6-awCHIt4yoF2VFeXIgBKwKR59DfY"
       expect-ct:
       - max-age=0
       referrer-policy:
@@ -51,8 +48,8 @@ interactions:
       vary:
       - Accept-Encoding
       x-cloud-trace-context:
-      - 26c7808dc2ca567dfd225289ec75a9d4/4584306393235898998;o=1
-      - 26c7808dc2ca567dfd225289ec75a9d4
+      - efedff5440f979b67cff5ec6ecb4a75e/17881849224807608784;o=1
+      - efedff5440f979b67cff5ec6ecb4a75e;o=1
       x-content-type-options:
       - nosniff
       x-dns-prefetch-control:
@@ -66,8 +63,8 @@ interactions:
       x-xss-protection:
       - '0'
     status:
-      code: 200
-      message: OK
+      code: 201
+      message: Created
 - request:
     body: null
     headers:
@@ -84,21 +81,15 @@ interactions:
       User-Agent:
       - facturapi-python/0.0.1
     method: GET
-    uri: https://www.facturapi.io/v1/customers/CUSTOMER01
+    uri: https://www.facturapi.io/v1/customers/CUSTOMER02
   response:
     body:
-      string: "{\"address\":{\"country\":\"MEX\",\"street\":\"Colima\",\"exterior\"\
-        :\"196\",\"interior\":\"1\",\"neighborhood\":\"Roma\",\"zip\":\"06700\",\"\
-        city\":\"Ciudad de M\xE9xico\",\"municipality\":\"Cuauht\xE9moc\",\"state\"\
-        :\"Ciudad de M\xE9xico\"},\"legal_name\":\"Cordelia Urueta Sierra\",\"tax_id\"\
-        :\"UUSC9509162G7\",\"email\":\"cordelia@urueta.com\",\"phone\":\"5511223344\"\
-        ,\"organization\":\"ORG01\",\"created_at\":\"2020-12-01T19:38:44.706Z\"\
-        ,\"livemode\":false,\"id\":\"CUSTOMER01\"}"
+      string: '{"address":{"country":"MEX"},"legal_name":"Leonora Carrington","tax_id":"CAML9004069U0","email":"leonora@test.com","organization":"ORG01","created_at":"2020-12-03T00:11:50.796Z","livemode":false,"id":"CUSTOMER02"}'
     headers:
       Content-Length:
-      - '444'
+      - '213'
       Date:
-      - Tue, 01 Dec 2020 19:43:01 GMT
+      - Thu, 03 Dec 2020 00:11:50 GMT
       Server:
       - Google Frontend
       access-control-allow-origin:
@@ -110,7 +101,7 @@ interactions:
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"1bc-DxPNLbKCCFMkmG0yQyEPynJIoAg"
+      - W/"f6-awCHIt4yoF2VFeXIgBKwKR59DfY"
       expect-ct:
       - max-age=0
       referrer-policy:
@@ -120,8 +111,8 @@ interactions:
       vary:
       - Accept-Encoding
       x-cloud-trace-context:
-      - e75f38a79026891088a2e9e5f650eda4/120020584420647573;o=1
-      - e75f38a79026891088a2e9e5f650eda4
+      - f3d0c1fad33bbafdba9f4d3132ed38f4/4663067686823768891;o=1
+      - f3d0c1fad33bbafdba9f4d3132ed38f4
       x-content-type-options:
       - nosniff
       x-dns-prefetch-control:

@@ -1,7 +1,17 @@
 from enum import Enum
 
 
+class FileType(str, Enum):
+    """Enum to define a file type."""
+
+    pdf = 'pdf'
+    xml = 'xml'
+    zip = 'zip'
+
+
 class InvoiceRelation(str, Enum):
+    """Relation key in SAT catalogue for related invoices."""
+
     nota_de_credito = '01'
     nota_de_debito = '02'
     devolucion_de_mercancia = '03'
@@ -14,6 +24,8 @@ class InvoiceRelation(str, Enum):
 
 
 class InvoiceType(str, Enum):
+    """Type of an invoice."""
+
     ingreso = 'I'
     egreso = 'E'
     traslado = 'T'
@@ -22,6 +34,8 @@ class InvoiceType(str, Enum):
 
 
 class InvoiceUse(str, Enum):
+    """CFDI use code from SAT catalogue."""
+
     adquisicion_mercancias = 'G01'
     devoluciones_descuentos_bonificaciones = 'G02'
     gastos_en_general = 'G03'
@@ -47,6 +61,8 @@ class InvoiceUse(str, Enum):
 
 
 class PaymentForm(str, Enum):
+    """Payment from code according to SAT."""
+
     efectivo = '01'
     cheque_nominativo = '02'
     transferencia_electronica_de_fondos = '03'
@@ -72,5 +88,7 @@ class PaymentForm(str, Enum):
 
 
 class PaymentMethod(str, Enum):
+    """Payment method code according to SAT."""
+
     contado = 'PUE'
     parcialidades = 'PPD'
