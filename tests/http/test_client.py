@@ -11,8 +11,8 @@ def test_auth_without_env():
 
 def test_auth_configure():
     client = Client()
-    client.configure('api_key')
-    assert client.api_key == 'api_key'
+    client.configure('some_api_key')
+    assert client.api_key == 'some_api_key'
 
 
 @pytest.mark.vcr
@@ -33,5 +33,5 @@ def test_env_auth():
 @pytest.mark.usefixtures('facturapi_creds')
 def test_override_with_configure():
     client = Client()
-    client.configure('api_key2')
+    client.configure('some_api_key2')
     assert client.api_key == 'some_api_key2'
