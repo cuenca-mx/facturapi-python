@@ -1,6 +1,6 @@
 <p align="center">
     <a href="https://facturapi.io">
-        <img alt="Facturapi Logo" src="./images/facturapi-logo.svg" width="200" />
+        <img alt="Facturapi Logo" src="./docs/images/facturapi-logo.svg" width="200" />
     </a>
 </p>
 <h1 align="center">
@@ -90,6 +90,6 @@ No olvides mantener la cobertura del código arriba de 98%, nos encanta tener c�
 Desarrollado y mantenido con 💙 por [Cuenca](https://cuenca.com/)
 <p align="center">
     <a href="https://cuenca.com/">
-        <img alt="Cuenca Logo" src="./images/cuenca-full-logo.svg" width="200" />
+        <img alt="Cuenca Logo" src="./docs/images/cuenca-full-logo.svg" width="200" />
     </a>
 </p>
