@@ -1,7 +1,7 @@
 import facturapi
 from facturapi import configure
 from facturapi.resources.invoices import InvoiceRequest
-from facturapi.types import PaymentForm
+from facturapi.types import FileType, PaymentForm
 from facturapi.types.general import ItemPart
 
 # Configure API KEY if not set in env variable
@@ -29,7 +29,6 @@ def main():
     invoice = facturapi.Invoice.create(data=invoice_request)
     # Resource is now created an can be used to access data or perform actions.
     total = invoice.total
-    from facturapi.types import FileType
 
     invoice_file = facturapi.Invoice.download(
         id=invoice.id, file_type=FileType.pdf

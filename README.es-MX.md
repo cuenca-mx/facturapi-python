@@ -7,6 +7,8 @@
     FacturAPI – Librería de Python
 </h1>
 
+![test](https://github.com/cuenca-mx/facturapi-python/workflows/test/badge.svg)
+[![codecov](https://codecov.io/gh/cuenca-mx/facturapi-python/branch/main/graph/badge.svg?token=U89Q4PR339)](https://codecov.io/gh/cuenca-mx/facturapi-python)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 Esta es una librería de Python para https://www.facturapi.io
