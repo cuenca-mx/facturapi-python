@@ -1,0 +1,1129 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="Facturapi Python Library" name="description"/>
+<link href="../../images/favicon.png" rel="shortcut icon"/>
+<meta content="mkdocs-1.1.2, mkdocs-material-6.1.6" name="generator"/>
+<title>Base code - facturapi-python</title>
+<link href="../../assets/stylesheets/main.6910b76c.min.css" rel="stylesheet"/>
+<link href="../../assets/stylesheets/palette.196e0c26.min.css" rel="stylesheet"/>
+<meta content="#4051b5" name="theme-color"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&amp;display=fallback" rel="stylesheet"/>
+<style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+</head>
+<body data-md-color-accent="deep-purple" data-md-color-primary="indigo" data-md-color-scheme="preference" dir="ltr">
+<script>matchMedia("(prefers-color-scheme: dark)").matches&&document.body.setAttribute("data-md-color-scheme","slate")</script>
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#facturapi.resources.base">
+          Skip to content
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header" data-md-component="header">
+<nav aria-label="Header" class="md-header-nav md-grid">
+<a aria-label="facturapi-python" class="md-header-nav__button md-logo" href="../.." title="facturapi-python">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M11.38 2l-5 5-1.25 8.75L11.38 22l7.5-5-5-5 3.75-3.75L11.38 2z"></path></svg>
+</a>
+<label class="md-header-nav__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"></path></svg>
+</label>
+<div class="md-header-nav__title" data-md-component="header-title">
+<div class="md-header-nav__ellipsis">
+<span class="md-header-nav__topic md-ellipsis">
+            facturapi-python
+          </span>
+<span class="md-header-nav__topic md-ellipsis">
+            
+              Base code
+            
+          </span>
+</div>
+</div>
+<label class="md-header-nav__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="Search" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" data-md-state="active" name="query" placeholder="Search" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"></path></svg>
+</label>
+<button aria-label="Clear" class="md-search__icon md-icon" data-md-component="search-reset" tabindex="-1" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"></path></svg>
+</button>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            Initializing search
+          </div>
+<ol class="md-search-result__list"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="md-header-nav__source">
+<a class="md-source" href="https://github.com/cuenca-mx/facturapi-python/" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"></path></svg>
+</div>
+<div class="md-source__repository">
+    cuenca-mx/facturapi-python
+  </div>
+</a>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigation" class="md-nav md-nav--primary" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="facturapi-python" class="md-nav__button md-logo" href="../.." title="facturapi-python">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M11.38 2l-5 5-1.25 8.75L11.38 22l7.5-5-5-5 3.75-3.75L11.38 2z"></path></svg>
+</a>
+    facturapi-python
+  </label>
+<div class="md-nav__source">
+<a class="md-source" href="https://github.com/cuenca-mx/facturapi-python/" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"></path></svg>
+</div>
+<div class="md-source__repository">
+    cuenca-mx/facturapi-python
+  </div>
+</a>
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../..">
+      Overview
+    </a>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="nav-2" id="nav-2" type="checkbox"/>
+<label class="md-nav__link" for="nav-2">
+      Code Reference
+      <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="Code Reference" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="nav-2">
+<span class="md-nav__icon md-icon"></span>
+        Code Reference
+      </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+        Base code
+        <span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+      Base code
+    </a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#facturapi.resources.base">
+    facturapi.resources.base
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#classes">
+    Classes
+  </a>
+<nav aria-label="Classes" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#facturapi.resources.base.Downloadable">
+    Downloadable
+  </a>
+<nav aria-label="Downloadable" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#methods">
+    Methods
+  </a>
+<nav aria-label="Methods" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#facturapi.resources.base.Downloadable.download">
+    download()
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#facturapi.resources.base.Queryable">
+    Queryable
+  </a>
+<nav aria-label="Queryable" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#methods_1">
+    Methods
+  </a>
+<nav aria-label="Methods" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#facturapi.resources.base.Queryable.all">
+    all()
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#facturapi.resources.base.Queryable.count">
+    count()
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#facturapi.resources.base.Queryable.first">
+    first()
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#facturapi.resources.base.Queryable.one">
+    one()
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#facturapi.resources.base.Resource">
+    Resource
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#facturapi.resources.base.Retrievable">
+    Retrievable
+  </a>
+<nav aria-label="Retrievable" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#methods_2">
+    Methods
+  </a>
+<nav aria-label="Methods" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#facturapi.resources.base.Retrievable.refresh">
+    refresh()
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#facturapi.resources.base.Retrievable.retrieve">
+    retrieve()
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../customers/">
+      Customers
+    </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../invoices/">
+      Invoices
+    </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#facturapi.resources.base">
+    facturapi.resources.base
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#classes">
+    Classes
+  </a>
+<nav aria-label="Classes" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#facturapi.resources.base.Downloadable">
+    Downloadable
+  </a>
+<nav aria-label="Downloadable" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#methods">
+    Methods
+  </a>
+<nav aria-label="Methods" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#facturapi.resources.base.Downloadable.download">
+    download()
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#facturapi.resources.base.Queryable">
+    Queryable
+  </a>
+<nav aria-label="Queryable" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#methods_1">
+    Methods
+  </a>
+<nav aria-label="Methods" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#facturapi.resources.base.Queryable.all">
+    all()
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#facturapi.resources.base.Queryable.count">
+    count()
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#facturapi.resources.base.Queryable.first">
+    first()
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#facturapi.resources.base.Queryable.one">
+    one()
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#facturapi.resources.base.Resource">
+    Resource
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#facturapi.resources.base.Retrievable">
+    Retrievable
+  </a>
+<nav aria-label="Retrievable" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#methods_2">
+    Methods
+  </a>
+<nav aria-label="Methods" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#facturapi.resources.base.Retrievable.refresh">
+    refresh()
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#facturapi.resources.base.Retrievable.retrieve">
+    retrieve()
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content">
+<article class="md-content__inner md-typeset">
+<a class="md-content__button md-icon" href="https://github.com/cuenca-mx/facturapi-python/edit/master/docs/resources/resources.md" title="Edit this page">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"></path></svg>
+</a>
+<h1>Base code</h1>
+<div class="doc doc-object doc-module">
+<h2 class="hidden-toc" href="#facturapi.resources.base" id="facturapi.resources.base" style="visibility: hidden; position: absolute;">
+</h2>
+<div class="doc doc-contents first">
+<p>Base module for resources.</p>
+<p>This module represent all the base code for resources,
+the resources can inherit behaviour from these classes to
+perform requests and actions to the API.</p>
+<div class="doc doc-children">
+<h2 id="classes">Classes</h2>
+<div class="doc doc-object doc-class">
+<h3 class="doc doc-heading" id="facturapi.resources.base.Downloadable">
+<code>facturapi.resources.base.Downloadable</code>
+</h3>
+<div class="doc doc-contents">
+<p>Generic Downloadable class.</p>
+<p>Used by resources that can be downloaded as a file.</p>
+<div class="doc doc-children">
+<h4 id="methods">Methods</h4>
+<div class="doc doc-object doc-method">
+<h5 class="doc doc-heading" id="facturapi.resources.base.Downloadable.download">
+<code class="highlight language-python">
+facturapi.resources.base.Downloadable.download<span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">file_type</span><span class="p">)</span> </code>
+<span class="doc doc-properties">
+<small class="doc doc-property doc-property-classmethod"><code>classmethod</code></small>
+</span>
+</h5>
+<div class="doc doc-contents">
+<p>Download a file from resource.</p>
+<p>Performs a GET request to download a file given a
+resource ID.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>str</code></td>
+<td>
+<p>The ID of the resource.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>file_type</code></td>
+<td><code>FileType</code></td>
+<td>
+<p>Type of the file to be downloaded.
+(zip, pdf or xml).</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>bytes</code></td>
+<td>
+<p>bytes: Bytes of the file.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+<summary>Source code in <code>facturapi/resources/base.py</code></summary>
+<div class="highlight">
+<pre><span></span><code><span class="nd">@classmethod</span>
+<span class="k">def</span> <span class="nf">download</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">file_type</span><span class="p">:</span> <span class="n">FileType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
+    <span class="sd">"""Download a file from resource.</span>
+
+<span class="sd">    Performs a GET request to download a file given a</span>
+<span class="sd">    resource ID.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        id: The ID of the resource.</span>
+<span class="sd">        file_type: Type of the file to be downloaded.</span>
+<span class="sd">            (zip, pdf or xml).</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        bytes: Bytes of the file.</span>
+
+<span class="sd">    """</span>
+    <span class="k">return</span> <span class="n">client</span><span class="o">.</span><span class="n">download_request</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s1">'/</span><span class="si">{</span><span class="bp">cls</span><span class="o">.</span><span class="n">_resource</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="nb">id</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">file_type</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s1">'</span>
+    <span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="doc doc-object doc-class">
+<h3 class="doc doc-heading" id="facturapi.resources.base.Queryable">
+<code>facturapi.resources.base.Queryable</code>
+<span class="doc doc-properties">
+<small class="doc doc-property doc-property-dataclass"><code>dataclass</code></small>
+</span>
+</h3>
+<div class="doc doc-contents">
+<p>Generic Queryable class.</p>
+<p>Used by resources that can be queried in lists. Refer to this
+class to see the query actions that can be performed on a
+resource.</p>
+<p><strong>Attributes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>_query_params</code></td>
+<td><code>ClassVar</code></td>
+<td>
+<p>A class with the parameters that
+can be queried.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="doc doc-children">
+<h4 id="methods_1">Methods</h4>
+<div class="doc doc-object doc-method">
+<h5 class="doc doc-heading" id="facturapi.resources.base.Queryable.all">
+<code class="highlight language-python">
+facturapi.resources.base.Queryable.all<span class="p">(</span><span class="o">**</span><span class="n">query_params</span><span class="p">)</span> </code>
+<span class="doc doc-properties">
+<small class="doc doc-property doc-property-classmethod"><code>classmethod</code></small>
+</span>
+</h5>
+<div class="doc doc-contents">
+<p>Retrieve all resources given a query.</p>
+<p>All the returned resources are paginated, the method <code>yields</code>
+the first page of results and if more are found; then it
+continues to <code>yield</code> pages until all results are queried.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>**query_params</code></td>
+<td><code>dict</code></td>
+<td>
+<p>Arbitrary query keyword arguments.</p>
+</td>
+<td><code>{}</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Generator[facturapi.resources.base.Resource, NoneType, NoneType]</code></td>
+<td>
+<p>Generator: A generator containing the queried results.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+<summary>Source code in <code>facturapi/resources/base.py</code></summary>
+<div class="highlight">
+<pre><span></span><code><span class="nd">@classmethod</span>
+<span class="k">def</span> <span class="nf">all</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">**</span><span class="n">query_params</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Generator</span><span class="p">[</span><span class="n">Resource</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
+    <span class="sd">"""Retrieve all resources given a query.</span>
+
+<span class="sd">    All the returned resources are paginated, the method `yields`</span>
+<span class="sd">    the first page of results and if more are found; then it</span>
+<span class="sd">    continues to `yield` pages until all results are queried.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        **query_params (dict): Arbitrary query keyword arguments.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Generator: A generator containing the queried results.</span>
+
+<span class="sd">    """</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_query_params</span><span class="p">(</span><span class="o">**</span><span class="n">query_params</span><span class="p">)</span>
+    <span class="n">next_page_uri</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="bp">cls</span><span class="o">.</span><span class="n">_resource</span><span class="si">}</span><span class="s1">?</span><span class="si">{</span><span class="n">urlencode</span><span class="p">(</span><span class="n">q</span><span class="o">.</span><span class="n">dict</span><span class="p">())</span><span class="si">}</span><span class="s1">'</span>
+    <span class="n">current_page</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">while</span> <span class="n">next_page_uri</span><span class="p">:</span>
+        <span class="n">page</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">next_page_uri</span><span class="p">)</span>
+        <span class="k">yield from</span> <span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">_from_dict</span><span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">page</span><span class="p">[</span><span class="s1">'data'</span><span class="p">])</span>
+        <span class="n">next_page_uri</span> <span class="o">=</span> <span class="s1">''</span>
+        <span class="k">if</span> <span class="n">current_page</span> <span class="o">&lt;</span> <span class="n">page</span><span class="p">[</span><span class="s1">'total_pages'</span><span class="p">]:</span>
+            <span class="n">current_page</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">q</span><span class="o">.</span><span class="n">page</span> <span class="o">=</span> <span class="n">current_page</span>
+            <span class="n">next_page_uri</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="bp">cls</span><span class="o">.</span><span class="n">_resource</span><span class="si">}</span><span class="s1">?</span><span class="si">{</span><span class="n">urlencode</span><span class="p">(</span><span class="n">q</span><span class="o">.</span><span class="n">dict</span><span class="p">())</span><span class="si">}</span><span class="s1">'</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h5 class="doc doc-heading" id="facturapi.resources.base.Queryable.count">
+<code class="highlight language-python">
+facturapi.resources.base.Queryable.count<span class="p">(</span><span class="o">**</span><span class="n">query_params</span><span class="p">)</span> </code>
+<span class="doc doc-properties">
+<small class="doc doc-property doc-property-classmethod"><code>classmethod</code></small>
+</span>
+</h5>
+<div class="doc doc-contents">
+<p>Get the total number of results given a query.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>**query_params</code></td>
+<td><code>dict</code></td>
+<td>
+<p>Arbitrary query keyword arguments.</p>
+</td>
+<td><code>{}</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>int</code></td>
+<td>
+<p>int: The total count of results.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+<summary>Source code in <code>facturapi/resources/base.py</code></summary>
+<div class="highlight">
+<pre><span></span><code><span class="nd">@classmethod</span>
+<span class="k">def</span> <span class="nf">count</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">**</span><span class="n">query_params</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="sd">"""Get the total number of results given a query.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        **query_params (dict): Arbitrary query keyword arguments.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        int: The total count of results.</span>
+
+<span class="sd">    """</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_query_params</span><span class="p">(</span><span class="o">**</span><span class="n">query_params</span><span class="p">)</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">_resource</span><span class="p">,</span> <span class="n">q</span><span class="o">.</span><span class="n">dict</span><span class="p">())</span>
+    <span class="n">items</span> <span class="o">=</span> <span class="n">response</span><span class="p">[</span><span class="s1">'data'</span><span class="p">]</span>
+    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">items</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h5 class="doc doc-heading" id="facturapi.resources.base.Queryable.first">
+<code class="highlight language-python">
+facturapi.resources.base.Queryable.first<span class="p">(</span><span class="o">**</span><span class="n">query_params</span><span class="p">)</span> </code>
+<span class="doc doc-properties">
+<small class="doc doc-property doc-property-classmethod"><code>classmethod</code></small>
+</span>
+</h5>
+<div class="doc doc-contents">
+<p>Retrieve the first resource found given a query or none.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>**query_params</code></td>
+<td><code>dict</code></td>
+<td>
+<p>Arbitrary query keyword arguments.</p>
+</td>
+<td><code>{}</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Optional[facturapi.resources.base.Resource]</code></td>
+<td>
+<p>Optional[Resource]: The first resource queried or <code>None</code>
+    if none found.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+<summary>Source code in <code>facturapi/resources/base.py</code></summary>
+<div class="highlight">
+<pre><span></span><code><span class="nd">@classmethod</span>
+<span class="k">def</span> <span class="nf">first</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">**</span><span class="n">query_params</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Resource</span><span class="p">]:</span>
+    <span class="sd">"""Retrieve the first resource found given a query or none.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        **query_params (dict): Arbitrary query keyword arguments.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Optional[Resource]: The first resource queried or `None`</span>
+<span class="sd">            if none found.</span>
+
+<span class="sd">    """</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_query_params</span><span class="p">(</span><span class="n">limit</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">query_params</span><span class="p">)</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">_resource</span><span class="p">,</span> <span class="n">q</span><span class="o">.</span><span class="n">dict</span><span class="p">())</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">item</span> <span class="o">=</span> <span class="n">response</span><span class="p">[</span><span class="s1">'data'</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+        <span class="n">rv</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">rv</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_from_dict</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">rv</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h5 class="doc doc-heading" id="facturapi.resources.base.Queryable.one">
+<code class="highlight language-python">
+facturapi.resources.base.Queryable.one<span class="p">(</span><span class="o">**</span><span class="n">query_params</span><span class="p">)</span> </code>
+<span class="doc doc-properties">
+<small class="doc doc-property doc-property-classmethod"><code>classmethod</code></small>
+</span>
+</h5>
+<div class="doc doc-contents">
+<p>Retrieve only one resource given a query.</p>
+<p>Given a query, retrieve one and only one resource. If more
+than one resource or none are found, this method throws an
+exception.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>**query_params</code></td>
+<td><code>dict</code></td>
+<td>
+<p>Arbitrary query keyword arguments.</p>
+</td>
+<td><code>{}</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Exceptions:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NoResultFound</code></td>
+<td>
+<p>If no result is found.</p>
+</td>
+</tr>
+<tr>
+<td><code>MultipleResultsFound</code></td>
+<td>
+<p>If more than one result is found.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Resource</code></td>
+<td>
+<p>Resource: The one resource queried.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+<summary>Source code in <code>facturapi/resources/base.py</code></summary>
+<div class="highlight">
+<pre><span></span><code><span class="nd">@classmethod</span>
+<span class="k">def</span> <span class="nf">one</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">**</span><span class="n">query_params</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Resource</span><span class="p">:</span>
+    <span class="sd">"""Retrieve only one resource given a query.</span>
+
+<span class="sd">    Given a query, retrieve one and only one resource. If more</span>
+<span class="sd">    than one resource or none are found, this method throws an</span>
+<span class="sd">    exception.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        **query_params (dict): Arbitrary query keyword arguments.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        NoResultFound: If no result is found.</span>
+<span class="sd">        MultipleResultsFound: If more than one result is found.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Resource: The one resource queried.</span>
+
+<span class="sd">    """</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_query_params</span><span class="p">(</span><span class="n">limit</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="o">**</span><span class="n">query_params</span><span class="p">)</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">_resource</span><span class="p">,</span> <span class="n">q</span><span class="o">.</span><span class="n">dict</span><span class="p">())</span>
+    <span class="n">items</span> <span class="o">=</span> <span class="n">response</span><span class="p">[</span><span class="s1">'data'</span><span class="p">]</span>
+    <span class="n">len_items</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">items</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">len_items</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">NoResultFound</span>
+    <span class="k">if</span> <span class="n">len_items</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">MultipleResultsFound</span>
+    <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_from_dict</span><span class="p">(</span><span class="n">items</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="doc doc-object doc-class">
+<h3 class="doc doc-heading" id="facturapi.resources.base.Resource">
+<code>facturapi.resources.base.Resource</code>
+<span class="doc doc-properties">
+<small class="doc doc-property doc-property-dataclass"><code>dataclass</code></small>
+</span>
+</h3>
+<div class="doc doc-contents">
+<p>Generic resource from Facturapi.</p>
+<p>Generic Resource class used by Facturapi resources.</p>
+<p><strong>Attributes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>_resource</code></td>
+<td><code>ClassVar[str]</code></td>
+<td>
+<p>Name of the resource the
+class corresponds to.</p>
+</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>str</code></td>
+<td>
+<p>ID of the resource.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="doc doc-children">
+</div>
+</div>
+</div>
+<div class="doc doc-object doc-class">
+<h3 class="doc doc-heading" id="facturapi.resources.base.Retrievable">
+<code>facturapi.resources.base.Retrievable</code>
+</h3>
+<div class="doc doc-contents">
+<p>Generic Retrievable class.</p>
+<p>Used by resources that can be retrieved, i.e: resources that can
+be retrieved by a GET request to its ID.</p>
+<div class="doc doc-children">
+<h4 id="methods_2">Methods</h4>
+<div class="doc doc-object doc-method">
+<h5 class="doc doc-heading" id="facturapi.resources.base.Retrievable.refresh">
+<code class="highlight language-python">
+facturapi.resources.base.Retrievable.refresh<span class="p">(</span><span class="bp">self</span><span class="p">)</span> </code>
+</h5>
+<div class="doc doc-contents">
+<p>Refresh a resource</p>
+<p>Refresh resource's data to be sure its the latest. It
+performs a GET request on the resource.</p>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Resource</code></td>
+<td>
+<p>The refreshed resource.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+<summary>Source code in <code>facturapi/resources/base.py</code></summary>
+<div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">refresh</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">"""Refresh a resource</span>
+
+<span class="sd">    Refresh resource's data to be sure its the latest. It</span>
+<span class="sd">    performs a GET request on the resource.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Resource: The refreshed resource.</span>
+
+<span class="sd">    """</span>
+    <span class="n">new</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">retrieve</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">attr</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">new</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h5 class="doc doc-heading" id="facturapi.resources.base.Retrievable.retrieve">
+<code class="highlight language-python">
+facturapi.resources.base.Retrievable.retrieve<span class="p">(</span><span class="nb">id</span><span class="p">)</span> </code>
+<span class="doc doc-properties">
+<small class="doc doc-property doc-property-classmethod"><code>classmethod</code></small>
+</span>
+</h5>
+<div class="doc doc-contents">
+<p>Retrieve a resource given its ID</p>
+<p>Performs a GET request with the ID.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>str</code></td>
+<td>
+<p>The ID of the resource</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Resource</code></td>
+<td>
+<p>Resource: The resource retrieved.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+<summary>Source code in <code>facturapi/resources/base.py</code></summary>
+<div class="highlight">
+<pre><span></span><code><span class="nd">@classmethod</span>
+<span class="k">def</span> <span class="nf">retrieve</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Resource</span><span class="p">:</span>
+    <span class="sd">"""Retrieve a resource given its ID</span>
+
+<span class="sd">    Performs a GET request with the ID.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        id: The ID of the resource</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Resource: The resource retrieved.</span>
+
+<span class="sd">    """</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s1">'/</span><span class="si">{</span><span class="bp">cls</span><span class="o">.</span><span class="n">_resource</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="nb">id</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+    <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_from_dict</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+</div>
+</div>
+</main>
+<footer class="md-footer">
+<div class="md-footer-nav">
+<nav aria-label="Footer" class="md-footer-nav__inner md-grid">
+<a class="md-footer-nav__link md-footer-nav__link--prev" href="../.." rel="prev">
+<div class="md-footer-nav__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"></path></svg>
+</div>
+<div class="md-footer-nav__title">
+<div class="md-ellipsis">
+<span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Overview
+              </div>
+</div>
+</a>
+<a class="md-footer-nav__link md-footer-nav__link--next" href="../customers/" rel="next">
+<div class="md-footer-nav__title">
+<div class="md-ellipsis">
+<span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Customers
+              </div>
+</div>
+<div class="md-footer-nav__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"></path></svg>
+</div>
+</a>
+</nav>
+</div>
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+          Material for MkDocs
+        </a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<script src="../../assets/javascripts/vendor.fd16492e.min.js"></script>
+<script src="../../assets/javascripts/bundle.7836ba4d.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+<script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+</body>
+</html>
