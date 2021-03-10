@@ -24,7 +24,7 @@ setup(
     python_requires='>=3.6',
     install_requires=[
         'requests>=2.4,<2.26',
-        'pydantic==1.7.3',
+        'pydantic==1.8.1',
         'dataclasses>=0.7;python_version<"3.7"',
     ],
     classifiers=[
