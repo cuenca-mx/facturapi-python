@@ -23,7 +23,7 @@ setup(
     package_data=dict(facturapi=['py.typed']),
     python_requires='>=3.6',
     install_requires=[
-        'requests>=2.4,<2.26',
+        'requests>=2.4,<2.27',
         'pydantic==1.8.2',
         'dataclasses>=0.7;python_version<"3.7"',
     ],
