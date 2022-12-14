@@ -1,7 +1,7 @@
 pytest==6.2.*
 pytest-cov==3.0.*
 pytest-vcr==1.0.*
-black==21.9b0
+black==22.12.0
 isort==5.7.*
 flake8==3.8.*
 mypy==0.812
