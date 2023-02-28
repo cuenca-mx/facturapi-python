@@ -92,3 +92,35 @@ class PaymentMethod(str, Enum):
 
     contado = 'PUE'
     parcialidades = 'PPD'
+
+
+class TaxSystemType(str, Enum):
+    """Regimen fiscal from SAT catalogue."""
+
+    GRL_PM = "601"  # General de Ley Personas Morales
+    PM_FN = "603"  # Personas Morales con Fines no Lucrativos
+    SAL_IS = "605"  # Sueldos y Salarios e Ingresos Asimilados a Salarios
+    ARR = "606"  # Arrendamiento
+    DEM_ING = "608"  # Demás ingresos
+    CONS = "609"  # Consolidación
+    RES_EXT = "610"  # Residentes en el Extranjero sin Establecimiento Permanente en México
+    DIV = "611"  # Ingresos por Dividendos (socios y accionistas)
+    PF_AEP = (
+        "612"  # Personas Físicas con Actividades Empresariales y Profesionales
+    )
+    INT = "614"  # Ingresos por intereses
+    SIN_OBL = "616"  # Sin obligaciones fiscales
+    SCP_DIF = "620"  # Sociedades Cooperativas de Producción que optan por diferir sus ingresos
+    INC_FISC = "621"  # Incorporación Fiscal
+    AGRO_GAN_SILV_PES = (
+        "622"  # Actividades Agrícolas, Ganaderas, Silvícolas y Pesqueras
+    )
+    OP_GRUPO_SOC = "623"  # Opcional para Grupos de Sociedades
+    COOR = "624"  # Coordinados
+    HID = "628"  # Hidrocarburos
+    ENAJ_ADQ = "607"  # Régimen de Enajenación o Adquisición de Bienes
+    PREF_EM_MULT = "629"  # De los Regímenes Fiscales Preferentes y de las Empresas Multinacionales
+    ENAJ_ACC_BOL = "630"  # Enajenación de acciones en bolsa de valores
+    ING_PREM = "615"  # Régimen de los ingresos por obtención de premios
+    AE_PLAT_TEC = "625"  # Régimen de las Actividades Empresariales con ingresos a través de Plataformas Tecnológicas
+    RS_CONF = "626"  # Régimen Simplificado de Confianza

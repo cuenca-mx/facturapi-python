@@ -14,6 +14,7 @@ def test_create_customer():
     customer_request = CustomerRequest(
         legal_name='Cordelia Urueta Sierra',
         tax_id='UUSC9509162G7',
+        tax_system='625',
         email='cordelia@urueta.com',
         phone='5511223344',
         address=CustomerAddress(
@@ -25,14 +26,13 @@ def test_create_customer():
             city='Ciudad de México',
             municipality='Cuauhtémoc',
             state='Ciudad de México',
-            country='México',
         ),
     )
 
     customer = facturapi.Customer.create(data=customer_request)
     assert customer.id
     assert customer.created_at
-    assert customer.legal_name == 'Cordelia Urueta Sierra'
+    assert customer.legal_name == 'CORDELIA URUETA SIERRA'
     assert customer.tax_id == 'UUSC9509162G7'
     assert customer.email == 'cordelia@urueta.com'
 
@@ -51,6 +51,17 @@ def test_retrieve_customer():
         legal_name='Leonora Carrington',
         tax_id='CAML9004069U0',
         email='leonora@test.com',
+        tax_system='625',
+        address=CustomerAddress(
+            street='Colima',
+            exterior='196',
+            interior='1',
+            neighborhood='Roma',
+            zip='06700',
+            city='Ciudad de México',
+            municipality='Cuauhtémoc',
+            state='Ciudad de México',
+        ),
     )
     customer = facturapi.Customer.create(data=customer_request)
 
@@ -64,7 +75,7 @@ def test_retrieve_customer():
 
 @pytest.mark.vcr
 def test_update_customer():
-    customer_id = 'CUSTOMER02'
+    customer_id = '63fe41cee87ce2001b18484a'
     customer = facturapi.Customer.retrieve(id=customer_id)
     update_data = CustomerUpdateRequest(email='remedios@pintora.com')
 

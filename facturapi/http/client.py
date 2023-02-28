@@ -8,7 +8,7 @@ from requests import Response
 from ..types.exc import FacturapiResponseException
 from ..version import CLIENT_VERSION
 
-API_HOST = 'www.facturapi.io/v1'
+API_HOST = 'www.facturapi.io/v2'
 
 
 class Client:

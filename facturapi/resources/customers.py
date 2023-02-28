@@ -10,6 +10,7 @@ from typing import ClassVar, Optional, cast
 from pydantic import BaseModel
 from pydantic.dataclasses import dataclass
 
+from ..types.enums import TaxSystemType
 from ..types.general import CustomerAddress
 from .base import Creatable, Queryable, Retrievable, Updatable
 
@@ -30,9 +31,10 @@ class CustomerRequest(BaseModel):
 
     legal_name: str
     tax_id: str
+    tax_system: TaxSystemType
     email: str
     phone: Optional[str]
-    address: Optional[CustomerAddress]
+    address: CustomerAddress
 
 
 class CustomerUpdateRequest(BaseModel):
@@ -51,6 +53,7 @@ class CustomerUpdateRequest(BaseModel):
 
     legal_name: Optional[str]
     tax_id: Optional[str]
+    tax_system: Optional[TaxSystemType]
     email: Optional[str]
     phone: Optional[str]
     address: Optional[CustomerAddress]
@@ -72,8 +75,8 @@ class Customer(Creatable, Queryable, Retrievable, Updatable):
         tax_id (str): RFC of the customer.
         email (str): Email of the customer.
         address (CustomerAddress): Address data of the model. Optional.
+        tax_system (TaxSystemType): Enum from catalogue of SAT
         phone (str): Phone of the customer. Defaults to `None`.
-
     """
 
     _resource: ClassVar = 'customers'
@@ -83,7 +86,8 @@ class Customer(Creatable, Queryable, Retrievable, Updatable):
     legal_name: str
     tax_id: str
     email: str
-    address: Optional[CustomerAddress]
+    address: CustomerAddress
+    tax_system: Optional[TaxSystemType] = None
     phone: Optional[str] = None
 
     @classmethod

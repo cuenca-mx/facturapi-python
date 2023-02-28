@@ -71,3 +71,7 @@ class BaseQuery(BaseModel):
         kwargs.setdefault('exclude_unset', True)
         d = super().dict(*args, **kwargs)
         return d
+
+
+class InvoiceQuery(BaseQuery):
+    motive: Optional[str]

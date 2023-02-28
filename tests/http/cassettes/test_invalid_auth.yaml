@@ -15,7 +15,7 @@ interactions:
       User-Agent:
       - facturapi-python/0.0.1
     method: GET
-    uri: https://www.facturapi.io/v1/invoices
+    uri: https://www.facturapi.io/v2/invoices
   response:
     body:
       string: '{"message":"Not authenticated","ok":false}'

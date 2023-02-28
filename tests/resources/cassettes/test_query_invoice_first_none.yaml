@@ -15,7 +15,7 @@ interactions:
       User-Agent:
       - facturapi-python/0.0.1
     method: GET
-    uri: https://www.facturapi.io/v1/invoices?q=Cordelia+Urueta+Sierra&limit=1
+    uri: https://www.facturapi.io/v2/invoices?q=Cordelia+Urueta+Sierra&limit=1
   response:
     body:
       string: '{"page":1,"total_pages":1,"total_results":0,"data":[]}'

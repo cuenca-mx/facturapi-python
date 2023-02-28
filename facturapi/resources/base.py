@@ -187,21 +187,24 @@ class Deletable(Resource):
     Used by resources that can be deleted.
 
     """
+    _query_params: ClassVar = BaseQuery
 
     @classmethod
-    def _delete(cls, id: str) -> Resource:
+    def _delete(cls, id: str, **query_params) -> Resource:
         """Delete an specific resource.
 
         Performs a DELETE request on the ID.
 
         Args:
             id: The ID of the resource to delete.
+            query_params: Send aditional information over uri
 
         Returns:
             Resource: The deleted resource.
 
         """
-        response = client.delete(f'/{cls._resource}/{id}')
+        q = cls._query_params(**query_params)
+        response = client.delete(f'/{cls._resource}/{id}?{urlencode(q.dict())}')
         return cls._from_dict(response)
 
 
