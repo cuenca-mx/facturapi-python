@@ -18,10 +18,10 @@ from ..types.general import (
     Namespace,
     ProductBasicInfo,
 )
+from ..types.queries import InvoiceQuery
 from .base import Creatable, Deletable, Downloadable, Queryable, Retrievable
 from .customers import Customer, CustomerRequest
 from .resources import retrieve_property
-from ..types.queries import InvoiceQuery
 
 
 class InvoiceItem(BaseModel):

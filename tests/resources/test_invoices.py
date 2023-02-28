@@ -5,7 +5,7 @@ from facturapi.resources.customers import CustomerRequest
 from facturapi.resources.invoices import InvoiceRequest
 from facturapi.types import FileType, PaymentForm
 from facturapi.types.exc import MultipleResultsFound, NoResultFound
-from facturapi.types.general import ItemPart, CustomerAddress
+from facturapi.types.general import CustomerAddress, ItemPart
 
 
 @pytest.mark.vcr
@@ -91,7 +91,9 @@ def test_cancel_invoice():
     invoice_id = '63fe4be4e87ce2001b19077f'
     invoice = facturapi.Invoice.retrieve(id=invoice_id)
 
-    cancelled_invoice = facturapi.Invoice.cancel(invoice_id=invoice.id, motive='01')
+    cancelled_invoice = facturapi.Invoice.cancel(
+        invoice_id=invoice.id, motive='01'
+    )
 
     assert cancelled_invoice.id == invoice.id
     assert cancelled_invoice.status != invoice.status
