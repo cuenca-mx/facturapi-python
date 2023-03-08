@@ -61,6 +61,7 @@ class InvoiceUse(str, Enum):
     pagos = 'CP01'
     nomina = 'CN01'
 
+
 class PaymentForm(str, Enum):
     """Payment from code according to SAT."""
 
