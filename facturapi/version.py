@@ -1,2 +1,2 @@
-__version__ = '0.1.1.dev0'  # pragma: no cover
+__version__ = '0.1.1.dev1'  # pragma: no cover
 CLIENT_VERSION = __version__
