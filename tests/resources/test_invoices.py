@@ -5,7 +5,7 @@ from facturapi.resources.customers import CustomerRequest
 from facturapi.resources.invoices import InvoiceRequest
 from facturapi.types import FileType, PaymentForm
 from facturapi.types.exc import MultipleResultsFound, NoResultFound
-from facturapi.types.general import ItemPart
+from facturapi.types.general import CustomerAddress, ItemPart
 
 
 @pytest.mark.vcr
@@ -15,6 +15,17 @@ def test_create_invoice():
             legal_name='Remedios Varo',
             tax_id='VAUR631216M55',
             email='remedios@varo.com',
+            tax_system='625',
+            address=CustomerAddress(
+                street='Colima',
+                exterior='196',
+                interior='1',
+                neighborhood='Roma',
+                zip='06700',
+                city='Ciudad de México',
+                municipality='Cuauhtémoc',
+                state='Ciudad de México',
+            ),
         ),
         items=[
             dict(
@@ -25,7 +36,6 @@ def test_create_invoice():
                 ),
                 quantity=2,
                 discount=0.1,
-                custom_keys=['Custom key'],
                 parts=[
                     ItemPart(
                         description='Parte 1',
@@ -68,7 +78,6 @@ def test_retrieve_invoice():
         payment_form=PaymentForm.tarjeta_de_credito,
     )
     invoice = facturapi.Invoice.create(data=invoice_request)
-
     retrieved_invoice = facturapi.Invoice.retrieve(id=invoice.id)
 
     assert retrieved_invoice.id == invoice.id
@@ -79,20 +88,19 @@ def test_retrieve_invoice():
 
 @pytest.mark.vcr
 def test_cancel_invoice():
-    invoice_id = 'INVOICE03'
+    invoice_id = '63fe4be4e87ce2001b19077f'
     invoice = facturapi.Invoice.retrieve(id=invoice_id)
 
-    cancelled_invoice = facturapi.Invoice.cancel(invoice_id=invoice.id)
+    cancelled_invoice = facturapi.Invoice.cancel(
+        invoice_id=invoice.id, motive='01'
+    )
 
     assert cancelled_invoice.id == invoice.id
-    assert cancelled_invoice.cancellation_status != invoice.cancellation_status
+    assert cancelled_invoice.status != invoice.status
 
     invoice.refresh()
-    assert cancelled_invoice.cancellation_status != invoice.cancellation_status
-    # After a cancel, the status is pending because its processing
-    # So the refreshed invoice now holds the canceled status because the
-    # refresh happened after the cancel.
-    assert cancelled_invoice.cancellation_status == 'pending'
+    assert cancelled_invoice.status == invoice.status
+    assert cancelled_invoice.cancellation_status == 'accepted'
     assert invoice.cancellation_status == 'accepted'
 
 

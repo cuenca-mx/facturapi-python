@@ -18,6 +18,7 @@ from ..types.general import (
     Namespace,
     ProductBasicInfo,
 )
+from ..types.queries import InvoiceQuery
 from .base import Creatable, Deletable, Downloadable, Queryable, Retrievable
 from .customers import Customer, CustomerRequest
 from .resources import retrieve_property
@@ -49,7 +50,7 @@ class InvoiceItem(BaseModel):
     product: Union[
         str, ProductBasicInfo, Dict
     ]  # TO DO: Change Dict for ProductRequest
-    custom_keys: Optional[List[str]]
+    customs_keys: Optional[List[str]]
     complement: Optional[str]
     parts: Optional[List[ItemPart]]
     property_tax_account: Optional[str]
@@ -142,6 +143,7 @@ class Invoice(Creatable, Deletable, Downloadable, Queryable, Retrievable):
 
     _resource: ClassVar = 'invoices'
     _relations: ClassVar = ['customer']
+    _query_params = InvoiceQuery
 
     created_at: dt.datetime
     livemode: bool
@@ -175,7 +177,7 @@ class Invoice(Creatable, Deletable, Downloadable, Queryable, Retrievable):
         return cast('Invoice', cls._create(**cleaned_data))
 
     @classmethod
-    def cancel(cls, invoice_id: str) -> 'Invoice':
+    def cancel(cls, invoice_id: str, motive: str) -> 'Invoice':
         """Cancel an invoice.
 
         Calls a DELETE request on invoice resource.
@@ -187,7 +189,7 @@ class Invoice(Creatable, Deletable, Downloadable, Queryable, Retrievable):
             Invoice: The cancelled invoice resource.
 
         """
-        return cast('Invoice', cls._delete(invoice_id))
+        return cast('Invoice', cls._delete(invoice_id, **dict(motive=motive)))
 
     @property
     def customer(self) -> Customer:

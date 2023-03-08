@@ -15,11 +15,11 @@ interactions:
       User-Agent:
       - facturapi-python/0.0.1
     method: GET
-    uri: https://www.facturapi.io/v1/customers?limit=1
+    uri: https://www.facturapi.io/v2/customers?limit=1
   response:
     body:
       string: '{"page":1,"total_pages":2,"total_results":2,"data":[{"address":{"country":"MEX"},"legal_name":"Remedios
-        Varo","tax_id":"VAUR631216M55","email":"remedios@pintora.com","organization":"ORG01","created_at":"2020-12-01T02:29:45.038Z","livemode":false,"id":"CUSTOMER01"}]}'
+        Varo","tax_id":"VAUR631216M55","tax_system":"625","email":"remedios@pintora.com","organization":"ORG01","created_at":"2020-12-01T02:29:45.038Z","livemode":false,"id":"CUSTOMER01"}]}'
     headers:
       Content-Length:
       - '275'

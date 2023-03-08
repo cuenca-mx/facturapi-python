@@ -15,7 +15,7 @@ interactions:
       User-Agent:
       - facturapi-python/0.0.1
     method: GET
-    uri: https://www.facturapi.io/v1/invoices/INVOICE01/zip
+    uri: https://www.facturapi.io/v2/invoices/INVOICE01/zip
   response:
     body:
       string: !!binary |

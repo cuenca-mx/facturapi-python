@@ -57,7 +57,9 @@ class InvoiceUse(str, Enum):
     gastos_transportacion_escolar = 'D08'
     cuentas_ahorro_pensiones = 'D09'
     servicios_educativos = 'D10'
-    por_definir = 'P01'
+    sin_efectos_fiscales = 'S01'
+    pagos = 'CP01'
+    nomina = 'CN01'
 
 
 class PaymentForm(str, Enum):
