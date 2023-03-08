@@ -9,6 +9,7 @@ __all__ = [
     'PaymentForm',
     'PaymentMethod',
     'SanitizedDict',
+    'TaxSystemType',
     'exc',
     'general',
     'validators',
@@ -22,5 +23,6 @@ from .enums import (
     InvoiceUse,
     PaymentForm,
     PaymentMethod,
+    TaxSystemType,
 )
 from .queries import BaseQuery, DateFilter
