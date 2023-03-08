@@ -7,10 +7,10 @@ classes to create and update the resource.
 import datetime as dt
 from typing import ClassVar, Optional, cast
 
-from cuenca_validations.types import SATRegimeCode
 from pydantic import BaseModel
 from pydantic.dataclasses import dataclass
 
+from ..types.enums import TaxSystemType
 from ..types.general import CustomerAddress
 from .base import Creatable, Queryable, Retrievable, Updatable
 
@@ -23,7 +23,7 @@ class CustomerRequest(BaseModel):
     Attributes:
         legal_name (str): Full name of the customer.
         tax_id (str): RFC of the customer.
-        tax_system: SATRegimeCode regime code from SAT
+        tax_system: TaxSystemType regime code from SAT
         email (str): Email of the customer.
         phone (str): Phone of the customer. Optional.
         address (CustomerAddress): Address object of the customer. Optional.
@@ -32,7 +32,7 @@ class CustomerRequest(BaseModel):
 
     legal_name: str
     tax_id: str
-    tax_system: SATRegimeCode
+    tax_system: TaxSystemType
     email: str
     phone: Optional[str]
     address: CustomerAddress
@@ -46,7 +46,7 @@ class CustomerUpdateRequest(BaseModel):
     Attributes:
         legal_name (str): Full name of the customer. Optional.
         tax_id (str): RFC of the customer. Optional.
-        tax_system: SATRegimeCode regime code from SAT
+        tax_system: TaxSystemType regime code from SAT
         email (str): Email of the customer. Optional.
         phone (str): Phone of the customer. Optional.
         address (CustomerAddress): Address object of the customer. Optional.
@@ -55,7 +55,7 @@ class CustomerUpdateRequest(BaseModel):
 
     legal_name: Optional[str]
     tax_id: Optional[str]
-    tax_system: Optional[SATRegimeCode]
+    tax_system: Optional[TaxSystemType]
     email: Optional[str]
     phone: Optional[str]
     address: Optional[CustomerAddress]
@@ -77,7 +77,7 @@ class Customer(Creatable, Queryable, Retrievable, Updatable):
         tax_id (str): RFC of the customer.
         email (str): Email of the customer.
         address (CustomerAddress): Address data of the model. Optional.
-        tax_system (SATRegimeCode): Enum from catalogue of SAT
+        tax_system (TaxSystemType): Enum from catalogue of SAT
         phone (str): Phone of the customer. Defaults to `None`.
     """
 
@@ -89,7 +89,7 @@ class Customer(Creatable, Queryable, Retrievable, Updatable):
     tax_id: str
     email: str
     address: CustomerAddress
-    tax_system: Optional[SATRegimeCode] = None
+    tax_system: Optional[TaxSystemType] = None
     phone: Optional[str] = None
 
     @classmethod
