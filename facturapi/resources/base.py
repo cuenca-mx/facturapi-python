@@ -41,8 +41,12 @@ class Resource:
 
     @classmethod
     def _from_dict(cls, obj_dict: Dict[str, Any]) -> 'Resource':
-        cls._filter_excess_fields(obj_dict)
-        return cls(**obj_dict)
+        try:
+            cls._filter_excess_fields(obj_dict)
+            return cls(**obj_dict)
+        except Exception as e:
+            print(obj_dict)
+            raise e
 
     @classmethod
     def _filter_excess_fields(cls, obj_dict: Dict[str, Any]) -> None:
