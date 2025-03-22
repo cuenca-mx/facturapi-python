@@ -17,6 +17,7 @@ from ..types.general import (
     ItemPart,
     Namespace,
     ProductBasicInfo,
+    RelatedDocument,
 )
 from ..types.queries import InvoiceQuery
 from .base import Creatable, Deletable, Downloadable, Queryable, Retrievable
@@ -101,8 +102,7 @@ class InvoiceRequest(BaseModel):
     exchange: Optional[float] = 1.0
     conditions: Optional[str]
     foreign_trade: Optional[Dict]
-    related: Optional[List[str]]
-    relation: Optional[InvoiceRelation]
+    related_documents: Optional[List[RelatedDocument]]
     pdf_custom_section: Optional[str]
     addenda: Optional[str]
     namespaces: Optional[Namespace]
@@ -182,7 +182,9 @@ class Invoice(Creatable, Deletable, Downloadable, Queryable, Retrievable):
         return cast('Invoice', cls._create(**cleaned_data))
 
     @classmethod
-    def cancel(cls, invoice_id: str, motive: str, substitution: Optional[str] = None) -> 'Invoice':
+    def cancel(
+        cls, invoice_id: str, motive: str, substitution: Optional[str] = None
+    ) -> 'Invoice':
         """Cancel an invoice.
 
         Calls a DELETE request on invoice resource.
