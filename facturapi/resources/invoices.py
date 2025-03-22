@@ -182,7 +182,7 @@ class Invoice(Creatable, Deletable, Downloadable, Queryable, Retrievable):
         return cast('Invoice', cls._create(**cleaned_data))
 
     @classmethod
-    def cancel(cls, invoice_id: str, motive: str) -> 'Invoice':
+    def cancel(cls, invoice_id: str, motive: str, substitution: Optional[str] = None) -> 'Invoice':
         """Cancel an invoice.
 
         Calls a DELETE request on invoice resource.
@@ -194,7 +194,10 @@ class Invoice(Creatable, Deletable, Downloadable, Queryable, Retrievable):
             Invoice: The cancelled invoice resource.
 
         """
-        return cast('Invoice', cls._delete(invoice_id, **dict(motive=motive)))
+        data = dict(motive=motive)
+        if substitution:
+            data['substitution'] = substitution
+        return cast('Invoice', cls._delete(invoice_id, **data))
 
     @property
     def customer(self) -> Customer:
