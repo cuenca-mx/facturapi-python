@@ -106,6 +106,7 @@ class InvoiceRequest(BaseModel):
     pdf_custom_section: Optional[str]
     addenda: Optional[str]
     namespaces: Optional[Namespace]
+    global_: Optional[Dict] = None
 
 
 @dataclass
@@ -161,6 +162,7 @@ class Invoice(Creatable, Deletable, Downloadable, Queryable, Retrievable):
     series: Optional[str] = None
     related: Optional[List[str]] = None
     relation: Optional[InvoiceRelation] = None
+    global_: Optional[Dict] = None
 
     @classmethod
     def create(cls, data: InvoiceRequest) -> 'Invoice':
@@ -174,6 +176,9 @@ class Invoice(Creatable, Deletable, Downloadable, Queryable, Retrievable):
 
         """
         cleaned_data = data.dict(exclude_unset=True, exclude_none=True)
+        if data.global_:
+            cleaned_data['global'] = cleaned_data.pop('global_')
+
         return cast('Invoice', cls._create(**cleaned_data))
 
     @classmethod

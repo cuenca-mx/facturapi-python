@@ -2,8 +2,7 @@ from dataclasses import dataclass
 from typing import Any, Dict
 
 
-class FacturapiException(Exception):
-    ...
+class FacturapiException(Exception): ...
 
 
 class NoResultFound(FacturapiException):
