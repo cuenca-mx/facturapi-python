@@ -75,3 +75,4 @@ class BaseQuery(BaseModel):
 
 class InvoiceQuery(BaseQuery):
     motive: Optional[str]
+    substitution: Optional[str]
