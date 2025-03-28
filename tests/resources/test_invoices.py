@@ -2,7 +2,10 @@ import pytest
 
 import facturapi
 from facturapi.resources.customers import CustomerRequest
-from facturapi.resources.invoices import InvoiceRequest
+from facturapi.resources.invoices import (
+    InvoiceRequest,
+    SendInvoiceEmailRequest,
+)
 from facturapi.types import FileType, PaymentForm
 from facturapi.types.exc import MultipleResultsFound, NoResultFound
 from facturapi.types.general import CustomerAddress, ItemPart
@@ -102,6 +105,23 @@ def test_cancel_invoice():
     assert cancelled_invoice.status == invoice.status
     assert cancelled_invoice.cancellation_status == 'accepted'
     assert invoice.cancellation_status == 'accepted'
+
+
+@pytest.mark.vcr
+def test_send_invoice_by_email_with_email():
+    invoice_id = "67e59a55f4f823d3d978f3cb"
+    email = "frida_kahlo@test.com"
+    data = SendInvoiceEmailRequest(email=email)
+    resp = facturapi.Invoice.send_by_email(invoice_id=invoice_id, data=data)
+
+    assert resp == {"ok": True}
+
+
+def test_send_invoice_by_email_missing_invoice_id():
+    with pytest.raises(
+        ValueError, match="The invoice_id is required to send by email."
+    ):
+        facturapi.Invoice.send_by_email(invoice_id=None)
 
 
 @pytest.mark.vcr

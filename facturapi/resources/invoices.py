@@ -11,6 +11,7 @@ from typing import ClassVar, Dict, List, Optional, Union, cast
 from pydantic import BaseModel
 from pydantic.dataclasses import dataclass
 
+from ..http import client
 from ..types import InvoiceRelation, InvoiceUse, PaymentForm, PaymentMethod
 from ..types.general import (
     CustomerBasicInfo,
@@ -108,6 +109,19 @@ class InvoiceRequest(BaseModel):
     namespaces: Optional[Namespace]
 
 
+class SendInvoiceEmailRequest(BaseModel):
+    """
+    This request must be filled to send an invoice by email.
+
+    Attributes:
+        email (Union[str, List[str]]): Email address or list of email addresses
+            to send the invoice to. If not provided, the invoice will be sent
+            to the customer's registered email.
+    """
+
+    email: Optional[Union[str, List[str]]]
+
+
 @dataclass
 class Invoice(Creatable, Deletable, Downloadable, Queryable, Retrievable):
     """Invoice resource
@@ -190,6 +204,35 @@ class Invoice(Creatable, Deletable, Downloadable, Queryable, Retrievable):
 
         """
         return cast('Invoice', cls._delete(invoice_id, **dict(motive=motive)))
+
+    @classmethod
+    def send_by_email(
+        cls, invoice_id: str, data: Optional[SendInvoiceEmailRequest] = None
+    ) -> Dict:
+        """Send an invoice by email.
+
+        Sends an email to the customer's email address with the XML and PDF
+        files attached.
+
+        Args:
+            invoice_id: The ID of the invoice to send.
+            email: The email addresses to send the invoice to.
+                   If not provided, the invoice will be sent to the customer's
+                   registered email.
+
+        Returns:
+            Dict: The response from the FacturAPI endpoint.
+
+        Raises:
+            ValueError: If the invoice_id is not provided.
+            requests.RequestException: If the API request fails.
+        """
+        if not invoice_id:
+            raise ValueError("The invoice_id is required to send by email.")
+
+        endpoint = f"{cls._resource}/{invoice_id}/email"
+        payload = data.dict(exclude_unset=True) if data else {}
+        return client.post(endpoint, payload)
 
     @property
     def customer(self) -> Customer:
