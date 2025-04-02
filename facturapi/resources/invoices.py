@@ -109,19 +109,6 @@ class InvoiceRequest(BaseModel):
     namespaces: Optional[Namespace]
 
 
-class SendInvoiceEmailRequest(BaseModel):
-    """
-    This request must be filled to send an invoice by email.
-
-    Attributes:
-        email (Union[str, List[str]]): Email address or list of email addresses
-            to send the invoice to. If not provided, the invoice will be sent
-            to the customer's registered email.
-    """
-
-    email: Optional[Union[str, List[str]]]
-
-
 @dataclass
 class Invoice(Creatable, Deletable, Downloadable, Queryable, Retrievable):
     """Invoice resource
@@ -207,8 +194,8 @@ class Invoice(Creatable, Deletable, Downloadable, Queryable, Retrievable):
 
     @classmethod
     def send_by_email(
-        cls, invoice_id: str, data: Optional[SendInvoiceEmailRequest] = None
-    ) -> Dict:
+        cls, invoice_id: str, data: Optional[Union[str, List[str]]] = None
+    ) -> bool:
         """Send an invoice by email.
 
         Sends an email to the customer's email address with the XML and PDF
@@ -221,7 +208,7 @@ class Invoice(Creatable, Deletable, Downloadable, Queryable, Retrievable):
                    registered email.
 
         Returns:
-            Dict: The response from the FacturAPI endpoint.
+            bool: True if the email was sent successfully, False otherwise.
 
         Raises:
             ValueError: If the invoice_id is not provided.
@@ -231,8 +218,13 @@ class Invoice(Creatable, Deletable, Downloadable, Queryable, Retrievable):
             raise ValueError("The invoice_id is required to send by email.")
 
         endpoint = f"{cls._resource}/{invoice_id}/email"
-        payload = data.dict(exclude_unset=True) if data else {}
-        return client.post(endpoint, payload)
+        # payload = data.dict(exclude_unset=True) if data else {}
+        payload = {}
+        if data:
+            if isinstance(data, str) or isinstance(data, list):
+                payload["email"] = data
+        response = client.post(endpoint, payload)
+        return response.get("ok", False)
 
     @property
     def customer(self) -> Customer:
