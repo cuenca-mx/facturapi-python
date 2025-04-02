@@ -203,7 +203,7 @@ class Invoice(Creatable, Deletable, Downloadable, Queryable, Retrievable):
 
         Args:
             invoice_id: The ID of the invoice to send.
-            email: The email addresses to send the invoice to.
+            data: The email addresses to send the invoice to.
                    If not provided, the invoice will be sent to the customer's
                    registered email.
 
@@ -220,9 +220,8 @@ class Invoice(Creatable, Deletable, Downloadable, Queryable, Retrievable):
         endpoint = f"{cls._resource}/{invoice_id}/email"
         # payload = data.dict(exclude_unset=True) if data else {}
         payload = {}
-        if data:
-            if isinstance(data, str) or isinstance(data, list):
-                payload["email"] = data
+        if isinstance(data, (str, list)):
+            payload["email"] = data
         response = client.post(endpoint, payload)
         return response.get("ok", False)
 
