@@ -218,7 +218,6 @@ class Invoice(Creatable, Deletable, Downloadable, Queryable, Retrievable):
             raise ValueError("The invoice_id is required to send by email.")
 
         endpoint = f"{cls._resource}/{invoice_id}/email"
-        # payload = data.dict(exclude_unset=True) if data else {}
         payload = {}
         if isinstance(data, (str, list)):
             payload["email"] = data
