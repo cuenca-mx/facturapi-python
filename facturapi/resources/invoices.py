@@ -194,7 +194,9 @@ class Invoice(Creatable, Deletable, Downloadable, Queryable, Retrievable):
 
     @classmethod
     def send_by_email(
-        cls, invoice_id: str, data: Optional[Union[str, List[str]]] = None
+        cls,
+        invoice_id: str,
+        recipients: Optional[Union[str, List[str]]] = None,
     ) -> bool:
         """Send an invoice by email.
 
@@ -203,7 +205,7 @@ class Invoice(Creatable, Deletable, Downloadable, Queryable, Retrievable):
 
         Args:
             invoice_id: The ID of the invoice to send.
-            data: The email addresses to send the invoice to.
+            recipients: The email addresses to send the invoice to.
                    If not provided, the invoice will be sent to the customer's
                    registered email.
 
@@ -219,8 +221,8 @@ class Invoice(Creatable, Deletable, Downloadable, Queryable, Retrievable):
 
         endpoint = f"{cls._resource}/{invoice_id}/email"
         payload = {}
-        if isinstance(data, (str, list)):
-            payload["email"] = data
+        if isinstance(recipients, (str, list)):
+            payload["email"] = recipients
         response = client.post(endpoint, payload)
         return response.get("ok", False)
 

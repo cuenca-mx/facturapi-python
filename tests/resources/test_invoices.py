@@ -116,8 +116,10 @@ def test_send_invoice_by_email_without_email():
 def test_send_invoice_by_email_with_email():
     invoice_id = "67e59a55f4f823d3d978f3cb"
     email = "frida_kahlo@test.com"
-    data = [email]
-    resp = facturapi.Invoice.send_by_email(invoice_id=invoice_id, data=data)
+    recipients = [email]
+    resp = facturapi.Invoice.send_by_email(
+        invoice_id=invoice_id, recipients=recipients
+    )
 
     assert resp is True
 
