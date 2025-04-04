@@ -213,7 +213,7 @@ class Invoice(Creatable, Deletable, Downloadable, Queryable, Retrievable):
             bool: True if the email was sent successfully, False otherwise.
 
         Raises:
-            ValueError: If the invoice_id is not provided.
+            FacturapiResponseException: If the invoice_id is not found.
             requests.RequestException: If the API request fails.
         """
 
