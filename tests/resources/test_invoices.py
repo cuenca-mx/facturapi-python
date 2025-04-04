@@ -4,7 +4,11 @@ import facturapi
 from facturapi.resources.customers import CustomerRequest
 from facturapi.resources.invoices import InvoiceRequest
 from facturapi.types import FileType, PaymentForm
-from facturapi.types.exc import MultipleResultsFound, NoResultFound
+from facturapi.types.exc import (
+    FacturapiResponseException,
+    MultipleResultsFound,
+    NoResultFound,
+)
 from facturapi.types.general import CustomerAddress, ItemPart
 
 
@@ -107,9 +111,8 @@ def test_cancel_invoice():
 @pytest.mark.vcr
 def test_send_invoice_by_email_without_email():
     invoice_id = "67e59a55f4f823d3d978f3cb"
-    resp = facturapi.Invoice.send_by_email(invoice_id=invoice_id)
-
-    assert resp is True
+    email_sent = facturapi.Invoice.send_by_email(invoice_id=invoice_id)
+    assert email_sent
 
 
 @pytest.mark.vcr
@@ -117,26 +120,26 @@ def test_send_invoice_by_email_with_email():
     invoice_id = "67e59a55f4f823d3d978f3cb"
     email = "frida_kahlo@test.com"
     recipients = [email]
-    resp = facturapi.Invoice.send_by_email(
+    email_sent = facturapi.Invoice.send_by_email(
         invoice_id=invoice_id, recipients=recipients
     )
-
-    assert resp is True
+    assert email_sent
 
 
 @pytest.mark.vcr
 def test_send_invoice_by_email_false():
     invoice_id = "INVOICE01"
-    resp = facturapi.Invoice.send_by_email(invoice_id=invoice_id)
+    email_sent = facturapi.Invoice.send_by_email(invoice_id=invoice_id)
+    assert not email_sent
 
-    assert resp is False
 
-
-def test_send_invoice_by_email_missing_invoice_id():
-    with pytest.raises(
-        ValueError, match="The invoice_id is required to send by email."
-    ):
-        facturapi.Invoice.send_by_email(invoice_id=None)
+@pytest.mark.vcr
+def test_send_invoice_by_email_invoice_not_found():
+    invoice_id = "INVOICE_NOT_FOUND"
+    with pytest.raises(FacturapiResponseException) as exc_info:
+        facturapi.Invoice.send_by_email(invoice_id=invoice_id)
+    exc_str = str(exc_info.value)
+    assert f'Invoice with Id "{invoice_id}" was not found' in exc_str
 
 
 @pytest.mark.vcr

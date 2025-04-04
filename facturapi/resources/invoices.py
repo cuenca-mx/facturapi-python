@@ -216,12 +216,10 @@ class Invoice(Creatable, Deletable, Downloadable, Queryable, Retrievable):
             ValueError: If the invoice_id is not provided.
             requests.RequestException: If the API request fails.
         """
-        if not invoice_id:
-            raise ValueError("The invoice_id is required to send by email.")
 
         endpoint = f"{cls._resource}/{invoice_id}/email"
         payload = {}
-        if isinstance(recipients, (str, list)):
+        if recipients:
             payload["email"] = recipients
         response = client.post(endpoint, payload)
         return response.get("ok", False)
