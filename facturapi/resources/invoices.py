@@ -11,6 +11,7 @@ from typing import ClassVar, Dict, List, Optional, Union, cast
 from pydantic import BaseModel
 from pydantic.dataclasses import dataclass
 
+from ..http import client
 from ..types import InvoiceRelation, InvoiceUse, PaymentForm, PaymentMethod
 from ..types.general import (
     CustomerBasicInfo,
@@ -190,6 +191,38 @@ class Invoice(Creatable, Deletable, Downloadable, Queryable, Retrievable):
 
         """
         return cast('Invoice', cls._delete(invoice_id, **dict(motive=motive)))
+
+    @classmethod
+    def send_by_email(
+        cls,
+        invoice_id: str,
+        recipients: Optional[Union[str, List[str]]] = None,
+    ) -> bool:
+        """Send an invoice by email.
+
+        Sends an email to the customer's email address with the XML and PDF
+        files attached.
+
+        Args:
+            invoice_id: The ID of the invoice to send.
+            recipients: The email addresses to send the invoice to.
+                   If not provided, the invoice will be sent to the customer's
+                   registered email.
+
+        Returns:
+            bool: True if the email was sent successfully, False otherwise.
+
+        Raises:
+            FacturapiResponseException: If the invoice_id is not found.
+            requests.RequestException: If the API request fails.
+        """
+
+        endpoint = f"{cls._resource}/{invoice_id}/email"
+        payload = {}
+        if recipients:
+            payload["email"] = recipients
+        response = client.post(endpoint, payload)
+        return response.get("ok", False)
 
     @property
     def customer(self) -> Customer:
