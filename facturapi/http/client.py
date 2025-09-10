@@ -28,10 +28,10 @@ class Client:
     """
 
     host: str = API_HOST
-    client: httpx.AsyncClient
+    client: httpx.Client
 
     def __init__(self):
-        self.client = httpx.AsyncClient()
+        self.client = httpx.Client()
         self.client.headers.update(
             {
                 'User-Agent': f'facturapi-python/{CLIENT_VERSION}',
@@ -56,29 +56,27 @@ class Client:
         self.api_key = api_key
         self.client.auth = httpx.BasicAuth(self.api_key, '')
 
-    async def get(
+    def get(
         self,
         endpoint: str,
         params: Union[None, bytes, MutableMapping[str, str]] = None,
     ) -> dict[str, Any]:
         """Performs GET request to Facturapi."""
-        return await self.request('get', endpoint, params=params)
+        return self.request('get', endpoint, params=params)
 
-    async def post(
-        self, endpoint: str, data: dict[str, Any]
-    ) -> dict[str, Any]:
+    def post(self, endpoint: str, data: dict[str, Any]) -> dict[str, Any]:
         """Performs POST request to Facturapi."""
-        return await self.request('post', endpoint, data=data)
+        return self.request('post', endpoint, data=data)
 
-    async def put(self, endpoint: str, data: dict[str, Any]) -> dict[str, Any]:
+    def put(self, endpoint: str, data: dict[str, Any]) -> dict[str, Any]:
         """Performs PUT request to Facturapi."""
-        return await self.request('put', endpoint, data=data)
+        return self.request('put', endpoint, data=data)
 
-    async def delete(self, endpoint: str) -> dict[str, Any]:
+    def delete(self, endpoint: str) -> dict[str, Any]:
         """Performs DELETE request to Facturapi."""
-        return await self.request('delete', endpoint)
+        return self.request('delete', endpoint)
 
-    async def request(
+    def request(
         self,
         method: str,
         endpoint: str,
@@ -106,7 +104,7 @@ class Client:
                 successful.
 
         """
-        response = await self.client.request(
+        response = self.client.request(
             method=method,
             url=('https://' + self.host + urljoin('/', endpoint)),
             json=data,
@@ -116,7 +114,7 @@ class Client:
         self._check_response(response)
         return response.json()
 
-    async def download_request(
+    def download_request(
         self,
         endpoint: str,
         **kwargs,
@@ -135,7 +133,7 @@ class Client:
                 successful.
 
         """
-        response = await self.client.request(
+        response = self.client.request(
             method='GET',
             url=('https://' + self.host + urljoin('/', endpoint)),
             **kwargs,
