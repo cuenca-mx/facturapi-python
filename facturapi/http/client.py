@@ -1,5 +1,5 @@
 import os
-from typing import Any, Dict, MutableMapping, Optional, Union
+from typing import Any, MutableMapping, Optional, Union
 from urllib.parse import urljoin
 
 import httpx
@@ -60,21 +60,21 @@ class Client:
         self,
         endpoint: str,
         params: Union[None, bytes, MutableMapping[str, str]] = None,
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """Performs GET request to Facturapi."""
         return await self.request('get', endpoint, params=params)
 
     async def post(
-        self, endpoint: str, data: Dict[str, Any]
-    ) -> Dict[str, Any]:
+        self, endpoint: str, data: dict[str, Any]
+    ) -> dict[str, Any]:
         """Performs POST request to Facturapi."""
         return await self.request('post', endpoint, data=data)
 
-    async def put(self, endpoint: str, data: Dict[str, Any]) -> Dict[str, Any]:
+    async def put(self, endpoint: str, data: dict[str, Any]) -> dict[str, Any]:
         """Performs PUT request to Facturapi."""
         return await self.request('put', endpoint, data=data)
 
-    async def delete(self, endpoint: str) -> Dict[str, Any]:
+    async def delete(self, endpoint: str) -> dict[str, Any]:
         """Performs DELETE request to Facturapi."""
         return await self.request('delete', endpoint)
 
@@ -83,9 +83,9 @@ class Client:
         method: str,
         endpoint: str,
         params: Union[None, bytes, MutableMapping[str, str]] = None,
-        data: Optional[Dict[str, Union[int, str]]] = None,
+        data: Optional[dict[str, Union[int, str]]] = None,
         **kwargs,
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """Performs a request to Facturapi.
 
         Given a `method` and `endpoint`, perform a request to
@@ -99,7 +99,7 @@ class Client:
             **kwargs: Arbitrary keyword arguments.
 
         Returns:
-            Dict[str, Any]: JSON of the request's response.
+            dict[str, Any]: JSON of the request's response.
 
         Raises:
             FacturapiResponseException: If response is not

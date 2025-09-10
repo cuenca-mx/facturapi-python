@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import Optional
 
 from pydantic import BaseModel
 
@@ -48,7 +48,7 @@ class ItemPart(BaseModel):
     quantity: Optional[int] = 1
     sku: Optional[str]
     unit_price: Optional[float]
-    customs_keys: Optional[List[str]]
+    customs_keys: Optional[list[str]]
 
 
 class Namespace(BaseModel):

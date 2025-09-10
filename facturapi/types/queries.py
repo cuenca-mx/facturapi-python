@@ -1,5 +1,5 @@
 import datetime as dt
-from typing import Any, Dict, Optional, Union
+from typing import Any, Optional, Union
 
 from pydantic import BaseModel, Extra
 from pydantic.types import ConstrainedInt
@@ -66,7 +66,7 @@ class BaseQuery(BaseModel):
     class Config:
         extra = Extra.forbid
 
-    def dict(self, *args, **kwargs) -> Dict[str, Any]:
+    def dict(self, *args, **kwargs) -> dict[str, Any]:
         kwargs.setdefault('exclude_none', True)
         kwargs.setdefault('exclude_unset', True)
         d = super().dict(*args, **kwargs)
