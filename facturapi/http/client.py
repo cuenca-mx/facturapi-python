@@ -2,8 +2,8 @@ import os
 from typing import Any, Dict, MutableMapping, Optional, Union
 from urllib.parse import urljoin
 
-import requests
-from requests import Response
+import httpx
+from httpx import Response
 
 from ..types.exc import FacturapiResponseException
 from ..version import CLIENT_VERSION
@@ -21,18 +21,18 @@ class Client:
 
     Attributes:
         host (str): Base URL to perform requests.
-        session (requests.Session): The requests session used
+        client (httpx.Client): The httpx client used
             to perform requests.
         api_key (str): API KEY for Facturapi
 
     """
 
     host: str = API_HOST
-    session: requests.Session
+    client: httpx.AsyncClient
 
     def __init__(self):
-        self.session = requests.Session()
-        self.session.headers.update(
+        self.client = httpx.AsyncClient()
+        self.client.headers.update(
             {
                 'User-Agent': f'facturapi-python/{CLIENT_VERSION}',
                 'Content-Type': 'application/json',
@@ -41,7 +41,7 @@ class Client:
 
         # Auth
         self.api_key = os.getenv('FACTURAPI_KEY', '')
-        self.session.auth = (self.api_key, '')
+        self.client.auth = httpx.BasicAuth(self.api_key, '')
 
     def configure(self, api_key: str):
         """Configure the http client.
@@ -54,29 +54,31 @@ class Client:
 
         """
         self.api_key = api_key
-        self.session.auth = (self.api_key, '')
+        self.client.auth = httpx.BasicAuth(self.api_key, '')
 
-    def get(
+    async def get(
         self,
         endpoint: str,
         params: Union[None, bytes, MutableMapping[str, str]] = None,
     ) -> Dict[str, Any]:
         """Performs GET request to Facturapi."""
-        return self.request('get', endpoint, params=params)
+        return await self.request('get', endpoint, params=params)
 
-    def post(self, endpoint: str, data: Dict[str, Any]) -> Dict[str, Any]:
+    async def post(
+        self, endpoint: str, data: Dict[str, Any]
+    ) -> Dict[str, Any]:
         """Performs POST request to Facturapi."""
-        return self.request('post', endpoint, data=data)
+        return await self.request('post', endpoint, data=data)
 
-    def put(self, endpoint: str, data: Dict[str, Any]) -> Dict[str, Any]:
+    async def put(self, endpoint: str, data: Dict[str, Any]) -> Dict[str, Any]:
         """Performs PUT request to Facturapi."""
-        return self.request('put', endpoint, data=data)
+        return await self.request('put', endpoint, data=data)
 
-    def delete(self, endpoint: str) -> Dict[str, Any]:
+    async def delete(self, endpoint: str) -> Dict[str, Any]:
         """Performs DELETE request to Facturapi."""
-        return self.request('delete', endpoint)
+        return await self.request('delete', endpoint)
 
-    def request(
+    async def request(
         self,
         method: str,
         endpoint: str,
@@ -104,7 +106,7 @@ class Client:
                 successful.
 
         """
-        response = self.session.request(
+        response = await self.client.request(
             method=method,
             url=('https://' + self.host + urljoin('/', endpoint)),
             json=data,
@@ -114,7 +116,7 @@ class Client:
         self._check_response(response)
         return response.json()
 
-    def download_request(
+    async def download_request(
         self,
         endpoint: str,
         **kwargs,
@@ -133,7 +135,7 @@ class Client:
                 successful.
 
         """
-        response = self.session.request(
+        response = await self.client.request(
             method='GET',
             url=('https://' + self.host + urljoin('/', endpoint)),
             **kwargs,
@@ -143,7 +145,7 @@ class Client:
 
     @staticmethod
     def _check_response(response: Response):
-        if not response.ok:
+        if not response.is_success:
             raise FacturapiResponseException(
                 json=response.json(),
                 status_code=response.status_code,

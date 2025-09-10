@@ -193,7 +193,7 @@ class Invoice(Creatable, Deletable, Downloadable, Queryable, Retrievable):
         return cast('Invoice', cls._delete(invoice_id, **dict(motive=motive)))
 
     @classmethod
-    def send_by_email(
+    async def send_by_email(
         cls,
         invoice_id: str,
         recipients: Optional[Union[str, List[str]]] = None,
@@ -221,7 +221,7 @@ class Invoice(Creatable, Deletable, Downloadable, Queryable, Retrievable):
         payload = {}
         if recipients:
             payload["email"] = recipients
-        response = client.post(endpoint, payload)
+        response = await client.post(endpoint, payload)
         return response.get("ok", False)
 
     @property

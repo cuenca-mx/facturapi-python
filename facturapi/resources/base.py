@@ -6,7 +6,7 @@ perform requests and actions to the API.
 """
 
 from dataclasses import asdict, fields
-from typing import Any, ClassVar, Dict, Generator, List, Optional
+from typing import Any, AsyncGenerator, ClassVar, Dict, List, Optional
 from urllib.parse import urlencode
 
 from pydantic.dataclasses import dataclass
@@ -75,7 +75,7 @@ class Retrievable(Resource):
     """
 
     @classmethod
-    def retrieve(cls, id: str) -> Resource:
+    async def retrieve(cls, id: str) -> Resource:
         """Retrieve a resource given its ID
 
         Performs a GET request with the ID.
@@ -87,10 +87,10 @@ class Retrievable(Resource):
             Resource: The resource retrieved.
 
         """
-        response = client.get(f'/{cls._resource}/{id}')
+        response = await client.get(f'/{cls._resource}/{id}')
         return cls._from_dict(response)
 
-    def refresh(self):
+    async def refresh(self):
         """Refresh a resource
 
         Refresh resource's data to be sure its the latest. It
@@ -100,7 +100,7 @@ class Retrievable(Resource):
             Resource: The refreshed resource.
 
         """
-        new = self.retrieve(self.id)
+        new = await self.retrieve(self.id)
         for attr, value in new.__dict__.items():
             setattr(self, attr, value)
 
@@ -113,7 +113,7 @@ class Downloadable(Resource):
     """
 
     @classmethod
-    def download(cls, id: str, file_type: FileType) -> bytes:
+    async def download(cls, id: str, file_type: FileType) -> bytes:
         """Download a file from resource.
 
         Performs a GET request to download a file given a
@@ -128,7 +128,7 @@ class Downloadable(Resource):
             bytes: Bytes of the file.
 
         """
-        return client.download_request(
+        return await client.download_request(
             f'/{cls._resource}/{id}/{file_type.value}'
         )
 
@@ -141,7 +141,7 @@ class Creatable(Resource):
     """
 
     @classmethod
-    def _create(cls, **data) -> Resource:
+    async def _create(cls, **data) -> Resource:
         """Create a resource
 
         Performs a POST request with the data.
@@ -153,7 +153,7 @@ class Creatable(Resource):
             Resource: The created resource.
 
         """
-        response = client.post(cls._resource, data)
+        response = await client.post(cls._resource, data)
         return cls._from_dict(response)
 
 
@@ -165,7 +165,7 @@ class Updatable(Resource):
     """
 
     @classmethod
-    def _update(cls, id: str, **data) -> Resource:
+    async def _update(cls, id: str, **data) -> Resource:
         """Update an specific resource with new data.
 
         Performs a PUT request with the updated data.
@@ -177,7 +177,7 @@ class Updatable(Resource):
             Resource: The updated resource.
 
         """
-        response = client.put(f'/{cls._resource}/{id}', data)
+        response = await client.put(f'/{cls._resource}/{id}', data)
         return cls._from_dict(response)
 
 
@@ -191,7 +191,7 @@ class Deletable(Resource):
     _query_params: ClassVar = BaseQuery
 
     @classmethod
-    def _delete(cls, id: str, **query_params) -> Resource:
+    async def _delete(cls, id: str, **query_params) -> Resource:
         """Delete an specific resource.
 
         Performs a DELETE request on the ID.
@@ -205,7 +205,7 @@ class Deletable(Resource):
 
         """
         q = cls._query_params(**query_params)
-        response = client.delete(
+        response = await client.delete(
             f'/{cls._resource}/{id}?{urlencode(q.dict())}'
         )
         return cls._from_dict(response)
@@ -227,7 +227,7 @@ class Queryable(Resource):
     _query_params: ClassVar = BaseQuery
 
     @classmethod
-    def one(cls, **query_params) -> Resource:
+    async def one(cls, **query_params) -> Resource:
         """Retrieve only one resource given a query.
 
         Given a query, retrieve one and only one resource. If more
@@ -246,7 +246,7 @@ class Queryable(Resource):
 
         """
         q = cls._query_params(limit=2, **query_params)
-        response = client.get(cls._resource, q.dict())
+        response = await client.get(cls._resource, q.dict())
         items = response['data']
         len_items = len(items)
         if not len_items:
@@ -256,7 +256,7 @@ class Queryable(Resource):
         return cls._from_dict(items[0])
 
     @classmethod
-    def first(cls, **query_params) -> Optional[Resource]:
+    async def first(cls, **query_params) -> Optional[Resource]:
         """Retrieve the first resource found given a query or none.
 
         Args:
@@ -268,7 +268,7 @@ class Queryable(Resource):
 
         """
         q = cls._query_params(limit=1, **query_params)
-        response = client.get(cls._resource, q.dict())
+        response = await client.get(cls._resource, q.dict())
         try:
             item = response['data'][0]
         except IndexError:
@@ -278,7 +278,7 @@ class Queryable(Resource):
         return rv
 
     @classmethod
-    def count(cls, **query_params) -> int:
+    async def count(cls, **query_params) -> int:
         """Get the total number of results given a query.
 
         Args:
@@ -289,12 +289,12 @@ class Queryable(Resource):
 
         """
         q = cls._query_params(**query_params)
-        response = client.get(cls._resource, q.dict())
+        response = await client.get(cls._resource, q.dict())
         items = response['data']
         return len(items)
 
     @classmethod
-    def all(cls, **query_params) -> Generator[Resource, None, None]:
+    async def all(cls, **query_params) -> AsyncGenerator[Resource, None]:
         """Retrieve all resources given a query.
 
         All the returned resources are paginated, the method `yields`
@@ -312,8 +312,9 @@ class Queryable(Resource):
         next_page_uri = f'{cls._resource}?{urlencode(q.dict())}'
         current_page = 1
         while next_page_uri:
-            page = client.get(next_page_uri)
-            yield from (cls._from_dict(item) for item in page['data'])
+            page = await client.get(next_page_uri)
+            for item in page['data']:
+                yield cls._from_dict(item)
             next_page_uri = ''
             if current_page < page['total_pages']:
                 current_page += 1

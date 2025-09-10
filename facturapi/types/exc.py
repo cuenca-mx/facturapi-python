@@ -3,7 +3,7 @@ from typing import Any, Dict
 
 
 class FacturapiException(Exception):
-    ...
+    pass
 
 
 class NoResultFound(FacturapiException):
