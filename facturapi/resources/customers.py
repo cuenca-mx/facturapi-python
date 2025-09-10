@@ -5,7 +5,7 @@ classes to create and update the resource.
 """
 
 import datetime as dt
-from typing import ClassVar, Optional, cast
+from typing import ClassVar, cast
 
 from pydantic import BaseModel
 from pydantic.dataclasses import dataclass
@@ -34,7 +34,7 @@ class CustomerRequest(BaseModel):
     tax_id: str
     tax_system: TaxSystemType
     email: str
-    phone: Optional[str]
+    phone: str | None
     address: CustomerAddress
 
 
@@ -53,12 +53,12 @@ class CustomerUpdateRequest(BaseModel):
 
     """
 
-    legal_name: Optional[str]
-    tax_id: Optional[str]
-    tax_system: Optional[TaxSystemType]
-    email: Optional[str]
-    phone: Optional[str]
-    address: Optional[CustomerAddress]
+    legal_name: str | None
+    tax_id: str | None
+    tax_system: TaxSystemType | None
+    email: str | None
+    phone: str | None
+    address: CustomerAddress | None
 
 
 @dataclass
@@ -89,8 +89,8 @@ class Customer(Creatable, Queryable, Retrievable, Updatable):
     tax_id: str
     email: str
     address: CustomerAddress
-    tax_system: Optional[TaxSystemType] = None
-    phone: Optional[str] = None
+    tax_system: TaxSystemType | None = None
+    phone: str | None = None
 
     @classmethod
     def create(cls, data: CustomerRequest) -> 'Customer':

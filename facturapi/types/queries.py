@@ -1,7 +1,7 @@
 import datetime as dt
-from typing import Any, Optional, Union
+from typing import Any
 
-from pydantic import BaseModel, Extra
+from pydantic import BaseModel
 from pydantic.types import ConstrainedInt
 
 MAX_PAGE_SIZE = 50
@@ -34,10 +34,10 @@ class DateFilter(BaseModel):
 
     """
 
-    gt: Optional[Union[str, dt.datetime]]
-    gte: Optional[Union[str, dt.datetime]]
-    lt: Optional[Union[str, dt.datetime]]
-    lte: Optional[Union[str, dt.datetime]]
+    gt: str | dt.datetime | None
+    gte: str | dt.datetime | None
+    lt: str | dt.datetime | None
+    lte: str | dt.datetime | None
 
 
 class BaseQuery(BaseModel):
@@ -58,13 +58,13 @@ class BaseQuery(BaseModel):
 
     """
 
-    q: Optional[str]
-    limit: Optional[PageSize] = PageSize(MAX_PAGE_SIZE)
-    page: Optional[Page] = Page(MIN_PAGE)
-    date: Optional[DateFilter]
+    q: str | None
+    limit: PageSize | None = PageSize(MAX_PAGE_SIZE)
+    page: Page | None = Page(MIN_PAGE)
+    date: DateFilter | None
 
     class Config:
-        extra = Extra.forbid
+        extra = 'forbid'
 
     def dict(self, *args, **kwargs) -> dict[str, Any]:
         kwargs.setdefault('exclude_none', True)
@@ -74,4 +74,4 @@ class BaseQuery(BaseModel):
 
 
 class InvoiceQuery(BaseQuery):
-    motive: Optional[str]
+    motive: str | None

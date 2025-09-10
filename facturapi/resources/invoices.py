@@ -6,7 +6,7 @@ Invoice Item.
 """
 
 import datetime as dt
-from typing import ClassVar, Optional, Union, cast
+from typing import ClassVar, cast
 
 from pydantic import BaseModel
 from pydantic.dataclasses import dataclass
@@ -46,15 +46,15 @@ class InvoiceItem(BaseModel):
 
     """
 
-    quantity: Optional[int] = 1
-    discount: Optional[float] = 0
-    product: Union[
-        str, ProductBasicInfo, dict
-    ]  # TO DO: Change dict for ProductRequest
-    customs_keys: Optional[list[str]]
-    complement: Optional[str]
-    parts: Optional[list[ItemPart]]
-    property_tax_account: Optional[str]
+    quantity: int | None = 1
+    discount: float | None = 0
+    product: (
+        str | ProductBasicInfo | dict
+    )  # TO DO: Change dict for ProductRequest
+    customs_keys: list[str] | None
+    complement: str | None
+    parts: list[ItemPart] | None
+    property_tax_account: str | None
 
 
 class InvoiceRequest(BaseModel):
@@ -91,22 +91,22 @@ class InvoiceRequest(BaseModel):
 
     """
 
-    customer: Union[str, CustomerRequest]
+    customer: str | CustomerRequest
     items: list[InvoiceItem]
     payment_form: PaymentForm
-    payment_method: Optional[PaymentMethod] = PaymentMethod.contado
-    use: Optional[InvoiceUse] = InvoiceUse.adquisicion_mercancias
-    folio_number: Optional[int]
-    series: Optional[str]
-    currency: Optional[str] = 'MXN'
-    exchange: Optional[float] = 1.0
-    conditions: Optional[str]
-    foreign_trade: Optional[dict]
-    related: Optional[list[str]]
-    relation: Optional[InvoiceRelation]
-    pdf_custom_section: Optional[str]
-    addenda: Optional[str]
-    namespaces: Optional[Namespace]
+    payment_method: PaymentMethod | None = PaymentMethod.contado
+    use: InvoiceUse | None = InvoiceUse.adquisicion_mercancias
+    folio_number: int | None
+    series: str | None
+    currency: str | None = 'MXN'
+    exchange: float | None = 1.0
+    conditions: str | None
+    foreign_trade: dict | None
+    related: list[str] | None
+    relation: InvoiceRelation | None
+    pdf_custom_section: str | None
+    addenda: str | None
+    namespaces: Namespace | None
 
 
 @dataclass
@@ -157,11 +157,11 @@ class Invoice(Creatable, Deletable, Downloadable, Queryable, Retrievable):
     items: list[InvoiceItem]
     currency: str
     exchange: float
-    cancellation_status: Optional[str]
-    folio_number: Optional[int]
-    series: Optional[str] = None
-    related: Optional[list[str]] = None
-    relation: Optional[InvoiceRelation] = None
+    cancellation_status: str | None
+    folio_number: int | None
+    series: str | None
+    related: list[str] | None
+    relation: InvoiceRelation | None
 
     @classmethod
     def create(cls, data: InvoiceRequest) -> 'Invoice':
@@ -196,7 +196,7 @@ class Invoice(Creatable, Deletable, Downloadable, Queryable, Retrievable):
     def send_by_email(
         cls,
         invoice_id: str,
-        recipients: Optional[Union[str, list[str]]] = None,
+        recipients: str | list[str] | None = None,
     ) -> bool:
         """Send an invoice by email.
 

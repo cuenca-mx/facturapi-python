@@ -1,5 +1,5 @@
 import os
-from typing import Any, MutableMapping, Optional, Union
+from typing import Any, MutableMapping
 from urllib.parse import urljoin
 
 import httpx
@@ -59,7 +59,7 @@ class Client:
     def get(
         self,
         endpoint: str,
-        params: Union[None, bytes, MutableMapping[str, str]] = None,
+        params: bytes | MutableMapping[str, str] | None = None,
     ) -> dict[str, Any]:
         """Performs GET request to Facturapi."""
         return self.request('get', endpoint, params=params)
@@ -80,8 +80,8 @@ class Client:
         self,
         method: str,
         endpoint: str,
-        params: Union[None, bytes, MutableMapping[str, str]] = None,
-        data: Optional[dict[str, Union[int, str]]] = None,
+        params: bytes | MutableMapping[str, str] | None = None,
+        data: dict[str, int | str] | None = None,
         **kwargs,
     ) -> dict[str, Any]:
         """Performs a request to Facturapi.

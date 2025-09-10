@@ -6,7 +6,7 @@ perform requests and actions to the API.
 """
 
 from dataclasses import asdict, fields
-from typing import Any, ClassVar, Generator, Optional
+from typing import Any, ClassVar, Generator
 from urllib.parse import urlencode
 
 from pydantic.dataclasses import dataclass
@@ -256,7 +256,7 @@ class Queryable(Resource):
         return cls._from_dict(items[0])
 
     @classmethod
-    def first(cls, **query_params) -> Optional[Resource]:
+    def first(cls, **query_params) -> Resource | None:
         """Retrieve the first resource found given a query or none.
 
         Args:
