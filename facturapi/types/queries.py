@@ -1,20 +1,13 @@
 import datetime as dt
-from typing import Any
+from typing import Annotated, Any
 
-from pydantic import BaseModel
-from pydantic.types import ConstrainedInt
+from pydantic import BaseModel, Field
 
 MAX_PAGE_SIZE = 50
 MIN_PAGE = 1
 
-
-class PageSize(ConstrainedInt):
-    gt = 0
-    le = MAX_PAGE_SIZE
-
-
-class Page(ConstrainedInt):
-    gt = MIN_PAGE
+PageSize = Annotated[int, Field(gt=0, le=MAX_PAGE_SIZE)]
+Page = Annotated[int, Field(gt=MIN_PAGE)]
 
 
 class DateFilter(BaseModel):
@@ -63,13 +56,12 @@ class BaseQuery(BaseModel):
     page: Page | None = Page(MIN_PAGE)
     date: DateFilter | None
 
-    class Config:
-        extra = 'forbid'
+    model_config = {"extra": "forbid"}
 
     def dict(self, *args, **kwargs) -> dict[str, Any]:
         kwargs.setdefault('exclude_none', True)
         kwargs.setdefault('exclude_unset', True)
-        d = super().dict(*args, **kwargs)
+        d = super().model_dump(*args, **kwargs)
         return d
 
 
