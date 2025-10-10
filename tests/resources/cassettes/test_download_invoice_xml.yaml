@@ -1,0 +1,114 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - DUMMY
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      User-Agent:
+      - facturapi-python/0.0.1
+    method: GET
+    uri: https://www.facturapi.io/v2/invoices/INVOICE01/xml
+  response:
+    body:
+      string: !!binary |
+        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
+    headers:
+      Cache-Control:
+      - private
+      Content-Encoding:
+      - gzip
+      Date:
+      - Tue, 01 Dec 2020 19:15:29 GMT
+      Server:
+      - Google Frontend
+      Transfer-Encoding:
+      - chunked
+      access-control-allow-origin:
+      - '*'
+      content-disposition:
+      - attachment; filename="768411cf-0edf-4d7f-bb9a-2b61f30c6886.xml"
+      content-security-policy:
+      - 'default-src ''self'';font-src https:;img-src data: https:;script-src ''unsafe-inline''
+        https:;style-src https: ''unsafe-inline'';object-src ''none'';connect-src
+        https:;frame-src https://js.stripe.com/;upgrade-insecure-requests'
+      content-type:
+      - application/xml
+      expect-ct:
+      - max-age=0
+      referrer-policy:
+      - no-referrer
+      strict-transport-security:
+      - max-age=15552000; includeSubDomains
+      vary:
+      - Accept-Encoding
+      x-cloud-trace-context:
+      - c6021b33442ea3b88aa546957b986bf8/15427937225856080238;o=1
+      x-content-type-options:
+      - nosniff
+      x-dns-prefetch-control:
+      - 'off'
+      x-download-options:
+      - noopen
+      x-frame-options:
+      - SAMEORIGIN
+      x-permitted-cross-domain-policies:
+      - none
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

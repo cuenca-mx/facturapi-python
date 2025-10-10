@@ -1,0 +1,80 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - DUMMY
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      User-Agent:
+      - facturapi-python/0.0.1
+    method: GET
+    uri: https://www.facturapi.io/v2/invoices?limit=2
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA+1TXW/TMBT9K5Mf+tSktvPRJFKFKoGAhzE0bRMCTdWNfdNaS+LiOFu3qf8dO203
+        NolpvAAPNC/19fG9Psfn3JM1LJEUbEystlAv/LL7aW2w62vrKnxMJFggxbd7oiQpSFKJVLJsimWc
+        sIhSVnKMkmhKxkQYBItyAdbhOOU0YDyg7IxHBc8KOg2znH11uFpdY6Olm19B3eGYXKNRlRJglW4X
+        vand8ZW1666YTA5bopIqrEDY3gDWKKzRrSuHHdhwqcuw2UwkVuAuHUK33rxRcjZN8oTleRxITmkQ
+        lwkPIBZlECUygzKZxhWNRwZn8/mcMv+5PyNjZhfz89M0Ypylx0kysnaWxSEdfqMKZ6d3k7fT+Wzm
+        eHQWbO80ItdQO22cdrdrR4p89FpAK7Cud5QegK1u0W/2ndUNGlI8ipoA5HmUYQrcixoxAM68WLh0
+        79FC4zufYoNS6e7oAoz2A2GzGBo8uTPZ7p+RFFk8Jn0/QF4jh2vZd37Qe+pnV7pWetH2Tenv6qyw
+        htsGW7uotGkcajhwqDVoV9oP+nz+buBoDLbi1hWOv3xyBdyIFbR71ymLTTeY6nsPrVX2dmc11Qnd
+        t84/NHSotdGyF9bLJLETRq29nH7EbkMfnWFnyQNwcYV+XuKsx/nAoG/Vofohmx4KezU/K7yD4bQS
+        bh3zkCZ7TVtR9xIdG2t6HGq4u65xDh9ulz4+98XcNblRdrXStVTt8sHX3q/aKUfOoAOyvdx6tYx9
+        TtwxfUbPgfCI/ZqYa+WavWwe+kIiKS94XsRJSKP4TyYyzWLGRBVQlFUQy2kVlGUOAS9TVkVUpFmW
+        /n4i705OrpY3TxO5ix++KpQgBK7tgP07wXyFKi8Gk/0P5j8VzMvtD7bzVY9gBwAA
+    headers:
+      Cache-Control:
+      - private
+      Content-Encoding:
+      - gzip
+      Date:
+      - Tue, 01 Dec 2020 23:33:23 GMT
+      Server:
+      - Google Frontend
+      Transfer-Encoding:
+      - chunked
+      access-control-allow-origin:
+      - '*'
+      content-security-policy:
+      - 'default-src ''self'';font-src https:;img-src data: https:;script-src ''unsafe-inline''
+        https:;style-src https: ''unsafe-inline'';object-src ''none'';connect-src
+        https:;frame-src https://js.stripe.com/;upgrade-insecure-requests'
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"760-67Pq8L7pqLmr+Y0Jisch0YN1PXA"
+      expect-ct:
+      - max-age=0
+      referrer-policy:
+      - no-referrer
+      strict-transport-security:
+      - max-age=15552000; includeSubDomains
+      vary:
+      - Accept-Encoding
+      x-cloud-trace-context:
+      - 1cdfcbd7281e8da0f65196a85d7f1d80/2417093885630454950;o=1
+      x-content-type-options:
+      - nosniff
+      x-dns-prefetch-control:
+      - 'off'
+      x-download-options:
+      - noopen
+      x-frame-options:
+      - SAMEORIGIN
+      x-permitted-cross-domain-policies:
+      - none
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

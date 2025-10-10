@@ -1,0 +1,69 @@
+interactions:
+- request:
+    body: '{"legal_name": "Cordelia Urueta Sierra", "tax_id": "UUSC9509162G7", "tax_system":
+      "625", "email": "cordelia@urueta.com", "phone": "5511223344", "address": {"street":
+      "Colima", "exterior": "196", "interior": "1", "neighborhood": "Roma", "zip":
+      "06700", "city": "Ciudad de M\u00e9xico", "municipality": "Cuauht\u00e9moc",
+      "state": "Ciudad de M\u00e9xico"}}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - DUMMY
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '354'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - facturapi-python/0.0.2
+    method: POST
+    uri: https://www.facturapi.io/v2/customers
+  response:
+    body:
+      string: "{\"legal_name\":\"CORDELIA URUETA SIERRA\",\"tax_id\":\"UUSC9509162G7\",\"tax_system\":\"625\",\"email\":\"cordelia@urueta.com\",\"phone\":\"5511223344\",\"address\":{\"country\":\"MEX\",\"street\":\"Colima\",\"exterior\":\"196\",\"interior\":\"1\",\"neighborhood\":\"Roma\",\"zip\":\"06700\",\"city\":\"Ciudad
+        de M\xE9xico\",\"municipality\":\"Cuauht\xE9moc\",\"state\":\"Ciudad de M\xE9xico\"},\"organization\":\"63fe3f1fe87ce2001b182417\",\"created_at\":\"2023-02-28T18:02:54.116Z\",\"livemode\":false,\"id\":\"63fe41cee87ce2001b18484a\"}"
+    headers:
+      Content-Length:
+      - '463'
+      Date:
+      - Tue, 28 Feb 2023 18:02:54 GMT
+      Server:
+      - Google Frontend
+      access-control-allow-origin:
+      - '*'
+      content-security-policy:
+      - 'default-src ''self'';font-src https:;img-src data: https:;script-src ''unsafe-inline''
+        https:;style-src https: ''unsafe-inline'';object-src ''none'';connect-src
+        https:;frame-src self *.stripe.com *.facebook.com;upgrade-insecure-requests'
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"1cf-VZLaRFdy+UnX7EiDxH82TH7MtBk"
+      expect-ct:
+      - max-age=0
+      referrer-policy:
+      - no-referrer
+      strict-transport-security:
+      - max-age=15552000; includeSubDomains
+      x-cloud-trace-context:
+      - ad782770d906f651e147deea696d88c2/4668085256986782600;o=1
+      x-content-type-options:
+      - nosniff
+      x-dns-prefetch-control:
+      - 'off'
+      x-download-options:
+      - noopen
+      x-frame-options:
+      - SAMEORIGIN
+      x-permitted-cross-domain-policies:
+      - none
+      x-xss-protection:
+      - '0'
+    status:
+      code: 201
+      message: Created
+version: 1

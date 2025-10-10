@@ -1,0 +1,77 @@
+interactions:
+- request:
+    body: '{}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - DUMMY
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '2'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - facturapi-python/0.2.0
+    method: POST
+    uri: https://www.facturapi.io/v2/invoices/INVOICE_NOT_FOUND/email
+  response:
+    body:
+      string: '{"message":"Invoice with Id \"INVOICE_NOT_FOUND\" was not found or
+        you don''t have the right permissions","ok":false}'
+    headers:
+      Content-Length:
+      - '116'
+      access-control-allow-origin:
+      - '*'
+      content-security-policy:
+      - 'default-src ''self'' https://accounts.google.com/gsi/* https://*.stripe.com;font-src
+        https:;img-src data: https: https://*.stripe.com;script-src ''unsafe-inline''
+        https: https://accounts.google.com/gsi/client https://builder.io https://builder.io/*;style-src
+        https: ''unsafe-inline'' https://accounts.google.com/gsi/style;base-uri ''self'';object-src
+        ''none'';connect-src https: https://accounts.google.com/gsi/* https://*.stripe.com;frame-src
+        ''self'' *.stripe.com *.facebook.com https://accounts.google.com/ https://accounts.google.com/gsi/
+        https://accounts.google.com/gsi/* https://builder.io https://builder.io/*;frame-ancestors
+        ''self'' https://builder.io https://builder.io/*;upgrade-insecure-requests;form-action
+        ''self'';script-src-attr ''none'''
+      content-type:
+      - application/json; charset=utf-8
+      cross-origin-opener-policy:
+      - same-origin-allow-popups
+      cross-origin-resource-policy:
+      - same-site
+      date:
+      - Fri, 04 Apr 2025 02:59:28 GMT
+      etag:
+      - W/"74-9U2JIE0F589sz9k6Zf4ELoiLoa4"
+      origin-agent-cluster:
+      - ?1
+      referrer-policy:
+      - no-referrer
+      server:
+      - Google Frontend
+      strict-transport-security:
+      - max-age=15552000; includeSubDomains
+      x-cloud-trace-context:
+      - 34e5c1b94a06826421ee52ae05c02139/10885945258051611867;o=1
+      x-content-type-options:
+      - nosniff
+      x-dns-prefetch-control:
+      - 'off'
+      x-download-options:
+      - noopen
+      x-facturapi-log-id:
+      - 67ef4b105eb1f5f4a053ae9f
+      x-frame-options:
+      - SAMEORIGIN
+      x-permitted-cross-domain-policies:
+      - none
+      x-xss-protection:
+      - '0'
+    status:
+      code: 400
+      message: Bad Request
+version: 1
