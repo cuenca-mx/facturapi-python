@@ -22,7 +22,7 @@ setup(
     include_package_data=True,
     package_data=dict(facturapi=['py.typed']),
     python_requires='>=3.10',
-    install_requires=['requests>=2.32.0,<3.0.0'],
+    install_requires=['httpx>=0.28.0,<1.0.0', 'pydantic>=2.10.0,<3.0.0'],
     classifiers=[
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.10',
