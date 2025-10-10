@@ -294,7 +294,7 @@ class Queryable(Resource):
         return len(items)
 
     @classmethod
-    def all(cls, **query_params) -> Generator[Resource, None]:
+    def all(cls, **query_params) -> Generator[Resource, None, None]:
         """Retrieve all resources given a query.
 
         All the returned resources are paginated, the method `yields`
