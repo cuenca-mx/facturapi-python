@@ -34,7 +34,7 @@ class CustomerRequest(BaseModel):
     tax_id: str
     tax_system: TaxSystemType
     email: str
-    phone: str | None
+    phone: str | None = None
     address: CustomerAddress
 
 
@@ -53,12 +53,12 @@ class CustomerUpdateRequest(BaseModel):
 
     """
 
-    legal_name: str | None
-    tax_id: str | None
-    tax_system: TaxSystemType | None
-    email: str | None
-    phone: str | None
-    address: CustomerAddress | None
+    legal_name: str | None = None
+    tax_id: str | None = None
+    tax_system: TaxSystemType | None = None
+    email: str | None = None
+    phone: str | None = None
+    address: CustomerAddress | None = None
 
 
 @dataclass

@@ -19,15 +19,15 @@ class CustomerAddress(BaseModel):
 
     """
 
-    street: str | None
-    exterior: str | None
-    interior: str | None
-    neighborhood: str | None
-    zip: str | None
-    city: str | None
-    municipality: str | None
-    state: str | None
-    country: str | None
+    street: str | None = None
+    exterior: str | None = None
+    interior: str | None = None
+    neighborhood: str | None = None
+    zip: str | None = None
+    city: str | None = None
+    municipality: str | None = None
+    state: str | None = None
+    country: str | None = None
 
 
 class CustomerBasicInfo(BaseModel):
@@ -44,17 +44,17 @@ class ItemPart(BaseModel):
     description: str
     product_key: str
     quantity: int | None = 1
-    sku: str | None
-    unit_price: float | None
-    customs_keys: list[str] | None
+    sku: str | None = None
+    unit_price: float | None = None
+    customs_keys: list[str] | None = None
 
 
 class Namespace(BaseModel):
     """Namespace for spceial XML namespaces for an invoice."""
 
-    prefix: str | None
-    uri: str | None
-    schema_location: str | None
+    prefix: str | None = None
+    uri: str | None = None
+    schema_location: str | None = None
 
 
 class ProductBasicInfo(BaseModel):
