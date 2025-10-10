@@ -27,10 +27,10 @@ class DateFilter(BaseModel):
 
     """
 
-    gt: str | dt.datetime | None
-    gte: str | dt.datetime | None
-    lt: str | dt.datetime | None
-    lte: str | dt.datetime | None
+    gt: str | dt.datetime | None = None
+    gte: str | dt.datetime | None = None
+    lt: str | dt.datetime | None = None
+    lte: str | dt.datetime | None = None
 
 
 class BaseQuery(BaseModel):
@@ -51,10 +51,10 @@ class BaseQuery(BaseModel):
 
     """
 
-    q: str | None
+    q: str | None = None
     limit: PageSize | None = PageSize(MAX_PAGE_SIZE)
     page: Page | None = Page(MIN_PAGE)
-    date: DateFilter | None
+    date: DateFilter | None = None
 
     model_config = {"extra": "forbid"}
 
@@ -66,4 +66,4 @@ class BaseQuery(BaseModel):
 
 
 class InvoiceQuery(BaseQuery):
-    motive: str | None
+    motive: str | None = None

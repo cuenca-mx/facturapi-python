@@ -51,10 +51,10 @@ class InvoiceItem(BaseModel):
     product: (
         str | ProductBasicInfo | dict
     )  # TO DO: Change dict for ProductRequest
-    customs_keys: list[str] | None
-    complement: str | None
-    parts: list[ItemPart] | None
-    property_tax_account: str | None
+    customs_keys: list[str] | None = None
+    complement: str | None = None
+    parts: list[ItemPart] | None = None
+    property_tax_account: str | None = None
 
 
 class InvoiceRequest(BaseModel):
@@ -96,17 +96,17 @@ class InvoiceRequest(BaseModel):
     payment_form: PaymentForm
     payment_method: PaymentMethod | None = PaymentMethod.contado
     use: InvoiceUse | None = InvoiceUse.adquisicion_mercancias
-    folio_number: int | None
-    series: str | None
+    folio_number: int | None = None
+    series: str | None = None
     currency: str | None = 'MXN'
     exchange: float | None = 1.0
-    conditions: str | None
-    foreign_trade: dict | None
-    related: list[str] | None
-    relation: InvoiceRelation | None
-    pdf_custom_section: str | None
-    addenda: str | None
-    namespaces: Namespace | None
+    conditions: str | None = None
+    foreign_trade: dict | None = None
+    related: list[str] | None = None
+    relation: InvoiceRelation | None = None
+    pdf_custom_section: str | None = None
+    addenda: str | None = None
+    namespaces: Namespace | None = None
 
 
 @dataclass
@@ -157,11 +157,11 @@ class Invoice(Creatable, Deletable, Downloadable, Queryable, Retrievable):
     items: list[InvoiceItem]
     currency: str
     exchange: float
-    cancellation_status: str | None
-    folio_number: int | None
-    series: str | None
-    related: list[str] | None
-    relation: InvoiceRelation | None
+    cancellation_status: str | None = None
+    folio_number: int | None = None
+    series: str | None = None
+    related: list[str] | None = None
+    relation: InvoiceRelation | None = None
 
     @classmethod
     def create(cls, data: InvoiceRequest) -> 'Invoice':
