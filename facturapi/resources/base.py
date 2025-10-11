@@ -90,7 +90,7 @@ class Retrievable(Resource):
         response = client.get(f'/{cls._resource}/{id}')
         return cls._from_dict(response)
 
-    def refresh(self):
+    def refresh(self) -> None:
         """Refresh a resource
 
         Refresh resource's data to be sure its the latest. It

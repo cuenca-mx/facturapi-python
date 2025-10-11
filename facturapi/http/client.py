@@ -30,7 +30,7 @@ class Client:
     host: str = API_HOST
     client: httpx.Client
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.client = httpx.Client()
         self.client.headers.update(
             {
@@ -43,7 +43,7 @@ class Client:
         self.api_key = os.getenv('FACTURAPI_KEY', '')
         self.client.auth = httpx.BasicAuth(self.api_key, '')
 
-    def configure(self, api_key: str):
+    def configure(self, api_key: str) -> None:
         """Configure the http client.
 
         Import the client and configure it passing the `API_KEY`
@@ -142,7 +142,7 @@ class Client:
         return response.content
 
     @staticmethod
-    def _check_response(response: Response):
+    def _check_response(response: Response) -> None:
         if not response.is_success:
             raise FacturapiResponseException(
                 json=response.json(),
