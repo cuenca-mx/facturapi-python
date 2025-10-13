@@ -52,8 +52,8 @@ class BaseQuery(BaseModel):
     """
 
     q: str | None = None
-    limit: PageSize | None = PageSize(MAX_PAGE_SIZE)
-    page: Page | None = Page(MIN_PAGE)
+    limit: PageSize | None = MAX_PAGE_SIZE
+    page: Page | None = MIN_PAGE
     date: DateFilter | None = None
 
     model_config = {"extra": "forbid"}
