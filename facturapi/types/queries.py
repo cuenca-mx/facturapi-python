@@ -7,7 +7,7 @@ MAX_PAGE_SIZE = 50
 MIN_PAGE = 1
 
 PageSize = Annotated[int, Field(gt=0, le=MAX_PAGE_SIZE)]
-Page = Annotated[int, Field(gt=MIN_PAGE)]
+Page = Annotated[int, Field(ge=MIN_PAGE)]
 
 
 class DateFilter(BaseModel):
