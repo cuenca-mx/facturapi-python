@@ -6,7 +6,9 @@ from facturapi.types import BaseQuery
 
 def test_base_query():
     q = BaseQuery(q='Frida')
-    assert q.dict() == dict(q='Frida')
+    assert q.model_dump(exclude_unset=True, exclude_none=True) == dict(
+        q='Frida'
+    )
 
 
 def test_base_query_page_size():

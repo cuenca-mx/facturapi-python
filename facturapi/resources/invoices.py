@@ -174,7 +174,7 @@ class Invoice(Creatable, Deletable, Downloadable, Queryable, Retrievable):
             Invoice: The created resource.
 
         """
-        cleaned_data = data.dict(exclude_unset=True, exclude_none=True)
+        cleaned_data = data.model_dump(exclude_unset=True, exclude_none=True)
         return cast('Invoice', cls._create(**cleaned_data))
 
     @classmethod

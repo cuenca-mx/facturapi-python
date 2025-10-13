@@ -103,7 +103,7 @@ class Customer(Creatable, Queryable, Retrievable, Updatable):
             Customer: The created customer resource.
 
         """
-        cleaned_data = data.dict(exclude_unset=True, exclude_none=True)
+        cleaned_data = data.model_dump(exclude_unset=True, exclude_none=True)
         return cast('Customer', cls._create(**cleaned_data))
 
     @classmethod
@@ -118,5 +118,5 @@ class Customer(Creatable, Queryable, Retrievable, Updatable):
             Customer: The udpated customer resource.
 
         """
-        cleaned_data = data.dict(exclude_unset=True, exclude_none=True)
+        cleaned_data = data.model_dump(exclude_unset=True, exclude_none=True)
         return cast('Customer', cls._update(id=id, **cleaned_data))
