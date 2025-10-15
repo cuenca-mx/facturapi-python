@@ -1,5 +1,3 @@
-from typing import List, Optional
-
 from pydantic import BaseModel
 
 from .validators import sanitize_dict
@@ -21,15 +19,15 @@ class CustomerAddress(BaseModel):
 
     """
 
-    street: Optional[str]
-    exterior: Optional[str]
-    interior: Optional[str]
-    neighborhood: Optional[str]
-    zip: Optional[str]
-    city: Optional[str]
-    municipality: Optional[str]
-    state: Optional[str]
-    country: Optional[str]
+    street: str | None = None
+    exterior: str | None = None
+    interior: str | None = None
+    neighborhood: str | None = None
+    zip: str | None = None
+    city: str | None = None
+    municipality: str | None = None
+    state: str | None = None
+    country: str | None = None
 
 
 class CustomerBasicInfo(BaseModel):
@@ -45,18 +43,18 @@ class ItemPart(BaseModel):
 
     description: str
     product_key: str
-    quantity: Optional[int] = 1
-    sku: Optional[str]
-    unit_price: Optional[float]
-    customs_keys: Optional[List[str]]
+    quantity: int | None = 1
+    sku: str | None = None
+    unit_price: float | None = None
+    customs_keys: list[str] | None = None
 
 
 class Namespace(BaseModel):
     """Namespace for spceial XML namespaces for an invoice."""
 
-    prefix: Optional[str]
-    uri: Optional[str]
-    schema_location: Optional[str]
+    prefix: str | None = None
+    uri: str | None = None
+    schema_location: str | None = None
 
 
 class ProductBasicInfo(BaseModel):

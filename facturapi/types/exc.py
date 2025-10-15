@@ -1,9 +1,9 @@
 from dataclasses import dataclass
-from typing import Any, Dict
+from typing import Any
 
 
 class FacturapiException(Exception):
-    ...
+    pass
 
 
 class NoResultFound(FacturapiException):
@@ -16,7 +16,7 @@ class MultipleResultsFound(FacturapiException):
 
 @dataclass
 class FacturapiResponseException(FacturapiException):
-    json: Dict[str, Any]
+    json: dict[str, Any]
     status_code: int
 
     def __str__(self) -> str:

@@ -5,7 +5,7 @@ classes to create and update the resource.
 """
 
 import datetime as dt
-from typing import ClassVar, Optional, cast
+from typing import ClassVar, cast
 
 from pydantic import BaseModel
 from pydantic.dataclasses import dataclass
@@ -34,7 +34,7 @@ class CustomerRequest(BaseModel):
     tax_id: str
     tax_system: TaxSystemType
     email: str
-    phone: Optional[str]
+    phone: str | None = None
     address: CustomerAddress
 
 
@@ -53,12 +53,12 @@ class CustomerUpdateRequest(BaseModel):
 
     """
 
-    legal_name: Optional[str]
-    tax_id: Optional[str]
-    tax_system: Optional[TaxSystemType]
-    email: Optional[str]
-    phone: Optional[str]
-    address: Optional[CustomerAddress]
+    legal_name: str | None = None
+    tax_id: str | None = None
+    tax_system: TaxSystemType | None = None
+    email: str | None = None
+    phone: str | None = None
+    address: CustomerAddress | None = None
 
 
 @dataclass
@@ -89,8 +89,8 @@ class Customer(Creatable, Queryable, Retrievable, Updatable):
     tax_id: str
     email: str
     address: CustomerAddress
-    tax_system: Optional[TaxSystemType] = None
-    phone: Optional[str] = None
+    tax_system: TaxSystemType | None = None
+    phone: str | None = None
 
     @classmethod
     def create(cls, data: CustomerRequest) -> 'Customer':
@@ -103,7 +103,7 @@ class Customer(Creatable, Queryable, Retrievable, Updatable):
             Customer: The created customer resource.
 
         """
-        cleaned_data = data.dict(exclude_unset=True, exclude_none=True)
+        cleaned_data = data.model_dump(exclude_unset=True, exclude_none=True)
         return cast('Customer', cls._create(**cleaned_data))
 
     @classmethod
@@ -118,5 +118,5 @@ class Customer(Creatable, Queryable, Retrievable, Updatable):
             Customer: The udpated customer resource.
 
         """
-        cleaned_data = data.dict(exclude_unset=True, exclude_none=True)
+        cleaned_data = data.model_dump(exclude_unset=True, exclude_none=True)
         return cast('Customer', cls._update(id=id, **cleaned_data))

@@ -6,7 +6,7 @@ Invoice Item.
 """
 
 import datetime as dt
-from typing import ClassVar, Dict, List, Optional, Union, cast
+from typing import ClassVar, cast
 
 from pydantic import BaseModel
 from pydantic.dataclasses import dataclass
@@ -34,27 +34,27 @@ class InvoiceItem(BaseModel):
             to `1`.
         discount (float): Discount on the item price if any.
             Defaults to `0`.
-        product (Union[str, ProductBasicInfo, Dict]): Product
+        product (Union[str, ProductBasicInfo, dict]): Product
             ID, info or request to create a resource.
-        custom_keys (List[str]): List of custom product keys.
+        custom_keys (list[str]): list of custom product keys.
             Optional.
         complement (str): XML code with additional info to add
             to the invoice. Optional.
-        parts (List[ItemParts]): If the concept includes parts.
+        parts (list[ItemParts]): If the concept includes parts.
             Optional.
         property_tax_account (str): 'Predial' number. Optional.
 
     """
 
-    quantity: Optional[int] = 1
-    discount: Optional[float] = 0
-    product: Union[
-        str, ProductBasicInfo, Dict
-    ]  # TO DO: Change Dict for ProductRequest
-    customs_keys: Optional[List[str]]
-    complement: Optional[str]
-    parts: Optional[List[ItemPart]]
-    property_tax_account: Optional[str]
+    quantity: int | None = 1
+    discount: float | None = 0
+    product: (
+        str | ProductBasicInfo | dict
+    )  # TO DO: Change dict for ProductRequest
+    customs_keys: list[str] | None = None
+    complement: str | None = None
+    parts: list[ItemPart] | None = None
+    property_tax_account: str | None = None
 
 
 class InvoiceRequest(BaseModel):
@@ -65,7 +65,7 @@ class InvoiceRequest(BaseModel):
     Attributes:
         customer (Union[str, CustomerRequest]): Customer ID or a
             CustomerRequest to create a new one.
-        items (List[InvoiceItem]): List of items of the invoice.
+        items (list[InvoiceItem]): list of items of the invoice.
         payment_form (PaymentForm): Form of payment.
         payment_method (PaymentMethod): Method of payment. Defaults
             to `PaymentMethod.contado`.
@@ -78,35 +78,35 @@ class InvoiceRequest(BaseModel):
         exchange (float): If a currency is present, the exchange
             value to Mexican Pesos. Defaults to `1.0`.
         conditions (str): Payment conditions. Optional.
-        foreign_trade (Dict): Info to add a 'Complemento de Comercio
+        foreign_trade (dict): Info to add a 'Complemento de Comercio
             Exterior'. Optional.
-        related (List[str]): UUID list of related invoices. Optional.
+        related (list[str]): UUID list of related invoices. Optional.
         relation (InvoiceRelation): If related invoices are given,
             their relation key from the SAT catalogue. Optional.
         pdf_custom_section (str): HTML string code to include content
             to the invoice's PDF. Optional
         addenda (str): XML code with Addenda. Optional.
-        namespaces (List[Namespace]): If `addenda` or an item complement
+        namespaces (list[Namespace]): If `addenda` or an item complement
             is given, the special namespaces of the XML code. Optional.
 
     """
 
-    customer: Union[str, CustomerRequest]
-    items: List[InvoiceItem]
+    customer: str | CustomerRequest
+    items: list[InvoiceItem]
     payment_form: PaymentForm
-    payment_method: Optional[PaymentMethod] = PaymentMethod.contado
-    use: Optional[InvoiceUse] = InvoiceUse.adquisicion_mercancias
-    folio_number: Optional[int]
-    series: Optional[str]
-    currency: Optional[str] = 'MXN'
-    exchange: Optional[float] = 1.0
-    conditions: Optional[str]
-    foreign_trade: Optional[Dict]
-    related: Optional[List[str]]
-    relation: Optional[InvoiceRelation]
-    pdf_custom_section: Optional[str]
-    addenda: Optional[str]
-    namespaces: Optional[Namespace]
+    payment_method: PaymentMethod | None = PaymentMethod.contado
+    use: InvoiceUse | None = InvoiceUse.adquisicion_mercancias
+    folio_number: int | None = None
+    series: str | None = None
+    currency: str | None = 'MXN'
+    exchange: float | None = 1.0
+    conditions: str | None = None
+    foreign_trade: dict | None = None
+    related: list[str] | None = None
+    relation: InvoiceRelation | None = None
+    pdf_custom_section: str | None = None
+    addenda: str | None = None
+    namespaces: Namespace | None = None
 
 
 @dataclass
@@ -128,14 +128,14 @@ class Invoice(Creatable, Deletable, Downloadable, Queryable, Retrievable):
         total (float): Invoice total.
         uuid (str): 'Folio fiscal' assigned by SAT.
         payment_form (PaymentForm): Form of payment of the Invoice.
-        items (List[InvoiceItem]): List of items of the Invoice.
+        items (list[InvoiceItem]): list of items of the Invoice.
         currency (str): Currency of the invoice in ISO format.
         exchange (float): Exchange value to Mexican Pesos.
         cancellation_status (str): If the Invoice was cancelled, the
             status of the cancellation. Optional.
         folio_number (int): Folio number. Optional.
         series (str): Custom series string. Optional. Defaults to `None`.
-        related (List[str]): UUID of related invoices. Defaults to
+        related (list[str]): UUID of related invoices. Defaults to
             `None`.
         relation (InvoiceRelation): Relation key from the SAT catalogue.
             Defaults to `None`.
@@ -154,14 +154,14 @@ class Invoice(Creatable, Deletable, Downloadable, Queryable, Retrievable):
     total: float
     uuid: str
     payment_form: PaymentForm
-    items: List[InvoiceItem]
+    items: list[InvoiceItem]
     currency: str
     exchange: float
-    cancellation_status: Optional[str]
-    folio_number: Optional[int]
-    series: Optional[str] = None
-    related: Optional[List[str]] = None
-    relation: Optional[InvoiceRelation] = None
+    cancellation_status: str | None = None
+    folio_number: int | None = None
+    series: str | None = None
+    related: list[str] | None = None
+    relation: InvoiceRelation | None = None
 
     @classmethod
     def create(cls, data: InvoiceRequest) -> 'Invoice':
@@ -174,7 +174,7 @@ class Invoice(Creatable, Deletable, Downloadable, Queryable, Retrievable):
             Invoice: The created resource.
 
         """
-        cleaned_data = data.dict(exclude_unset=True, exclude_none=True)
+        cleaned_data = data.model_dump(exclude_unset=True, exclude_none=True)
         return cast('Invoice', cls._create(**cleaned_data))
 
     @classmethod
@@ -196,7 +196,7 @@ class Invoice(Creatable, Deletable, Downloadable, Queryable, Retrievable):
     def send_by_email(
         cls,
         invoice_id: str,
-        recipients: Optional[Union[str, List[str]]] = None,
+        recipients: str | list[str] | None = None,
     ) -> bool:
         """Send an invoice by email.
 

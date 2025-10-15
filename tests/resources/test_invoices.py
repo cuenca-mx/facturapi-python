@@ -150,7 +150,7 @@ def test_download_invoice():
     )
 
     assert invoice_bytes
-    assert type(invoice_bytes) == bytes
+    assert type(invoice_bytes) is bytes
 
 
 @pytest.mark.vcr
@@ -161,7 +161,7 @@ def test_download_invoice_xml():
     )
 
     assert invoice_bytes
-    assert type(invoice_bytes) == bytes
+    assert type(invoice_bytes) is bytes
 
 
 @pytest.mark.vcr
@@ -172,7 +172,7 @@ def test_download_invoice_zip():
     )
 
     assert invoice_bytes
-    assert type(invoice_bytes) == bytes
+    assert type(invoice_bytes) is bytes
 
 
 @pytest.mark.vcr

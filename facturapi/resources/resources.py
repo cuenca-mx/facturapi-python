@@ -1,10 +1,10 @@
 import re
-from typing import Dict, cast
+from typing import cast
 
 from .base import Retrievable
 
 ENDPOINT_RE = re.compile(r'(?P<resource>[a-z]+)/(?P<id>.+)$')
-RESOURCES: Dict[str, Retrievable] = {}  # set in ./__init__.py after imports
+RESOURCES: dict[str, Retrievable] = {}  # set in ./__init__.py after imports
 
 
 def retrieve_property(uri: str) -> Retrievable:

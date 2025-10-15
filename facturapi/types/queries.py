@@ -1,20 +1,13 @@
 import datetime as dt
-from typing import Any, Dict, Optional, Union
+from typing import Annotated, Any
 
-from pydantic import BaseModel, Extra
-from pydantic.types import ConstrainedInt
+from pydantic import BaseModel, Field
 
 MAX_PAGE_SIZE = 50
 MIN_PAGE = 1
 
-
-class PageSize(ConstrainedInt):
-    gt = 0
-    le = MAX_PAGE_SIZE
-
-
-class Page(ConstrainedInt):
-    gt = MIN_PAGE
+PageSize = Annotated[int, Field(gt=0, le=MAX_PAGE_SIZE)]
+Page = Annotated[int, Field(ge=MIN_PAGE)]
 
 
 class DateFilter(BaseModel):
@@ -34,10 +27,10 @@ class DateFilter(BaseModel):
 
     """
 
-    gt: Optional[Union[str, dt.datetime]]
-    gte: Optional[Union[str, dt.datetime]]
-    lt: Optional[Union[str, dt.datetime]]
-    lte: Optional[Union[str, dt.datetime]]
+    gt: str | dt.datetime | None = None
+    gte: str | dt.datetime | None = None
+    lt: str | dt.datetime | None = None
+    lte: str | dt.datetime | None = None
 
 
 class BaseQuery(BaseModel):
@@ -58,20 +51,19 @@ class BaseQuery(BaseModel):
 
     """
 
-    q: Optional[str]
-    limit: Optional[PageSize] = PageSize(MAX_PAGE_SIZE)
-    page: Optional[Page] = Page(MIN_PAGE)
-    date: Optional[DateFilter]
+    q: str | None = None
+    limit: PageSize | None = MAX_PAGE_SIZE
+    page: Page | None = MIN_PAGE
+    date: DateFilter | None = None
 
-    class Config:
-        extra = Extra.forbid
+    model_config = {"extra": "forbid"}
 
-    def dict(self, *args, **kwargs) -> Dict[str, Any]:
+    def dict(self, *args, **kwargs) -> dict[str, Any]:
         kwargs.setdefault('exclude_none', True)
         kwargs.setdefault('exclude_unset', True)
-        d = super().dict(*args, **kwargs)
+        d = super().model_dump(*args, **kwargs)
         return d
 
 
 class InvoiceQuery(BaseQuery):
-    motive: Optional[str]
+    motive: str | None = None

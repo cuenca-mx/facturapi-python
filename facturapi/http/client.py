@@ -1,9 +1,9 @@
 import os
-from typing import Any, Dict, MutableMapping, Optional, Union
+from typing import Any, MutableMapping
 from urllib.parse import urljoin
 
-import requests
-from requests import Response
+import httpx
+from httpx import Response
 
 from ..types.exc import FacturapiResponseException
 from ..version import CLIENT_VERSION
@@ -21,18 +21,18 @@ class Client:
 
     Attributes:
         host (str): Base URL to perform requests.
-        session (requests.Session): The requests session used
+        client (httpx.Client): The httpx client used
             to perform requests.
         api_key (str): API KEY for Facturapi
 
     """
 
     host: str = API_HOST
-    session: requests.Session
+    client: httpx.Client
 
-    def __init__(self):
-        self.session = requests.Session()
-        self.session.headers.update(
+    def __init__(self) -> None:
+        self.client = httpx.Client()
+        self.client.headers.update(
             {
                 'User-Agent': f'facturapi-python/{CLIENT_VERSION}',
                 'Content-Type': 'application/json',
@@ -41,9 +41,9 @@ class Client:
 
         # Auth
         self.api_key = os.getenv('FACTURAPI_KEY', '')
-        self.session.auth = (self.api_key, '')
+        self.client.auth = httpx.BasicAuth(self.api_key, '')
 
-    def configure(self, api_key: str):
+    def configure(self, api_key: str) -> None:
         """Configure the http client.
 
         Import the client and configure it passing the `API_KEY`
@@ -54,25 +54,25 @@ class Client:
 
         """
         self.api_key = api_key
-        self.session.auth = (self.api_key, '')
+        self.client.auth = httpx.BasicAuth(self.api_key, '')
 
     def get(
         self,
         endpoint: str,
-        params: Union[None, bytes, MutableMapping[str, str]] = None,
-    ) -> Dict[str, Any]:
+        params: bytes | MutableMapping[str, str] | None = None,
+    ) -> dict[str, Any]:
         """Performs GET request to Facturapi."""
         return self.request('get', endpoint, params=params)
 
-    def post(self, endpoint: str, data: Dict[str, Any]) -> Dict[str, Any]:
+    def post(self, endpoint: str, data: dict[str, Any]) -> dict[str, Any]:
         """Performs POST request to Facturapi."""
         return self.request('post', endpoint, data=data)
 
-    def put(self, endpoint: str, data: Dict[str, Any]) -> Dict[str, Any]:
+    def put(self, endpoint: str, data: dict[str, Any]) -> dict[str, Any]:
         """Performs PUT request to Facturapi."""
         return self.request('put', endpoint, data=data)
 
-    def delete(self, endpoint: str) -> Dict[str, Any]:
+    def delete(self, endpoint: str) -> dict[str, Any]:
         """Performs DELETE request to Facturapi."""
         return self.request('delete', endpoint)
 
@@ -80,10 +80,10 @@ class Client:
         self,
         method: str,
         endpoint: str,
-        params: Union[None, bytes, MutableMapping[str, str]] = None,
-        data: Optional[Dict[str, Union[int, str]]] = None,
+        params: bytes | MutableMapping[str, str] | None = None,
+        data: dict[str, int | str] | None = None,
         **kwargs,
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """Performs a request to Facturapi.
 
         Given a `method` and `endpoint`, perform a request to
@@ -97,14 +97,14 @@ class Client:
             **kwargs: Arbitrary keyword arguments.
 
         Returns:
-            Dict[str, Any]: JSON of the request's response.
+            dict[str, Any]: JSON of the request's response.
 
         Raises:
             FacturapiResponseException: If response is not
                 successful.
 
         """
-        response = self.session.request(
+        response = self.client.request(
             method=method,
             url=('https://' + self.host + urljoin('/', endpoint)),
             json=data,
@@ -133,7 +133,7 @@ class Client:
                 successful.
 
         """
-        response = self.session.request(
+        response = self.client.request(
             method='GET',
             url=('https://' + self.host + urljoin('/', endpoint)),
             **kwargs,
@@ -142,8 +142,8 @@ class Client:
         return response.content
 
     @staticmethod
-    def _check_response(response: Response):
-        if not response.ok:
+    def _check_response(response: Response) -> None:
+        if not response.is_success:
             raise FacturapiResponseException(
                 json=response.json(),
                 status_code=response.status_code,
