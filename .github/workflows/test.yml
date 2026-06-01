@@ -1,5 +1,8 @@
 name: test
 
+permissions:
+  contents: read
+
 on: push
 
 jobs:
@@ -20,17 +23,17 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ['3.10', '3.11', '3.12', '3.13']
+        python-version: ["3.10", "3.11", "3.12", "3.13"]
     steps:
-    - uses: actions/checkout@v4
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v5
-      with:
-        python-version: ${{ matrix.python-version }}
-    - name: Install dependencies
-      run: make install-test
-    - name: Run tests
-      run: pytest -x
+      - uses: actions/checkout@v4
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: make install-test
+      - name: Run tests
+        run: pytest -x
 
   coverage:
     runs-on: ubuntu-latest
