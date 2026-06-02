@@ -9,6 +9,7 @@ from ..types.exc import FacturapiResponseException
 from ..version import CLIENT_VERSION
 
 API_HOST = 'www.facturapi.io/v2'
+FACTURAPI_TIMEOUT = float(os.getenv('FACTURAPI_TIMEOUT', 10.0))
 
 
 class Client:
@@ -31,7 +32,7 @@ class Client:
     client: httpx.Client
 
     def __init__(self) -> None:
-        self.client = httpx.Client()
+        self.client = httpx.Client(timeout=FACTURAPI_TIMEOUT)
         self.client.headers.update(
             {
                 'User-Agent': f'facturapi-python/{CLIENT_VERSION}',
